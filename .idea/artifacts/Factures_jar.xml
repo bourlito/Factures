@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Factures:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Factures_jar</output-path>
+    <root id="archive" name="Factures.jar">
+      <element id="module-output" name="Factures" />
+      <element id="extracted-dir" path="$USER_HOME$/.IntelliJIdea2017.2/system/jars/poi-3.17/poi-3.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.IntelliJIdea2017.2/system/jars/poi-3.17/poi-ooxml-3.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.IntelliJIdea2017.2/system/jars/poi-3.17/poi-examples-3.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.IntelliJIdea2017.2/system/jars/poi-3.17/poi-excelant-3.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.IntelliJIdea2017.2/system/jars/poi-3.17/poi-scratchpad-3.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.IntelliJIdea2017.2/system/jars/poi-3.17/poi-ooxml-schemas-3.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.IntelliJIdea2017.2/system/jars/iText.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

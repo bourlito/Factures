@@ -1,0 +1,1282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Factures:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cc429986-ef2a-49d5-94b8-583f9354bd5a" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="MotsCles.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MotsCles.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="756">
+              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XCL.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/XCL.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-379">
+              <caret line="487" column="32" lean-forward="false" selection-start-line="487" selection-start-column="32" selection-end-line="487" selection-end-column="32" />
+              <folding>
+                <element signature="method#creerXCL#0;class#XCL#0" expanded="false" />
+                <element signature="method#creerFeuille#0;class#XCL#0" expanded="false" />
+                <element signature="method#creerEntete#0;class#XCL#0" expanded="false" />
+                <element signature="method#creerCdnReg#0;class#XCL#0" expanded="false" />
+                <element signature="method#creerDetail#0;class#XCL#0" expanded="false" />
+                <element signature="method#creerRecap#0;class#XCL#0" expanded="false" />
+                <element signature="method#creerEnteteType#0;class#XCL#0" expanded="false" />
+                <element signature="method#remplirLigne#0;class#XCL#0" expanded="false" />
+                <element signature="method#setDate#0;class#XCL#0" expanded="false" />
+                <element signature="method#setFont#0;class#XCL#0" expanded="false" />
+                <element signature="method#setCellStyle#0;class#XCL#0" expanded="false" />
+                <element signature="method#remplirIfNotEmpty#0;class#XCL#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PDF.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PDF.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="277" column="5" lean-forward="false" selection-start-line="277" selection-start-column="5" selection-end-line="277" selection-end-column="5" />
+              <folding>
+                <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
+                <element signature="method#getAdresseTarif#0;class#PDF#0" expanded="false" />
+                <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
+                <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
+                <element signature="method#createTable#0;class#PDF#0" expanded="false" />
+                <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
+                <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
+                <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
+                <element signature="class#HeaderTable#0;class#PDF#0" expanded="false" />
+                <element signature="method#HeaderTable#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+                <element signature="method#onEndPage#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+                <element signature="class#BorderEvent#0;class#PDF#0" expanded="false" />
+                <element signature="method#tableLayout#0;class#BorderEvent#0;class#PDF#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MotherMain.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/MotherMain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="505">
+              <caret line="173" column="0" lean-forward="true" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
+              <folding>
+                <element signature="method#readXls#0;class#MotherMain#0" expanded="false" />
+                <element signature="method#parseXls#0;class#MotherMain#0" expanded="false" />
+                <element signature="method#remplirData#0;class#MotherMain#0" expanded="false" />
+                <element signature="method#createLigne#0;class#MotherMain#0" expanded="false" />
+                <element signature="method#parseLignes#0;class#MotherMain#0" expanded="false" />
+                <element signature="method#isNotEmpty#0;class#MotherMain#0" expanded="false" />
+                <element signature="method#creerFichierErreur#0;class#MotherMain#0" expanded="false" />
+                <element signature="method#creerFichierErreur#1;class#MotherMain#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JavaFX.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/JavaFX.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="273">
+              <caret line="183" column="5" lean-forward="false" selection-start-line="183" selection-start-column="5" selection-end-line="183" selection-end-column="5" />
+              <folding>
+                <element signature="method#start#0;class#JavaFX#0" expanded="false" />
+                <element signature="method#setGrid#0;class#JavaFX#0" expanded="false" />
+                <element signature="method#configureFileChooser#0;class#JavaFX#0" expanded="false" />
+                <element signature="method#configureFolderChooser#0;class#JavaFX#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="javafx.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/javafx.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="11" column="1" lean-forward="false" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>sheet</find>
+      <find>header</find>
+      <find>0</find>
+      <find>2597</find>
+      <find>HT</find>
+      <find>nouveau</find>
+      <find>20</find>
+      <find>getad</find>
+      <find>read</find>
+      <find>pars</find>
+      <find>createp</find>
+      <find>readxls</find>
+      <find>cre</find>
+      <find>createpd</find>
+      <find>enta</find>
+      <find>cale</find>
+      <find>excep</find>
+      <find>img</find>
+      <find>calend</find>
+      <find>entadd</find>
+      <find>entree</find>
+      <find>system.</find>
+      <find>forma</find>
+      <find>nou</find>
+      <find>nvDos</find>
+      <find>tota</find>
+      <find>catch</find>
+      <find>CPE</find>
+      <find>17</find>
+      <find>16</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/getAdresseTarif.java" />
+        <option value="$PROJECT_DIR$/src/Entreprise.java" />
+        <option value="$PROJECT_DIR$/src/javafx.css" />
+        <option value="$PROJECT_DIR$/src/Ligne.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/MainPdf.java" />
+        <option value="$PROJECT_DIR$/src/MainXCL.java" />
+        <option value="$PROJECT_DIR$/src/JavaFX.java" />
+        <option value="$PROJECT_DIR$/src/MotsCles.java" />
+        <option value="$PROJECT_DIR$/src/MotherMain.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="#JAVA_INTERNAL" />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="952" />
+    <option name="width" value="976" />
+    <option name="height" value="1038" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Android</id>
+          </State>
+          <State>
+            <id>Android &gt; Lint &gt; Correctness</id>
+          </State>
+          <State>
+            <id>Android &gt; Lint &gt; Performance</id>
+          </State>
+          <State>
+            <id>Android Lint for Kotlin</id>
+          </State>
+          <State>
+            <id>Java</id>
+          </State>
+          <State>
+            <id>Java language level migration aidsJava</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Android</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Factures" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Factures" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Factures" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Factures" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Factures" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Factures" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Factures" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Factures" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Factures" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="node.js.path.for.package.stylelint" value="project" />
+    <property name="node.js.selected.package.stylelint" value="" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/.IntelliJIdea2017.2/system/jars/commons-codec-1.8.jar!/" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.JavaFX">
+    <configuration name="JavaFX" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="JavaFX" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Factures" />
+      <envs />
+    </configuration>
+    <configuration name="PDF" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="PDF" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Factures" />
+      <envs />
+    </configuration>
+    <configuration name="XCL" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="XCL" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Factures" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+    </configuration>
+    <configuration name="getAdresseTarif" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="getAdresseTarif" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Factures" />
+      <envs />
+    </configuration>
+    <list size="4">
+      <item index="0" class="java.lang.String" itemvalue="Application.getAdresseTarif" />
+      <item index="1" class="java.lang.String" itemvalue="Application.PDF" />
+      <item index="2" class="java.lang.String" itemvalue="Application.JavaFX" />
+      <item index="3" class="java.lang.String" itemvalue="Application.MainXCL" />
+    </list>
+    <recent_temporary>
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Application.JavaFX" />
+        <item index="1" class="java.lang.String" itemvalue="Application.MainXCL" />
+        <item index="2" class="java.lang.String" itemvalue="Application.PDF" />
+        <item index="3" class="java.lang.String" itemvalue="Application.getAdresseTarif" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cc429986-ef2a-49d5-94b8-583f9354bd5a" name="Default" comment="" />
+      <created>1527523397967</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1527523397967</updated>
+      <workItem from="1527523403002" duration="5833000" />
+      <workItem from="1527953135736" duration="260000" />
+      <workItem from="1528213175395" duration="6917000" />
+      <workItem from="1528281007275" duration="1994000" />
+      <workItem from="1528298071418" duration="9126000" />
+      <workItem from="1528309040370" duration="5883000" />
+      <workItem from="1528386462911" duration="6046000" />
+      <workItem from="1528472749319" duration="2860000" />
+      <workItem from="1528908547303" duration="578000" />
+      <workItem from="1530724178439" duration="4471000" />
+      <workItem from="1531150205825" duration="700000" />
+      <workItem from="1531392079762" duration="403000" />
+      <workItem from="1533578792165" duration="5024000" />
+      <workItem from="1533590121623" duration="553000" />
+      <workItem from="1535974800795" duration="732000" />
+      <workItem from="1535984086783" duration="5498000" />
+      <workItem from="1536099079812" duration="10550000" />
+      <workItem from="1536146217256" duration="2855000" />
+      <workItem from="1536150708621" duration="824000" />
+      <workItem from="1536152410236" duration="6030000" />
+      <workItem from="1543935688314" duration="1415000" />
+      <workItem from="1544445355460" duration="3691000" />
+      <workItem from="1544455665245" duration="456000" />
+      <workItem from="1544460583480" duration="1195000" />
+      <workItem from="1544475655919" duration="2294000" />
+      <workItem from="1544621102759" duration="14651000" />
+      <workItem from="1544644387259" duration="158000" />
+      <workItem from="1544695269806" duration="15433000" />
+      <workItem from="1558925914093" duration="262000" />
+      <workItem from="1560849642552" duration="3085000" />
+      <workItem from="1560878296937" duration="1291000" />
+      <workItem from="1560933562094" duration="27000" />
+      <workItem from="1560934745315" duration="457000" />
+      <workItem from="1562146242784" duration="3486000" />
+      <workItem from="1562158938815" duration="6309000" />
+      <workItem from="1562169121828" duration="815000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="132162000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="952" y="0" width="976" height="1038" extended-state="0" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3675115" sideWeight="0.5021482" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20842825" sideWeight="0.49785176" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38222224" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18678816" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14009112" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="15" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Ligne.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
+            <element signature="method#getAdresseTarif#0;class#PDF#0" expanded="false" />
+            <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
+            <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
+            <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
+            <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
+            <element signature="class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#HeaderTable#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#onEndPage#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="class#BorderEvent#0;class#PDF#0" expanded="false" />
+            <element signature="method#tableLayout#0;class#BorderEvent#0;class#PDF#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entreprise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ligne.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
+            <element signature="method#getAdresseTarif#0;class#PDF#0" expanded="false" />
+            <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
+            <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
+            <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
+            <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
+            <element signature="class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#HeaderTable#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#onEndPage#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="class#BorderEvent#0;class#PDF#0" expanded="false" />
+            <element signature="method#tableLayout#0;class#BorderEvent#0;class#PDF#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entreprise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ligne.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
+            <element signature="method#getAdresseTarif#0;class#PDF#0" expanded="false" />
+            <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
+            <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
+            <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
+            <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
+            <element signature="class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#HeaderTable#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#onEndPage#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="class#BorderEvent#0;class#PDF#0" expanded="false" />
+            <element signature="method#tableLayout#0;class#BorderEvent#0;class#PDF#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entreprise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ligne.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
+            <element signature="method#getAdresseTarif#0;class#PDF#0" expanded="false" />
+            <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
+            <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
+            <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
+            <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
+            <element signature="class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#HeaderTable#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#onEndPage#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="class#BorderEvent#0;class#PDF#0" expanded="false" />
+            <element signature="method#tableLayout#0;class#BorderEvent#0;class#PDF#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entreprise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ligne.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
+            <element signature="method#getAdresseTarif#0;class#PDF#0" expanded="false" />
+            <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
+            <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
+            <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
+            <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
+            <element signature="class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#HeaderTable#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#onEndPage#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="class#BorderEvent#0;class#PDF#0" expanded="false" />
+            <element signature="method#tableLayout#0;class#BorderEvent#0;class#PDF#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entreprise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ligne.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
+            <element signature="method#getAdresseTarif#0;class#PDF#0" expanded="false" />
+            <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
+            <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
+            <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
+            <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
+            <element signature="class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#HeaderTable#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#onEndPage#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="class#BorderEvent#0;class#PDF#0" expanded="false" />
+            <element signature="method#tableLayout#0;class#BorderEvent#0;class#PDF#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entreprise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ligne.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
+            <element signature="method#getAdresseTarif#0;class#PDF#0" expanded="false" />
+            <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
+            <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
+            <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
+            <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
+            <element signature="class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#HeaderTable#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#onEndPage#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="class#BorderEvent#0;class#PDF#0" expanded="false" />
+            <element signature="method#tableLayout#0;class#BorderEvent#0;class#PDF#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entreprise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ligne.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
+            <element signature="method#getAdresseTarif#0;class#PDF#0" expanded="false" />
+            <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
+            <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
+            <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
+            <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
+            <element signature="class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#HeaderTable#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#onEndPage#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="class#BorderEvent#0;class#PDF#0" expanded="false" />
+            <element signature="method#tableLayout#0;class#BorderEvent#0;class#PDF#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entreprise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ligne.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
+            <element signature="method#getAdresseTarif#0;class#PDF#0" expanded="false" />
+            <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
+            <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
+            <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
+            <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
+            <element signature="class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#HeaderTable#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#onEndPage#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="class#BorderEvent#0;class#PDF#0" expanded="false" />
+            <element signature="method#tableLayout#0;class#BorderEvent#0;class#PDF#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entreprise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ligne.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
+            <element signature="method#getAdresseTarif#0;class#PDF#0" expanded="false" />
+            <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
+            <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
+            <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
+            <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
+            <element signature="class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#HeaderTable#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#onEndPage#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="class#BorderEvent#0;class#PDF#0" expanded="false" />
+            <element signature="method#tableLayout#0;class#BorderEvent#0;class#PDF#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entreprise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="52" column="32" lean-forward="false" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ligne.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
+            <element signature="method#getAdresseTarif#0;class#PDF#0" expanded="false" />
+            <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
+            <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
+            <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
+            <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
+            <element signature="class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#HeaderTable#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#onEndPage#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="class#BorderEvent#0;class#PDF#0" expanded="false" />
+            <element signature="method#tableLayout#0;class#BorderEvent#0;class#PDF#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entreprise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="52" column="32" lean-forward="false" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ligne.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
+            <element signature="method#getAdresseTarif#0;class#PDF#0" expanded="false" />
+            <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
+            <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
+            <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
+            <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
+            <element signature="class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#HeaderTable#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#onEndPage#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="class#BorderEvent#0;class#PDF#0" expanded="false" />
+            <element signature="method#tableLayout#0;class#BorderEvent#0;class#PDF#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entreprise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="52" column="32" lean-forward="false" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ligne.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
+            <element signature="method#getAdresseTarif#0;class#PDF#0" expanded="false" />
+            <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
+            <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
+            <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
+            <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
+            <element signature="class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#HeaderTable#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#onEndPage#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="class#BorderEvent#0;class#PDF#0" expanded="false" />
+            <element signature="method#tableLayout#0;class#BorderEvent#0;class#PDF#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entreprise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="52" column="32" lean-forward="true" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ligne.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/getAdresseTarif.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/io/File.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="276" column="0" lean-forward="false" selection-start-line="276" selection-start-column="0" selection-end-line="276" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa12668.42411/Login.java" />
+    <entry file="file://$PROJECT_DIR$/src/javafx.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="1" lean-forward="false" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ligne.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="22" column="5" lean-forward="false" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entreprise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="32" lean-forward="false" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JavaFX.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="183" column="5" lean-forward="false" selection-start-line="183" selection-start-column="5" selection-end-line="183" selection-end-column="5" />
+          <folding>
+            <element signature="method#start#0;class#JavaFX#0" expanded="false" />
+            <element signature="method#setGrid#0;class#JavaFX#0" expanded="false" />
+            <element signature="method#configureFileChooser#0;class#JavaFX#0" expanded="false" />
+            <element signature="method#configureFolderChooser#0;class#JavaFX#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="277" column="5" lean-forward="false" selection-start-line="277" selection-start-column="5" selection-end-line="277" selection-end-column="5" />
+          <folding>
+            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
+            <element signature="method#getAdresseTarif#0;class#PDF#0" expanded="false" />
+            <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
+            <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
+            <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
+            <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
+            <element signature="class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#HeaderTable#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="method#onEndPage#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+            <element signature="class#BorderEvent#0;class#PDF#0" expanded="false" />
+            <element signature="method#tableLayout#0;class#BorderEvent#0;class#PDF#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MotsCles.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/XCL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-379">
+          <caret line="487" column="32" lean-forward="false" selection-start-line="487" selection-start-column="32" selection-end-line="487" selection-end-column="32" />
+          <folding>
+            <element signature="method#creerXCL#0;class#XCL#0" expanded="false" />
+            <element signature="method#creerFeuille#0;class#XCL#0" expanded="false" />
+            <element signature="method#creerEntete#0;class#XCL#0" expanded="false" />
+            <element signature="method#creerCdnReg#0;class#XCL#0" expanded="false" />
+            <element signature="method#creerDetail#0;class#XCL#0" expanded="false" />
+            <element signature="method#creerRecap#0;class#XCL#0" expanded="false" />
+            <element signature="method#creerEnteteType#0;class#XCL#0" expanded="false" />
+            <element signature="method#remplirLigne#0;class#XCL#0" expanded="false" />
+            <element signature="method#setDate#0;class#XCL#0" expanded="false" />
+            <element signature="method#setFont#0;class#XCL#0" expanded="false" />
+            <element signature="method#setCellStyle#0;class#XCL#0" expanded="false" />
+            <element signature="method#remplirIfNotEmpty#0;class#XCL#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MotherMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="173" column="0" lean-forward="true" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
+          <folding>
+            <element signature="method#readXls#0;class#MotherMain#0" expanded="false" />
+            <element signature="method#parseXls#0;class#MotherMain#0" expanded="false" />
+            <element signature="method#remplirData#0;class#MotherMain#0" expanded="false" />
+            <element signature="method#createLigne#0;class#MotherMain#0" expanded="false" />
+            <element signature="method#parseLignes#0;class#MotherMain#0" expanded="false" />
+            <element signature="method#isNotEmpty#0;class#MotherMain#0" expanded="false" />
+            <element signature="method#creerFichierErreur#0;class#MotherMain#0" expanded="false" />
+            <element signature="method#creerFichierErreur#1;class#MotherMain#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArquillianSettingsConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>Factures:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Factures</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>commons-codec-1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
