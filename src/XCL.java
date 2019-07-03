@@ -54,7 +54,7 @@ class XCL extends Mamasita implements MotsCles {
         //info cpe + n°facture
         Row headerRow0 = sheet.createRow(sheet.getLastRowNum() + 1 + (first ? -1 : 0));
         headerRow0.setHeightInPoints(78.8f);
-        //ajouterImage(wb, sheet, IMG, 0,-1,headerRow0.getRowNum(),-1,30,1.0,0.9);
+        ajouterImage(wb, sheet, IMG, 0,-1,headerRow0.getRowNum(),-1,30,1.0,0.9);
 
         Cell cellCPE = headerRow0.createCell(1);
         CellStyle cellCPEStyle = wb.createCellStyle();
@@ -239,7 +239,7 @@ class XCL extends Mamasita implements MotsCles {
         Row cdnRow8 = sheet.createRow(sheet.getLastRowNum() + 1);
         cdnRow8.setHeightInPoints(45f);
         sheet.addMergedRegion(new CellRangeAddress(8, 8, 0, 7));
-        //ajouterImage(wb,sheet,IMGREG,0,8,cdnRow8.getRowNum(),20,-1,1.0,1.0);
+        ajouterImage(wb,sheet,IMGREG,0,8,cdnRow8.getRowNum(),20,-1,1.0,1.0);
 
         Cell cellCdnVide = cdnRow8.createCell(0);
         cellCdnVide.setCellStyle(setCellStyle(wb, true, false, false, false));

@@ -1,5 +1,6 @@
 public interface MotsCles {
     String IMG = "D:\\projetFrancois\\logo-cpe-solutions.PNG";
+    String IMGREG = "D:\\projetFrancois\\cdnReg.PNG";
     String DOSSIER = "D:\\projetFrancois";
     //String IMG = "C:\\Users\\franc\\Desktop\\CPE SOLUTIONS\\FACTURATION\\logo-cpe-solutions.PNG";
     //String DOSSIER = "C:\\Users\\franc\\Desktop\\CPE SOLUTIONS\\FACTURATION";
