@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class MotherMain implements MotsCles {
+public class Mamasita implements MotsCles {
     private static List<List<String>> data = new ArrayList<>();
     List<List<String>> dataLigne = new ArrayList<>();
     List<List<String>> dataIB = new ArrayList<>();

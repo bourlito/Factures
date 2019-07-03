@@ -13,7 +13,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class PDF extends MotherMain implements MotsCles {
+public class PDF extends Mamasita implements MotsCles {
     private static Calendar calendar = Calendar.getInstance();
 
     private double totalHT = 0;

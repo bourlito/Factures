@@ -12,7 +12,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-class XCL extends MotherMain implements MotsCles {
+class XCL extends Mamasita implements MotsCles {
     private int totalLigne = 0;
     private double totalHT = 0;
 
