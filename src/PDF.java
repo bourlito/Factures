@@ -1,14 +1,11 @@
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
 
-import java.io.*;
-import java.math.RoundingMode;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -23,20 +20,18 @@ public class PDF extends Mamasita implements MotsCles {
         HeaderTable event = null;
         try {
             event = new HeaderTable(nFacture, entreprise);
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (DocumentException | IOException e) {
             e.printStackTrace();
         }
+        assert event != null;
         Document document = new Document(PageSize.A4, 50, 50, 50 + event.getTableHeight(), 50);
         PdfWriter writer = null;
         try {
             writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
+        } catch (DocumentException | FileNotFoundException e) {
             e.printStackTrace();
         }
+        assert writer != null;
         writer.setPageEvent(event);
         document.open();
 
@@ -58,18 +53,11 @@ public class PDF extends Mamasita implements MotsCles {
             e.printStackTrace();
         }
 
-
         int nvDos = createLigne(dataND, 16, entreprise).size();
         for (Ligne ligne : createLigne(dataLigne, 0, entreprise))
             totalLigne += ligne.getNbLigne();
         for (Ligne ligne : createLigne(dataLe, 8, entreprise))
             totalLigne += ligne.getNbLigne();
-
-        NumberFormat formatDouble = NumberFormat.getInstance(Locale.FRANCE);
-        NumberFormat formatEntier = NumberFormat.getInstance(Locale.FRANCE);
-        formatDouble.setMaximumFractionDigits(2);
-        formatDouble.setMinimumFractionDigits(2);
-        formatDouble.setRoundingMode(RoundingMode.HALF_UP);
 
         Font font = new Font(Font.HELVETICA, 11);
 
@@ -114,7 +102,7 @@ public class PDF extends Mamasita implements MotsCles {
         cell.setBorder(0);
         table.addCell(cell);
 
-        paragraph = new Paragraph("Total nombre de Lignes : " + formatEntier.format(entreprise.getTotalLigne()) + "\nTotal € HT : " + formatDouble.format(entreprise.getTotalHT()) + "€\nTVA (20%) : " + formatDouble.format(entreprise.getTotalHT() * 0.2) + "€\nTotal € TTC : " + formatDouble.format(entreprise.getTotalHT() * 1.2) + "€", font);
+        paragraph = new Paragraph("Total nombre de Lignes : " + formatEntier().format(entreprise.getTotalLigne()) + "\nTotal € HT : " + formatDouble().format(entreprise.getTotalHT()) + "€\nTVA (20%) : " + formatDouble().format(entreprise.getTotalHT() * 0.2) + "€\nTotal € TTC : " + formatDouble().format(entreprise.getTotalHT() * 1.2) + "€", font);
         paragraph.setAlignment(Element.ALIGN_CENTER);
         cell = new PdfPCell();
         cell.addElement(paragraph);
@@ -137,63 +125,6 @@ public class PDF extends Mamasita implements MotsCles {
             e.printStackTrace();
         }
         document.close();
-    }
-
-    List<Entreprise> getAdresseTarif(String entadd) {
-        List<Entreprise> entreprises = new ArrayList<>();
-        FileInputStream fis = null;
-        try {
-            fis = new FileInputStream(new File(entadd));
-        } catch (FileNotFoundException e) {
-            creerFichierErreur(e);
-            e.printStackTrace();
-        }
-        HSSFWorkbook wb = null;
-        try {
-            wb = new HSSFWorkbook(fis);
-        } catch (IOException e) {
-            creerFichierErreur(e);
-            e.printStackTrace();
-        }
-        HSSFSheet sheet = wb.getSheetAt(0);
-        for (Row row : sheet) {
-            if (row.getRowNum() == 0)
-                continue;
-            List<String> dataset = new ArrayList<>();
-            for (Cell cell : row) {
-                switch (cell.getCellTypeEnum()) {
-                    case NUMERIC:
-                        dataset.add(String.valueOf(cell.getNumericCellValue()));
-                        break;
-                    case STRING:
-                        dataset.add(String.valueOf(cell.getStringCellValue()));
-                        break;
-                }
-            }
-            address.add(dataset);
-        }
-
-        entreprises = new ArrayList<>();
-        List<Double> tarifs;
-        Entreprise entreprise;
-
-        for (List<String> list : address) {
-            int i = address.indexOf(list);
-            tarifs = new ArrayList<>();
-            for (int j = 5; j < address.get(i).size(); j++) {
-                tarifs.add(Double.parseDouble(address.get(i).get(j)));
-            }
-            entreprise = new Entreprise();
-            entreprise.setAlias(address.get(i).get(0));
-            entreprise.setNomEntreprise(address.get(i).get(1));
-            entreprise.setAdresse(address.get(i).get(2));
-            entreprise.setCp(address.get(i).get(3));
-            entreprise.setVille(address.get(i).get(4));
-            entreprise.setTarifs(tarifs);
-            entreprises.add(entreprise);
-        }
-
-        return entreprises;
     }
 
     private PdfPTable createCDNReg() {
@@ -280,23 +211,12 @@ public class PDF extends Mamasita implements MotsCles {
     private void populateTable(PdfPTable table, List<Ligne> data, Entreprise entreprise) {
         Font font = new Font(Font.HELVETICA, 10);
 
-        NumberFormat formatDouble = NumberFormat.getInstance(Locale.FRANCE);
-        formatDouble.setMaximumFractionDigits(2);
-        formatDouble.setMinimumFractionDigits(2);
-        formatDouble.setRoundingMode(RoundingMode.HALF_UP);
-
-        NumberFormat formatTriple = NumberFormat.getInstance(Locale.FRANCE);
-        formatTriple.setMinimumFractionDigits(2);
-
-        NumberFormat formatEntier = NumberFormat.getInstance(Locale.FRANCE);
-        formatEntier.setMaximumFractionDigits(0);
-
         for (Ligne ligne : data) {
             creerCell(new Paragraph(ligne.getDate(), font), table);
             creerCell(new Paragraph(ligne.getEntreprise(), font), table);
-            creerCell(new Paragraph(formatEntier.format(ligne.getNbLigne()), font), table);
-            creerCell(new Paragraph(formatTriple.format(ligne.getTarif()), font), table);
-            creerCell(new Paragraph(formatDouble.format(ligne.getTotal()) + "€", font), table);
+            creerCell(new Paragraph(formatEntier().format(ligne.getNbLigne()), font), table);
+            creerCell(new Paragraph(formatTriple().format(ligne.getTarif()), font), table);
+            creerCell(new Paragraph(formatDouble().format(ligne.getTotal()) + "€", font), table);
 
             totalLigne += ligne.getNbLigne();
             totalHT += ligne.getTotal();
@@ -319,10 +239,7 @@ public class PDF extends Mamasita implements MotsCles {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
         try {
             PdfWriter.getInstance(document, new FileOutputStream(RESULT));
-        } catch (DocumentException e) {
-            creerFichierErreur(e);
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
+        } catch (DocumentException | FileNotFoundException e) {
             creerFichierErreur(e);
             e.printStackTrace();
         }

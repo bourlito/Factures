@@ -1,16 +1,18 @@
 import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.math.RoundingMode;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
-public class Mamasita implements MotsCles {
+class Mamasita implements MotsCles {
     private static List<List<String>> data = new ArrayList<>();
     List<List<String>> dataLigne = new ArrayList<>();
     List<List<String>> dataIB = new ArrayList<>();
@@ -26,7 +28,7 @@ public class Mamasita implements MotsCles {
     List<List<String>> dataND = new ArrayList<>();
     List<List<String>> dataAF = new ArrayList<>();
 
-    List<List<String>> address = new ArrayList<>();
+    private List<List<String>> address = new ArrayList<>();
 
 
     void readXls(HSSFSheet sheet) {
@@ -298,6 +300,88 @@ public class Mamasita implements MotsCles {
         return isNotEmpty;
     }
 
+    NumberFormat formatDouble() {
+        NumberFormat formatDouble = NumberFormat.getInstance(Locale.FRANCE);
+        formatDouble.setMaximumFractionDigits(2);
+        formatDouble.setMinimumFractionDigits(2);
+        formatDouble.setRoundingMode(RoundingMode.HALF_UP);
+
+        return formatDouble;
+    }
+
+    NumberFormat formatTriple() {
+        NumberFormat formatTriple = NumberFormat.getInstance(Locale.FRANCE);
+        formatTriple.setMinimumFractionDigits(2);
+
+        return formatTriple;
+    }
+
+    NumberFormat formatEntier() {
+        NumberFormat formatEntier = NumberFormat.getInstance(Locale.FRANCE);
+        formatEntier.setMaximumFractionDigits(0);
+
+        return formatEntier;
+    }
+
+    List<Entreprise> getAdresseTarif(String entadd) {
+        List<Entreprise> entreprises;
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(new File(entadd));
+        } catch (FileNotFoundException e) {
+            creerFichierErreur(e);
+            e.printStackTrace();
+        }
+        HSSFWorkbook wb = null;
+        try {
+            assert fis != null;
+            wb = new HSSFWorkbook(fis);
+        } catch (IOException e) {
+            creerFichierErreur(e);
+            e.printStackTrace();
+        }
+        assert wb != null;
+        HSSFSheet sheet = wb.getSheetAt(0);
+        for (Row row : sheet) {
+            if (row.getRowNum() == 0)
+                continue;
+            List<String> dataset = new ArrayList<>();
+            for (Cell cell : row) {
+                switch (cell.getCellTypeEnum()) {
+                    case NUMERIC:
+                        dataset.add(String.valueOf(cell.getNumericCellValue()));
+                        break;
+                    case STRING:
+                        dataset.add(String.valueOf(cell.getStringCellValue()));
+                        break;
+                }
+            }
+            address.add(dataset);
+        }
+
+        entreprises = new ArrayList<>();
+        List<Double> tarifs;
+        Entreprise entreprise;
+
+        for (List<String> list : address) {
+            int i = address.indexOf(list);
+            tarifs = new ArrayList<>();
+            for (int j = 5; j < address.get(i).size(); j++) {
+                tarifs.add(Double.parseDouble(address.get(i).get(j)));
+            }
+            entreprise = new Entreprise();
+            entreprise.setAlias(address.get(i).get(0));
+            entreprise.setNomEntreprise(address.get(i).get(1));
+            entreprise.setAdresse(address.get(i).get(2));
+            entreprise.setCp(address.get(i).get(3));
+            entreprise.setVille(address.get(i).get(4));
+            entreprise.setTarifs(tarifs);
+            entreprises.add(entreprise);
+        }
+
+        return entreprises;
+    }
+
     void creerFichierErreur(Exception e) {
         FileWriter writer = null;
         try {
@@ -306,6 +390,7 @@ public class Mamasita implements MotsCles {
             e1.printStackTrace();
         }
         try {
+            assert writer != null;
             writer.write(e.getMessage());
             if (e.getCause() != null)
                 writer.write(e.getCause().toString());
@@ -333,6 +418,7 @@ public class Mamasita implements MotsCles {
             e1.printStackTrace();
         }
         try {
+            assert writer != null;
             writer.write("verifier le nom de la feuille");
         } catch (IOException e1) {
             e1.printStackTrace();

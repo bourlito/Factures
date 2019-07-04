@@ -121,7 +121,7 @@ public class JavaFX extends Application implements MotsCles {
                 return;
             }
 
-            List<Entreprise> entreprises = new PDF().getAdresseTarif(ENTADD);
+            List<Entreprise> entreprises = new Mamasita().getAdresseTarif(ENTADD);
             Entreprise entreprise = null;
 
             FileInputStream fis = null;
@@ -133,6 +133,7 @@ public class JavaFX extends Application implements MotsCles {
             }
             HSSFWorkbook wb = null;
             try {
+                assert fis != null;
                 wb = new HSSFWorkbook(fis);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -142,6 +143,7 @@ public class JavaFX extends Application implements MotsCles {
             int nFacture = a + Integer.parseInt(nFact.getText());
             boolean entOk = false;
             do {
+                assert wb != null;
                 HSSFSheet sheet = wb.getSheetAt(a);
 
                 for (Entreprise ent : entreprises) {

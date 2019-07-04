@@ -35,4 +35,14 @@ public interface MotsCles {
     int NUM_COL_LK = 12;
     int NUM_COL_ND = 13;
     int NUM_COL_AF = 14;
+
+    //correspond à la colonne de la facture xcl
+    int NUM_COL_DAT_SAI = 0;
+    int NUM_COL_NOM_DOS_0 = 1;
+    int NUM_COL_NOM_DOS_1 = 2;
+    int NUM_COL_NOM_DOS_2 = 3;
+    int NUM_COL_NB_LI_0 = 4;
+    int NUM_COL_NB_LI_1 = 5;
+    int NUM_COL_TRF_LI = 6;
+    int NUM_COL_THT = 7;
 }

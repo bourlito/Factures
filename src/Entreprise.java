@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class Entreprise {
+class Entreprise {
     private String nomEntreprise;
     private String alias;
     private String adresse;
@@ -10,67 +10,67 @@ public class Entreprise {
     private int totalLigne;
     private double totalHT;
 
-    public String getNomEntreprise() {
+    String getNomEntreprise() {
         return nomEntreprise;
     }
 
-    public void setNomEntreprise(String nomEntreprise) {
+    void setNomEntreprise(String nomEntreprise) {
         this.nomEntreprise = nomEntreprise;
     }
 
-    public String getAlias() {
+    String getAlias() {
         return alias;
     }
 
-    public void setAlias(String alias) {
+    void setAlias(String alias) {
         this.alias = alias;
     }
 
-    public String getAdresse() {
+    String getAdresse() {
         return adresse;
     }
 
-    public void setAdresse(String adresse) {
+    void setAdresse(String adresse) {
         this.adresse = adresse;
     }
 
-    public String getCp() {
+    String getCp() {
         return cp;
     }
 
-    public void setCp(String cp) {
+    void setCp(String cp) {
         this.cp = cp;
     }
 
-    public String getVille() {
+    String getVille() {
         return ville;
     }
 
-    public void setVille(String ville) {
+    void setVille(String ville) {
         this.ville = ville;
     }
 
-    public List<Double> getTarifs() {
+    List<Double> getTarifs() {
         return tarifs;
     }
 
-    public void setTarifs(List<Double> tarifs) {
+    void setTarifs(List<Double> tarifs) {
         this.tarifs = tarifs;
     }
 
-    public int getTotalLigne() {
+    int getTotalLigne() {
         return totalLigne;
     }
 
-    public void setTotalLigne(int totalLigne) {
+    void setTotalLigne(int totalLigne) {
         this.totalLigne = totalLigne;
     }
 
-    public double getTotalHT() {
+    double getTotalHT() {
         return totalHT;
     }
 
-    public void setTotalHT(double totalHT) {
+    void setTotalHT(double totalHT) {
         this.totalHT = totalHT;
     }
 }
