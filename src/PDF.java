@@ -10,8 +10,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class PDF extends Mamasita implements MotsCles {
-    private static Calendar calendar = Calendar.getInstance();
+class PDF extends Mamasita implements MotsCles {
+    private static final Calendar calendar = Calendar.getInstance();
 
     private double totalHT = 0;
     private int totalLigne = 0;
@@ -317,8 +317,8 @@ public class PDF extends Mamasita implements MotsCles {
         table.addCell(cell);
     }
 
-    public class HeaderTable extends PdfPageEventHelper {
-        private PdfPTable table;
+    class HeaderTable extends PdfPageEventHelper {
+        private final PdfPTable table;
         private float tableHeight;
 
         private HeaderTable(int nFacture, Entreprise entreprise) throws DocumentException, IOException {
@@ -467,7 +467,7 @@ public class PDF extends Mamasita implements MotsCles {
         }
     }
 
-    public class BorderEvent implements PdfPTableEvent {
+    class BorderEvent implements PdfPTableEvent {
         public void tableLayout(PdfPTable table, float[][] widths, float[] heights, int headerRows, int rowStart, PdfContentByte[] canvases) {
             float width[] = widths[0];
             float x1 = width[0];

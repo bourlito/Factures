@@ -6,15 +6,19 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc429986-ef2a-49d5-94b8-583f9354bd5a" name="Default" comment="">
+    <list default="true" id="cc429986-ef2a-49d5-94b8-583f9354bd5a" name="Default" comment="nettoyage">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Factures/JavaFX.class" afterPath="$PROJECT_DIR$/out/production/Factures/JavaFX.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Factures/Mamasita.class" afterPath="$PROJECT_DIR$/out/production/Factures/Mamasita.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Factures/MotsCles.class" afterPath="$PROJECT_DIR$/out/production/Factures/MotsCles.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Factures/PDF$HeaderTable.class" afterPath="$PROJECT_DIR$/out/production/Factures/PDF$HeaderTable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Factures/XCL.class" afterPath="$PROJECT_DIR$/out/production/Factures/XCL.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Entreprise.java" afterPath="$PROJECT_DIR$/src/Entreprise.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Factures/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/out/production/Factures/META-INF/MANIFEST.MF" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/JavaFX.java" afterPath="$PROJECT_DIR$/src/JavaFX.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ligne.java" afterPath="$PROJECT_DIR$/src/Ligne.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Mamasita.java" afterPath="$PROJECT_DIR$/src/Mamasita.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MotsCles.java" afterPath="$PROJECT_DIR$/src/MotsCles.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PDF.java" afterPath="$PROJECT_DIR$/src/PDF.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/XCL.java" afterPath="$PROJECT_DIR$/src/XCL.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,87 +28,28 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="Factures" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="MotsCles.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MotsCles.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MotsCles.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="945">
-              <caret line="45" column="27" lean-forward="false" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
+            <state relative-caret-position="126">
+              <caret line="6" column="77" lean-forward="false" selection-start-line="6" selection-start-column="77" selection-end-line="6" selection-end-column="77" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="XCL.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/XCL.java">
+      <file leaf-file-name="JavaFX.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/JavaFX.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="583" column="78" lean-forward="false" selection-start-line="583" selection-start-column="78" selection-end-line="583" selection-end-column="78" />
+            <state relative-caret-position="340">
+              <caret line="177" column="38" lean-forward="false" selection-start-line="177" selection-start-column="31" selection-end-line="177" selection-end-column="38" />
               <folding>
-                <element signature="method#creerXCL#0;class#XCL#0" expanded="false" />
-                <element signature="method#creerFeuille#0;class#XCL#0" expanded="false" />
-                <element signature="method#creerCdnReg#0;class#XCL#0" expanded="false" />
-                <element signature="method#creerDetail#0;class#XCL#0" expanded="false" />
-                <element signature="method#creerRecap#0;class#XCL#0" expanded="false" />
-                <element signature="method#creerEnteteType#0;class#XCL#0" expanded="false" />
-                <element signature="method#setDate#0;class#XCL#0" expanded="false" />
-                <element signature="method#setFont#0;class#XCL#0" expanded="false" />
-                <element signature="method#setCellStyle#0;class#XCL#0" expanded="false" />
-                <element signature="method#remplirIfNotEmpty#0;class#XCL#0" expanded="false" />
-                <element signature="method#creerCell#0;class#XCL#0" expanded="false" />
-                <element signature="method#creerCell#1;class#XCL#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Entreprise.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Entreprise.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="882">
-              <caret line="72" column="4" lean-forward="false" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="javafx.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/javafx.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="11" column="1" lean-forward="false" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Ligne.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Ligne.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PDF.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PDF.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding>
-                <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
-                <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
-                <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
-                <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
-                <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
-                <element signature="class#HeaderTable#0;class#PDF#0" expanded="false" />
-                <element signature="method#HeaderTable#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
-                <element signature="method#onEndPage#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
-                <element signature="class#BorderEvent#0;class#PDF#0" expanded="false" />
-                <element signature="method#tableLayout#0;class#BorderEvent#0;class#PDF#0" expanded="false" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -113,8 +58,8 @@
       <file leaf-file-name="Mamasita.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Mamasita.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="429" column="9" lean-forward="true" selection-start-line="429" selection-start-column="9" selection-end-line="429" selection-end-column="9" />
+            <state relative-caret-position="357">
+              <caret line="387" column="43" lean-forward="false" selection-start-line="387" selection-start-column="36" selection-end-line="387" selection-end-column="43" />
               <folding>
                 <element signature="method#readXls#0;class#Mamasita#0" expanded="false" />
                 <element signature="method#parseXls#0;class#Mamasita#0" expanded="false" />
@@ -130,15 +75,44 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JavaFX.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/JavaFX.java">
+      <file leaf-file-name="PDF.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PDF.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-181">
-              <caret line="146" column="37" lean-forward="false" selection-start-line="146" selection-start-column="37" selection-end-line="146" selection-end-column="37" />
+            <state relative-caret-position="220">
+              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding>
-                <element signature="method#start#0;class#JavaFX#0" expanded="false" />
-                <element signature="method#configureFileChooser#0;class#JavaFX#0" expanded="false" />
-                <element signature="method#configureFolderChooser#0;class#JavaFX#0" expanded="false" />
+                <element signature="imports" expanded="true" />
+                <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
+                <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
+                <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
+                <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
+                <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
+                <element signature="class#HeaderTable#0;class#PDF#0" expanded="false" />
+                <element signature="method#HeaderTable#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+                <element signature="method#onEndPage#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
+                <element signature="class#BorderEvent#0;class#PDF#0" expanded="false" />
+                <element signature="method#tableLayout#0;class#BorderEvent#0;class#PDF#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XCL.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/XCL.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="217" column="53" lean-forward="false" selection-start-line="217" selection-start-column="53" selection-end-line="217" selection-end-column="53" />
+              <folding>
+                <element signature="method#creerXCL#0;class#XCL#0" expanded="false" />
+                <element signature="method#creerFeuille#0;class#XCL#0" expanded="false" />
+                <element signature="method#creerDetail#0;class#XCL#0" expanded="false" />
+                <element signature="method#creerEnteteType#0;class#XCL#0" expanded="false" />
+                <element signature="method#setDate#0;class#XCL#0" expanded="false" />
+                <element signature="method#setFont#0;class#XCL#0" expanded="false" />
+                <element signature="method#setCellStyle#0;class#XCL#0" expanded="false" />
+                <element signature="method#remplirIfNotEmpty#0;class#XCL#0" expanded="false" />
+                <element signature="method#creerCell#0;class#XCL#0" expanded="false" />
+                <element signature="method#creerCell#1;class#XCL#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -157,7 +131,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>nouveau</find>
       <find>20</find>
       <find>getad</find>
       <find>read</find>
@@ -187,6 +160,7 @@
       <find>formatTri</find>
       <find>formatT</find>
       <find>formatE</find>
+      <find>button</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -211,13 +185,17 @@
         <option value="$PROJECT_DIR$/src/MainPdf.java" />
         <option value="$PROJECT_DIR$/src/MainXCL.java" />
         <option value="$PROJECT_DIR$/src/MotherMain.java" />
-        <option value="$PROJECT_DIR$/src/MotsCles.java" />
-        <option value="$PROJECT_DIR$/src/XCL.java" />
         <option value="$PROJECT_DIR$/src/PDF.java" />
-        <option value="$PROJECT_DIR$/src/Mamasita.java" />
-        <option value="$PROJECT_DIR$/src/JavaFX.java" />
         <option value="$PROJECT_DIR$/src/Entreprise.java" />
         <option value="$PROJECT_DIR$/src/Ligne.java" />
+        <option value="$PROJECT_DIR$/src/META-INF/etienne/MANIFEST.MF" />
+        <option value="$PROJECT_DIR$/src/JavaFXEt.java" />
+        <option value="$PROJECT_DIR$/src/META-INF/francois/MANIFEST.MF" />
+        <option value="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+        <option value="$PROJECT_DIR$/src/Mamasita.java" />
+        <option value="$PROJECT_DIR$/src/JavaFX.java" />
+        <option value="$PROJECT_DIR$/src/XCL.java" />
+        <option value="$PROJECT_DIR$/src/MotsCles.java" />
       </list>
     </option>
   </component>
@@ -237,8 +215,9 @@
   <component name="MavenRunner">
     <option name="jreName" value="#JAVA_INTERNAL" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="952" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
     <option name="width" value="976" />
     <option name="height" value="1038" />
   </component>
@@ -292,8 +271,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -310,26 +287,32 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="node.js.path.for.package.stylelint" value="project" />
     <property name="node.js.selected.package.stylelint" value="" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/.IntelliJIdea2017.2/system/jars/commons-codec-1.8.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\etienne\IdeaProjects\Factures\src\META-INF" />
+      <recent name="C:\Users\etienne\IdeaProjects\Factures\src\META-INF\etienne" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -483,10 +466,10 @@
       <envs />
     </configuration>
     <list size="4">
-      <item index="0" class="java.lang.String" itemvalue="Application.XCL" />
-      <item index="1" class="java.lang.String" itemvalue="Application.getAdresseTarif" />
-      <item index="2" class="java.lang.String" itemvalue="Application.PDF" />
-      <item index="3" class="java.lang.String" itemvalue="Application.JavaFX" />
+      <item index="0" class="java.lang.String" itemvalue="Application.JavaFX" />
+      <item index="1" class="java.lang.String" itemvalue="Application.XCL" />
+      <item index="2" class="java.lang.String" itemvalue="Application.getAdresseTarif" />
+      <item index="3" class="java.lang.String" itemvalue="Application.PDF" />
     </list>
     <recent_temporary>
       <list size="3">
@@ -547,15 +530,19 @@
       <workItem from="1562169121828" duration="1570000" />
       <workItem from="1562172099150" duration="2179000" />
       <workItem from="1562175070116" duration="71000" />
-      <workItem from="1562228222326" duration="6121000" />
+      <workItem from="1562228222326" duration="6707000" />
+      <workItem from="1562237107092" duration="1071000" />
+      <workItem from="1562310933555" duration="100000" />
+      <workItem from="1563469391452" duration="135000" />
+      <workItem from="1564761515818" duration="2455000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141288000" />
+    <option name="totallyTimeSpent" value="145635000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -566,20 +553,21 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3675115" sideWeight="0.5021482" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20842825" sideWeight="0.49785176" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.238041" sideWeight="0.49785176" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19602577" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20676692" sideWeight="0.49405771" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18678816" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20676692" sideWeight="0.5059423" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20676692" sideWeight="0.5052317" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -593,13 +581,32 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="nettoyage" />
+    <option name="LAST_COMMIT_MESSAGE" value="nettoyage" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="15" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/JavaFX.java</url>
+          <line>43</line>
+          <properties />
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Entreprise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Ligne.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -612,10 +619,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
             <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
             <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
-            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
             <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
             <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
             <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
@@ -647,10 +652,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
             <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
             <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
-            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
             <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
             <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
             <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
@@ -682,10 +685,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
             <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
             <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
-            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
             <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
             <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
             <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
@@ -717,10 +718,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
             <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
             <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
-            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
             <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
             <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
             <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
@@ -752,10 +751,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
             <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
             <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
-            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
             <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
             <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
             <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
@@ -787,10 +784,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
             <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
             <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
-            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
             <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
             <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
             <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
@@ -822,80 +817,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
             <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
             <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
-            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
-            <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
-            <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
-            <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
-            <element signature="class#HeaderTable#0;class#PDF#0" expanded="false" />
-            <element signature="method#HeaderTable#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
-            <element signature="method#onEndPage#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
-            <element signature="class#BorderEvent#0;class#PDF#0" expanded="false" />
-            <element signature="method#tableLayout#0;class#BorderEvent#0;class#PDF#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entreprise.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ligne.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PDF.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
-            <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
-            <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
-            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
-            <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
-            <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
-            <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
-            <element signature="class#HeaderTable#0;class#PDF#0" expanded="false" />
-            <element signature="method#HeaderTable#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
-            <element signature="method#onEndPage#0;class#HeaderTable#0;class#PDF#0" expanded="false" />
-            <element signature="class#BorderEvent#0;class#PDF#0" expanded="false" />
-            <element signature="method#tableLayout#0;class#BorderEvent#0;class#PDF#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entreprise.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ligne.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PDF.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
-            <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
-            <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
-            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
             <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
             <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
             <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
@@ -927,10 +850,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
             <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
             <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
-            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
             <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
             <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
             <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
@@ -962,10 +883,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
             <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
             <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
-            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
             <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
             <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
             <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
@@ -997,10 +916,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
             <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
             <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
-            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
             <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
             <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
             <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
@@ -1032,10 +949,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="method#createPdf#0;class#PDF#0" expanded="false" />
             <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
             <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
-            <element signature="method#createTable#0;class#PDF#0" expanded="false" />
             <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
             <element signature="method#remplirIfNotEmpty#0;class#PDF#0" expanded="false" />
             <element signature="method#creerCell#0;class#PDF#0" expanded="false" />
@@ -1071,49 +986,50 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa12668.42411/Login.java" />
-    <entry file="file://$PROJECT_DIR$/src/MotsCles.java">
+    <entry file="file://$PROJECT_DIR$/src/JavaFXEt.java" />
+    <entry file="file://$PROJECT_DIR$/src/META-INF/francois/MANIFEST.MF" />
+    <entry file="file://$PROJECT_DIR$/.idea/artifacts/Factures_jar2.xml" />
+    <entry file="file://$PROJECT_DIR$/src/Entreprise.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="45" column="27" lean-forward="false" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
+        <state relative-caret-position="778">
+          <caret line="72" column="4" lean-forward="false" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/JavaFX.java">
+    <entry file="file://$PROJECT_DIR$/src/Ligne.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-181">
-          <caret line="146" column="37" lean-forward="false" selection-start-line="146" selection-start-column="37" selection-end-line="146" selection-end-column="37" />
+        <state relative-caret-position="315">
+          <caret line="21" column="5" lean-forward="false" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
           <folding>
-            <element signature="method#start#0;class#JavaFX#0" expanded="false" />
-            <element signature="method#configureFileChooser#0;class#JavaFX#0" expanded="false" />
-            <element signature="method#configureFolderChooser#0;class#JavaFX#0" expanded="false" />
+            <element signature="e#372#373#0" expanded="false" />
+            <element signature="e#416#417#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Mamasita.java">
+    <entry file="file://$PROJECT_DIR$/Factures.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="429" column="9" lean-forward="true" selection-start-line="429" selection-start-column="9" selection-end-line="429" selection-end-column="9" />
-          <folding>
-            <element signature="method#readXls#0;class#Mamasita#0" expanded="false" />
-            <element signature="method#parseXls#0;class#Mamasita#0" expanded="false" />
-            <element signature="method#remplirData#0;class#Mamasita#0" expanded="false" />
-            <element signature="method#createLigne#0;class#Mamasita#0" expanded="false" />
-            <element signature="method#parseLignes#0;class#Mamasita#0" expanded="false" />
-            <element signature="method#isNotEmpty#0;class#Mamasita#0" expanded="false" />
-            <element signature="method#formatDouble#0;class#Mamasita#0" expanded="false" />
-            <element signature="method#formatTriple#0;class#Mamasita#0" expanded="false" />
-            <element signature="method#formatEntier#0;class#Mamasita#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PDF.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state relative-caret-position="220">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#createCDNReg#0;class#PDF#0" expanded="false" />
             <element signature="method#populateTable#0;class#PDF#0" expanded="false" />
             <element signature="method#createTableHeader#0;class#PDF#0" expanded="false" />
@@ -1128,16 +1044,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/javafx.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JavaFX.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="177" column="38" lean-forward="false" selection-start-line="177" selection-start-column="31" selection-end-line="177" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Mamasita.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="387" column="43" lean-forward="false" selection-start-line="387" selection-start-column="36" selection-end-line="387" selection-end-column="43" />
+          <folding>
+            <element signature="method#readXls#0;class#Mamasita#0" expanded="false" />
+            <element signature="method#parseXls#0;class#Mamasita#0" expanded="false" />
+            <element signature="method#remplirData#0;class#Mamasita#0" expanded="false" />
+            <element signature="method#createLigne#0;class#Mamasita#0" expanded="false" />
+            <element signature="method#parseLignes#0;class#Mamasita#0" expanded="false" />
+            <element signature="method#isNotEmpty#0;class#Mamasita#0" expanded="false" />
+            <element signature="method#formatDouble#0;class#Mamasita#0" expanded="false" />
+            <element signature="method#formatTriple#0;class#Mamasita#0" expanded="false" />
+            <element signature="method#formatEntier#0;class#Mamasita#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/XCL.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="583" column="78" lean-forward="false" selection-start-line="583" selection-start-column="78" selection-end-line="583" selection-end-column="78" />
+        <state relative-caret-position="172">
+          <caret line="217" column="53" lean-forward="false" selection-start-line="217" selection-start-column="53" selection-end-line="217" selection-end-column="53" />
           <folding>
             <element signature="method#creerXCL#0;class#XCL#0" expanded="false" />
             <element signature="method#creerFeuille#0;class#XCL#0" expanded="false" />
-            <element signature="method#creerCdnReg#0;class#XCL#0" expanded="false" />
             <element signature="method#creerDetail#0;class#XCL#0" expanded="false" />
-            <element signature="method#creerRecap#0;class#XCL#0" expanded="false" />
             <element signature="method#creerEnteteType#0;class#XCL#0" expanded="false" />
             <element signature="method#setDate#0;class#XCL#0" expanded="false" />
             <element signature="method#setFont#0;class#XCL#0" expanded="false" />
@@ -1149,26 +1099,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entreprise.java">
+    <entry file="file://$PROJECT_DIR$/src/MotsCles.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="72" column="4" lean-forward="false" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/javafx.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="1" lean-forward="false" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ligne.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+        <state relative-caret-position="126">
+          <caret line="6" column="77" lean-forward="false" selection-start-line="6" selection-start-column="77" selection-end-line="6" selection-end-column="77" />
           <folding />
         </state>
       </provider>

@@ -14,21 +14,21 @@ import java.util.Objects;
 
 class Mamasita implements MotsCles {
     private static List<List<String>> data = new ArrayList<>();
-    List<List<String>> dataLigne = new ArrayList<>();
-    List<List<String>> dataIB = new ArrayList<>();
-    List<List<String>> data471 = new ArrayList<>();
-    List<List<String>> dataLe = new ArrayList<>();
-    List<List<String>> dataSF = new ArrayList<>();
-    List<List<String>> dataAI = new ArrayList<>();
-    List<List<String>> dataDP = new ArrayList<>();
-    List<List<String>> dataTVA = new ArrayList<>();
-    List<List<String>> dataREV = new ArrayList<>();
-    List<List<String>> dataEI = new ArrayList<>();
-    List<List<String>> dataLinkup = new ArrayList<>();
-    List<List<String>> dataND = new ArrayList<>();
-    List<List<String>> dataAF = new ArrayList<>();
+    final List<List<String>> dataLigne = new ArrayList<>();
+    final List<List<String>> dataIB = new ArrayList<>();
+    final List<List<String>> data471 = new ArrayList<>();
+    final List<List<String>> dataLe = new ArrayList<>();
+    final List<List<String>> dataSF = new ArrayList<>();
+    final List<List<String>> dataAI = new ArrayList<>();
+    final List<List<String>> dataDP = new ArrayList<>();
+    final List<List<String>> dataTVA = new ArrayList<>();
+    final List<List<String>> dataREV = new ArrayList<>();
+    final List<List<String>> dataEI = new ArrayList<>();
+    final List<List<String>> dataLinkup = new ArrayList<>();
+    final List<List<String>> dataND = new ArrayList<>();
+    final List<List<String>> dataAF = new ArrayList<>();
 
-    private List<List<String>> address = new ArrayList<>();
+    private final List<List<String>> address = new ArrayList<>();
 
 
     void readXls(HSSFSheet sheet) {

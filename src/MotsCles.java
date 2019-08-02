@@ -1,9 +1,8 @@
-public interface MotsCles {
-    String IMG = "D:\\projetFrancois\\logo-cpe-solutions.PNG";
-    String IMGREG = "D:\\projetFrancois\\cdnReg.PNG";
-    String DOSSIER = "D:\\projetFrancois";
-    //String IMG = "C:\\Users\\franc\\Desktop\\CPE SOLUTIONS\\FACTURATION\\logo-cpe-solutions.PNG";
+interface MotsCles {
+    String DOSSIER = "D:\\Perso\\projetFrancois\\";
     //String DOSSIER = "C:\\Users\\franc\\Desktop\\CPE SOLUTIONS\\FACTURATION";
+    String IMG = DOSSIER + "logo-cpe-solutions.PNG";
+    String IMGREG = DOSSIER + "cdnReg.PNG";
 
     String adresseCPE = "SARL CPE SOLUTIONS\n35-37 Rue de Rome, 75008 PARIS\nTél. 02 30 91 97 42\nSARL au Capital de 75 000 € - RCS de Paris 450 692 447\nTva intracommunautaire : FR76450692447";
 

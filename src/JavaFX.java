@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class JavaFX extends Application implements MotsCles {
-    private static Calendar calendar = Calendar.getInstance();
+    private static final Calendar calendar = Calendar.getInstance();
     private String ENTREE = null;
     private String ENTADD = null;
     private String RESULT = null;
