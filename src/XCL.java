@@ -5,14 +5,13 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.util.IOUtils;
 
 import java.io.*;
-import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-class XCL extends MotherMain implements MotsCles {
+class XCL extends Mamasita implements MotsCles {
     private int totalLigne = 0;
     private double totalHT = 0;
 
@@ -54,7 +53,7 @@ class XCL extends MotherMain implements MotsCles {
         //info cpe + n°facture
         Row headerRow0 = sheet.createRow(sheet.getLastRowNum() + 1 + (first ? -1 : 0));
         headerRow0.setHeightInPoints(78.8f);
-        //ajouterImage(wb, sheet, IMG, 0,-1,headerRow0.getRowNum(),-1,30,1.0,0.9);
+        ajouterImage(wb, sheet, IMG, -1, headerRow0.getRowNum(), -1, 30, 0.9);
 
         Cell cellCPE = headerRow0.createCell(1);
         CellStyle cellCPEStyle = wb.createCellStyle();
@@ -239,7 +238,7 @@ class XCL extends MotherMain implements MotsCles {
         Row cdnRow8 = sheet.createRow(sheet.getLastRowNum() + 1);
         cdnRow8.setHeightInPoints(45f);
         sheet.addMergedRegion(new CellRangeAddress(8, 8, 0, 7));
-        //ajouterImage(wb,sheet,IMGREG,0,8,cdnRow8.getRowNum(),20,-1,1.0,1.0);
+        ajouterImage(wb, sheet, IMGREG, 8, cdnRow8.getRowNum(), 20, -1, 1.0);
 
         Cell cellCdnVide = cdnRow8.createCell(0);
         cellCdnVide.setCellStyle(setCellStyle(wb, true, false, false, false));
@@ -293,47 +292,16 @@ class XCL extends MotherMain implements MotsCles {
         //entete de colonnes
         Row detailRow12 = sheet.createRow(12);
 
-        Cell cellDate = detailRow12.createCell(0);
-        CellStyle cellDateStyle = setCellStyle(wb, true, true, true, true);
-        cellDateStyle.setFont(setFont(wb, (short) 12, true, true));
-        cellDateStyle.setAlignment(HorizontalAlignment.CENTER);
-        cellDate.setCellStyle(cellDateStyle);
-        cellDate.setCellValue("Date Saisie");
-
-        Cell cellNomDossier = detailRow12.createCell(1);
-        CellStyle cellNomDossierStyle = setCellStyle(wb, true, true, false, true);
-        cellNomDossierStyle.setFont(setFont(wb, (short) 12, true, true));
-        cellNomDossierStyle.setAlignment(HorizontalAlignment.CENTER);
-        cellNomDossier.setCellStyle(cellNomDossierStyle);
-        cellNomDossier.setCellValue("Nom dossier");
-
-        detailRow12.createCell(2).setCellStyle(setCellStyle(wb, false, true, false, true));
-        detailRow12.createCell(3).setCellStyle(setCellStyle(wb, false, true, true, true));
-        sheet.addMergedRegion(new CellRangeAddress(12, 12, 1, 3));
-
-        Cell cellTarif = detailRow12.createCell(4);
-        CellStyle cellTarifStyle = setCellStyle(wb, true, true, false, true);
-        cellTarifStyle.setFont(setFont(wb, (short) 12, true, true));
-        cellTarifStyle.setAlignment(HorizontalAlignment.CENTER);
-        cellTarif.setCellStyle(cellTarifStyle);
-        cellTarif.setCellValue("Nombre Lignes");
-
-        detailRow12.createCell(5).setCellStyle(setCellStyle(wb, false, true, true, true));
-        sheet.addMergedRegion(new CellRangeAddress(12, 12, 4, 5));
-
-        Cell cellNombreLigne = detailRow12.createCell(6);
-        CellStyle cellNombreLigneStyle = setCellStyle(wb, true, true, true, true);
-        cellNombreLigneStyle.setFont(setFont(wb, (short) 12, true, true));
-        cellNombreLigneStyle.setAlignment(HorizontalAlignment.CENTER);
-        cellNombreLigne.setCellStyle(cellNombreLigneStyle);
-        cellNombreLigne.setCellValue("Tarif Ligne");
-
-        Cell cellTotalHT = detailRow12.createCell(7);
-        CellStyle cellTotalHTStyle = setCellStyle(wb, true, true, true, true);
-        cellTotalHTStyle.setFont(setFont(wb, (short) 12, true, true));
-        cellTotalHTStyle.setAlignment(HorizontalAlignment.CENTER);
-        cellTotalHT.setCellStyle(cellTotalHTStyle);
-        cellTotalHT.setCellValue("Total HT");
+        creerCell(detailRow12, wb, NUM_COL_DAT_SAI, true, "Date Saisie");
+        creerCell(detailRow12, wb, NUM_COL_NOM_DOS_0, false, "Nom dossier");
+        detailRow12.createCell(NUM_COL_NOM_DOS_1).setCellStyle(setCellStyle(wb, false, true, false, true));
+        detailRow12.createCell(NUM_COL_NOM_DOS_2).setCellStyle(setCellStyle(wb, false, true, true, true));
+        sheet.addMergedRegion(new CellRangeAddress(12, 12, NUM_COL_NOM_DOS_0, NUM_COL_NOM_DOS_2));
+        creerCell(detailRow12, wb, NUM_COL_NB_LI_0, false, "Nombre Ligne");
+        detailRow12.createCell(NUM_COL_NB_LI_1).setCellStyle(setCellStyle(wb, false, true, true, true));
+        sheet.addMergedRegion(new CellRangeAddress(12, 12, NUM_COL_NB_LI_0, NUM_COL_NB_LI_1));
+        creerCell(detailRow12, wb, NUM_COL_TRF_LI, true, "Tarif Ligne");
+        creerCell(detailRow12, wb, NUM_COL_THT, true, "Total HT");
 
         //remplissage
         readXls(sheet1);
@@ -366,11 +334,6 @@ class XCL extends MotherMain implements MotsCles {
 
         if (rowNum.contains(sheet.getLastRowNum() % 41))
             creerEntete(wb, sheet, entreprise, nFacture, false);
-
-        NumberFormat formatDouble = NumberFormat.getInstance(Locale.FRANCE);
-        formatDouble.setMaximumFractionDigits(2);
-        formatDouble.setMinimumFractionDigits(2);
-        formatDouble.setRoundingMode(RoundingMode.HALF_UP);
 
         //remarques
         sheet.createRow(sheet.getLastRowNum() + 1);
@@ -445,7 +408,7 @@ class XCL extends MotherMain implements MotsCles {
         cellTotalHTValueStyle.setFont(setFont(wb, (short) 11, false, false));
         cellTotalHTValueStyle.setAlignment(HorizontalAlignment.CENTER);
         cellTotalHTValue.setCellStyle(cellTotalHTValueStyle);
-        cellTotalHTValue.setCellValue(formatDouble.format(entreprise.getTotalHT()) + " €");
+        cellTotalHTValue.setCellValue(formatDouble().format(entreprise.getTotalHT()) + " €");
 
         Cell cellTVA = recapRow4.createCell(4);
         CellStyle cellTVAStyle = setCellStyle(wb, true, false, false, false);
@@ -461,7 +424,7 @@ class XCL extends MotherMain implements MotsCles {
         cellTVAValueStyle.setFont(setFont(wb, (short) 11, false, false));
         cellTVAValueStyle.setAlignment(HorizontalAlignment.CENTER);
         cellTVAValue.setCellStyle(cellTVAValueStyle);
-        cellTVAValue.setCellValue(formatDouble.format(entreprise.getTotalHT() * 0.2) + " €");
+        cellTVAValue.setCellValue(formatDouble().format(entreprise.getTotalHT() * 0.2) + " €");
 
         Cell cellTotalTTC = recapRow5.createCell(4);
         CellStyle cellTotalTTCStyle = setCellStyle(wb, true, false, false, false);
@@ -477,7 +440,7 @@ class XCL extends MotherMain implements MotsCles {
         cellTotalTTCValueStyle.setFont(setFont(wb, (short) 11, false, false));
         cellTotalTTCValueStyle.setAlignment(HorizontalAlignment.CENTER);
         cellTotalTTCValue.setCellStyle(cellTotalTTCValueStyle);
-        cellTotalTTCValue.setCellValue(formatDouble.format(entreprise.getTotalHT() * 1.2) + " €");
+        cellTotalTTCValue.setCellValue(formatDouble().format(entreprise.getTotalHT() * 1.2) + " €");
 
         recapRow6.createCell(4).setCellStyle(setCellStyle(wb, true, false, false, true));
         recapRow6.createCell(5).setCellStyle(setCellStyle(wb, false, false, false, true));
@@ -502,16 +465,10 @@ class XCL extends MotherMain implements MotsCles {
     }
 
     private void remplirLigne(Workbook wb, Sheet sheet, List<Ligne> data, Entreprise entreprise, int nFacture) {
-        NumberFormat formatDouble = NumberFormat.getInstance(Locale.FRANCE);
-        formatDouble.setMaximumFractionDigits(2);
-        formatDouble.setMinimumFractionDigits(2);
-        formatDouble.setRoundingMode(RoundingMode.HALF_UP);
-
-        NumberFormat formatTriple = NumberFormat.getInstance(Locale.FRANCE);
-        formatTriple.setMinimumFractionDigits(2);
-
-        NumberFormat formatEntier = NumberFormat.getInstance(Locale.FRANCE);
-        formatEntier.setMaximumFractionDigits(0);
+        CellStyle cellStyle = setCellStyle(wb, true, true, true, true);
+        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+        cellStyle.setFont(setFont(wb, (short) 11, false, false));
+        cellStyle.setShrinkToFit(true);
 
         for (Ligne ligne : data) {
             if (sheet.getLastRowNum() == 39 || sheet.getLastRowNum() % 41 == 0)
@@ -519,37 +476,16 @@ class XCL extends MotherMain implements MotsCles {
 
             Row row = sheet.createRow(sheet.getLastRowNum() + 1);
 
-            CellStyle cellStyle = setCellStyle(wb, true, true, true, true);
-            cellStyle.setAlignment(HorizontalAlignment.CENTER);
-            cellStyle.setFont(setFont(wb, (short) 11, false, false));
-            cellStyle.setShrinkToFit(true);
-
-            Cell cellDate = row.createCell(0);
-            cellDate.setCellStyle(cellStyle);
-            cellDate.setCellValue(ligne.getDate());
-
-            Cell cellDossier = row.createCell(1);
-            cellDossier.setCellStyle(cellStyle);
-            cellDossier.setCellValue(ligne.getEntreprise());
-
-            for (int i = 2; i < 4; i++)
+            creerCell(row, NUM_COL_DAT_SAI, cellStyle, ligne.getDate());
+            creerCell(row, NUM_COL_NOM_DOS_0, cellStyle, ligne.getEntreprise());
+            for (int i = NUM_COL_NOM_DOS_1; i <= NUM_COL_NOM_DOS_2; i++)
                 row.createCell(i).setCellStyle(cellStyle);
-            sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), 1, 3));
-
-            Cell cellTarif = row.createCell(4);
-            cellTarif.setCellStyle(cellStyle);
-            cellTarif.setCellValue(formatEntier.format(ligne.getNbLigne()));
-
-            row.createCell(5).setCellStyle(cellStyle);
-            sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), 4, 5));
-
-            Cell cellNbLigne = row.createCell(6);
-            cellNbLigne.setCellStyle(cellStyle);
-            cellNbLigne.setCellValue(formatTriple.format(ligne.getTarif()));
-
-            Cell cellTotal = row.createCell(7);
-            cellTotal.setCellStyle(cellStyle);
-            cellTotal.setCellValue(formatDouble.format(ligne.getTotal()) + "€");
+            sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), NUM_COL_NOM_DOS_0, NUM_COL_NOM_DOS_2));
+            creerCell(row, NUM_COL_NB_LI_0, cellStyle, formatEntier().format(ligne.getNbLigne()));
+            row.createCell(NUM_COL_NB_LI_1).setCellStyle(cellStyle);
+            sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), NUM_COL_NB_LI_0, NUM_COL_NB_LI_1));
+            creerCell(row, NUM_COL_TRF_LI, cellStyle, formatTriple().format(ligne.getTarif()));
+            creerCell(row, NUM_COL_THT, cellStyle, formatDouble().format(ligne.getTotal()) + "€");
 
             totalLigne += ligne.getNbLigne();
             totalHT += ligne.getTotal();
@@ -559,7 +495,7 @@ class XCL extends MotherMain implements MotsCles {
         entreprise.setTotalHT(totalHT);
     }
 
-    private void ajouterImage(Workbook wb, Sheet sheet, String fileName, Integer col1, Integer col2, Integer row1, Integer dx1, Integer dy1, Double resize1, Double resize2) {
+    private void ajouterImage(Workbook wb, Sheet sheet, String fileName, Integer col2, Integer row1, Integer dx1, Integer dy1, Double resize2) {
         InputStream is = null;
         try {
             is = new FileInputStream(fileName);
@@ -569,6 +505,7 @@ class XCL extends MotherMain implements MotsCles {
         }
         byte[] bytes = new byte[0];
         try {
+            assert is != null;
             bytes = IOUtils.toByteArray(is);
         } catch (IOException e) {
             creerFichierErreur(e);
@@ -586,7 +523,7 @@ class XCL extends MotherMain implements MotsCles {
         Drawing drawing = sheet.createDrawingPatriarch();
         ClientAnchor anchor = helper.createClientAnchor();
 
-        anchor.setCol1(col1);
+        anchor.setCol1(0);
         if (col2 > -1)
             anchor.setCol2(col2);
 
@@ -599,7 +536,7 @@ class XCL extends MotherMain implements MotsCles {
             anchor.setDy1(dy1);
 
         Picture picture = drawing.createPicture(anchor, pictureIdx);
-        picture.resize(resize1, resize2);
+        picture.resize(1.0, resize2);
     }
 
     private ArrayList<String> setDate() {
@@ -624,7 +561,7 @@ class XCL extends MotherMain implements MotsCles {
                 break;
         }
 
-        if (Calendar.getInstance().get(Calendar.MONTH) == 0) {
+        if (Calendar.getInstance().get(Calendar.MONTH) == Calendar.JANUARY) {
             sb.append("12/");
             sb.append(Calendar.getInstance().get(Calendar.YEAR) - 1);
         } else {
@@ -685,5 +622,20 @@ class XCL extends MotherMain implements MotsCles {
             creerEnteteType(wb, sheet, entete);
             remplirLigne(wb, sheet, createLigne(data, tarif, entreprise), entreprise, nFacture);
         }
+    }
+
+    private void creerCell(Row row, Workbook wb, int col, boolean right, String entete) {
+        Cell cell = row.createCell(col);
+        CellStyle cellStyle = setCellStyle(wb, true, true, right, true);
+        cellStyle.setFont(setFont(wb, (short) 12, true, true));
+        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+        cell.setCellStyle(cellStyle);
+        cell.setCellValue(entete);
+    }
+
+    private void creerCell(Row row, int col, CellStyle cellStyle, String texte) {
+        Cell cellTotal = row.createCell(col);
+        cellTotal.setCellStyle(cellStyle);
+        cellTotal.setCellValue(texte);
     }
 }

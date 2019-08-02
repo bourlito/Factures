@@ -1,12 +1,12 @@
-.button{
+.button {
     -fx-cursor: hand;
 }
 
-#btnValider{
+#btnValider {
     -fx-background-color: limegreen;
     -fx-text-fill: white;
 }
 
-#btnValider:hover{
+#btnValider:hover {
     -fx-background-color: rgb(51, 235, 51);
 }
