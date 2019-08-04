@@ -1,3 +1,4 @@
+import dto.Entreprise;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -30,7 +31,7 @@ public class JavaFX extends Application implements MotsCles {
     private String RESULT = null;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         Scene scene = new Scene(setGrid(primaryStage), 800, 500);
         scene.getStylesheets().add(JavaFX.class.getResource("javafx.css").toExternalForm());
 

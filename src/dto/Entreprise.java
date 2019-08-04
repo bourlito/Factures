@@ -1,6 +1,8 @@
+package dto;
+
 import java.util.List;
 
-class Entreprise {
+public class Entreprise {
     private String nomEntreprise;
     private String alias;
     private String adresse;
@@ -10,67 +12,67 @@ class Entreprise {
     private int totalLigne;
     private double totalHT;
 
-    String getNomEntreprise() {
+    public String getNomEntreprise() {
         return nomEntreprise;
     }
 
-    void setNomEntreprise(String nomEntreprise) {
+    public void setNomEntreprise(String nomEntreprise) {
         this.nomEntreprise = nomEntreprise;
     }
 
-    String getAlias() {
+    public String getAlias() {
         return alias;
     }
 
-    void setAlias(String alias) {
+    public void setAlias(String alias) {
         this.alias = alias;
     }
 
-    String getAdresse() {
+    public String getAdresse() {
         return adresse;
     }
 
-    void setAdresse(String adresse) {
+    public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
 
-    String getCp() {
+    public String getCp() {
         return cp;
     }
 
-    void setCp(String cp) {
+    public void setCp(String cp) {
         this.cp = cp;
     }
 
-    String getVille() {
+    public String getVille() {
         return ville;
     }
 
-    void setVille(String ville) {
+    public void setVille(String ville) {
         this.ville = ville;
     }
 
-    List<Double> getTarifs() {
+    public List<Double> getTarifs() {
         return tarifs;
     }
 
-    void setTarifs(List<Double> tarifs) {
+    public void setTarifs(List<Double> tarifs) {
         this.tarifs = tarifs;
     }
 
-    int getTotalLigne() {
+    public int getTotalLigne() {
         return totalLigne;
     }
 
-    void setTotalLigne(int totalLigne) {
+    public void setTotalLigne(int totalLigne) {
         this.totalLigne = totalLigne;
     }
 
-    double getTotalHT() {
+    public double getTotalHT() {
         return totalHT;
     }
 
-    void setTotalHT(double totalHT) {
+    public void setTotalHT(double totalHT) {
         this.totalHT = totalHT;
     }
 }

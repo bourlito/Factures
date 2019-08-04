@@ -1,3 +1,5 @@
+import dto.Entreprise;
+import dto.Ligne;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -133,7 +135,7 @@ class PDF extends Mamasita implements MotsCles {
 
         PdfPTable table = new PdfPTable(11);
         PdfPCell cell = new PdfPCell();
-        int headerwidths[] = {10, 25, 10, 25, 10, 40, 10, 25, 10, 40, 10};
+        int[] headerwidths = {10, 25, 10, 25, 10, 40, 10, 25, 10, 40, 10};
         table.setWidthPercentage(100);
         try {
             table.setWidths(headerwidths);
@@ -158,17 +160,14 @@ class PDF extends Mamasita implements MotsCles {
         String[][] listReg = {{"Code Banque", "Code Guichet", "N° du compte", "Clé RIB", "Domiciliation"}, {"16006", "21111", "00023064321", "95", "CREDIT AGRICOLE"}};
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j <= 10; j++) {
-                switch ((j % 2)) {
-                    case 0:
-                        cell = new PdfPCell(new Phrase(""));
-                        cell.setBorder(0);
-                        table.addCell(cell);
-                        break;
-                    default:
-                        cell = new PdfPCell(new Phrase(listReg[i][j / 2], font));
-                        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                        table.addCell(cell);
-                        break;
+                if ((j % 2) == 0) {
+                    cell = new PdfPCell(new Phrase(""));
+                    cell.setBorder(0);
+                    table.addCell(cell);
+                } else {
+                    cell = new PdfPCell(new Phrase(listReg[i][j / 2], font));
+                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    table.addCell(cell);
                 }
             }
             cell = new PdfPCell(new Phrase(""));
@@ -229,7 +228,7 @@ class PDF extends Mamasita implements MotsCles {
     private PdfPTable createTable(String RESULT, Entreprise entreprise) {
         PdfPTable table = new PdfPTable(5);
         table.setWidthPercentage(100);
-        int headerwidths[] = {10, 30, 12, 10, 10};
+        int[] headerwidths = {10, 30, 12, 10, 10};
         try {
             table.setWidths(headerwidths);
         } catch (DocumentException e) {
@@ -248,7 +247,7 @@ class PDF extends Mamasita implements MotsCles {
         Paragraph paragraph;
         Font fontTitre = new Font(Font.HELVETICA, 10, Font.BOLD, new BaseColor(46, 110, 175));
 
-        String[] tableTitleList = {"Date Saisie", "Nom Dossier", "Nombre Lignes", "Tarif Ligne", "Total HT"};
+        String[] tableTitleList = {"Date Saisie", "Nom Dossier", "Nombre Lignes", "Tarif DTO.Ligne", "Total HT"};
         for (String title : tableTitleList) {
             cell = new PdfPCell();
             paragraph = new Paragraph(title, fontTitre);
@@ -317,7 +316,7 @@ class PDF extends Mamasita implements MotsCles {
         table.addCell(cell);
     }
 
-    class HeaderTable extends PdfPageEventHelper {
+    static class HeaderTable extends PdfPageEventHelper {
         private final PdfPTable table;
         private float tableHeight;
 
@@ -326,7 +325,7 @@ class PDF extends Mamasita implements MotsCles {
             table = new PdfPTable(4);
             table.setTotalWidth(495);
             table.setLockedWidth(true);
-            int headerwidths[] = {20, 100, 2, 50};
+            int[] headerwidths = {20, 100, 2, 50};
             table.setWidths(headerwidths);
 
             BaseColor baseColor = new BaseColor(46, 110, 175);
@@ -467,9 +466,9 @@ class PDF extends Mamasita implements MotsCles {
         }
     }
 
-    class BorderEvent implements PdfPTableEvent {
+    static class BorderEvent implements PdfPTableEvent {
         public void tableLayout(PdfPTable table, float[][] widths, float[] heights, int headerRows, int rowStart, PdfContentByte[] canvases) {
-            float width[] = widths[0];
+            float[] width = widths[0];
             float x1 = width[0];
             float x2 = width[width.length - 1];
             float y1 = heights[0];

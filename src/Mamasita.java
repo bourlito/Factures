@@ -1,3 +1,5 @@
+import dto.Entreprise;
+import dto.Ligne;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -290,14 +292,14 @@ class Mamasita implements MotsCles {
     }
 
     Boolean isNotEmpty(List<List<String>> data) {
-        Boolean isNotEmpty = false;
         for (List<String> aData : data) {
             for (String field : aData) {
-                if (field != null)
-                    isNotEmpty = true;
+                if (field != null) {
+                    return true;
+                }
             }
         }
-        return isNotEmpty;
+        return false;
     }
 
     NumberFormat formatDouble() {

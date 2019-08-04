@@ -1,3 +1,5 @@
+import dto.Entreprise;
+import dto.Ligne;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
@@ -297,10 +299,10 @@ class XCL extends Mamasita implements MotsCles {
         detailRow12.createCell(NUM_COL_NOM_DOS_1).setCellStyle(setCellStyle(wb, false, true, false, true));
         detailRow12.createCell(NUM_COL_NOM_DOS_2).setCellStyle(setCellStyle(wb, false, true, true, true));
         sheet.addMergedRegion(new CellRangeAddress(12, 12, NUM_COL_NOM_DOS_0, NUM_COL_NOM_DOS_2));
-        creerCell(detailRow12, wb, NUM_COL_NB_LI_0, false, "Nombre Ligne");
+        creerCell(detailRow12, wb, NUM_COL_NB_LI_0, false, "Nombre DTO.Ligne");
         detailRow12.createCell(NUM_COL_NB_LI_1).setCellStyle(setCellStyle(wb, false, true, true, true));
         sheet.addMergedRegion(new CellRangeAddress(12, 12, NUM_COL_NB_LI_0, NUM_COL_NB_LI_1));
-        creerCell(detailRow12, wb, NUM_COL_TRF_LI, true, "Tarif Ligne");
+        creerCell(detailRow12, wb, NUM_COL_TRF_LI, true, "Tarif DTO.Ligne");
         creerCell(detailRow12, wb, NUM_COL_THT, true, "Total HT");
 
         //remplissage

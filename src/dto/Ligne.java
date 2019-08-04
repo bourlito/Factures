@@ -1,47 +1,49 @@
-class Ligne {
+package dto;
+
+public class Ligne {
     private String date;
     private String entreprise;
     private double nbLigne;
     private double tarif;
     private double total;
 
-    String getDate() {
+    public String getDate() {
         return date;
     }
 
-    void setDate(String date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    String getEntreprise() {
+    public String getEntreprise() {
         return entreprise;
     }
 
-    void setEntreprise(String entreprise) {
+    public void setEntreprise(String entreprise) {
         this.entreprise = entreprise;
     }
 
-    double getNbLigne() {
+    public double getNbLigne() {
         return nbLigne;
     }
 
-    void setNbLigne(double nbLigne) {
+    public void setNbLigne(double nbLigne) {
         this.nbLigne = nbLigne;
     }
 
-    double getTarif() {
+    public double getTarif() {
         return tarif;
     }
 
-    void setTarif(double tarif) {
+    public void setTarif(double tarif) {
         this.tarif = tarif;
     }
 
-    double getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    void setTotal(double total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 }
