@@ -6,21 +6,13 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc429986-ef2a-49d5-94b8-583f9354bd5a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Factures/JavaFX.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Factures/JavaFX.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Factures/Mamasita.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Factures/Mamasita.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Factures/MotsCles.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Factures/MotsCles.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Factures/PDF$BorderEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Factures/PDF$BorderEvent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Factures/PDF$HeaderTable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Factures/PDF$HeaderTable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Factures/PDF.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Factures/PDF.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entreprise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/Entreprise.java" afterDir="false" />
+    <list default="true" id="cc429986-ef2a-49d5-94b8-583f9354bd5a" name="Default" comment="nettoyage">
       <change beforePath="$PROJECT_DIR$/src/JavaFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaFX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ligne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/Ligne.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mamasita.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mamasita.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PDF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PDF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XCL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/XCL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Mamasita.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/traitement/Mamasita.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MotsCles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/traitement/MotsCles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PDF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/traitement/PDF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XCL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/traitement/XCL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/javafx.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/javafx.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -109,12 +101,14 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="traitement" />
       <recent name="DTO" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\WorkSpaces\IdeaProjects\Factures\src\res" />
       <recent name="C:\Users\etienne\IdeaProjects\Factures\src\META-INF" />
       <recent name="C:\Users\etienne\IdeaProjects\Factures\src\META-INF\etienne" />
     </key>
@@ -147,7 +141,7 @@
       </method>
     </configuration>
     <configuration name="PDF" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="PDF" />
+      <option name="MAIN_CLASS_NAME" value="traitement.PDF" />
       <module name="Factures" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -155,7 +149,7 @@
       </method>
     </configuration>
     <configuration name="XCL" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="XCL" />
+      <option name="MAIN_CLASS_NAME" value="traitement.XCL" />
       <module name="Factures" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -271,8 +265,16 @@
       <workItem from="1564761515818" duration="2455000" />
       <workItem from="1564771336263" duration="33000" />
       <workItem from="1564932130498" duration="706000" />
-      <workItem from="1564933646557" duration="1015000" />
+      <workItem from="1564933646557" duration="1498000" />
     </task>
+    <task id="LOCAL-00001" summary="nettoyage">
+      <created>1564934711143</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1564934711143</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

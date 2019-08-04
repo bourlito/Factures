@@ -1,4 +1,6 @@
-interface MotsCles {
+package traitement;
+
+public interface MotsCles {
     String DOSSIER = "D:\\Perso\\projetFrancois\\";
     //String DOSSIER = "C:\\Users\\franc\\Desktop\\CPE SOLUTIONS\\FACTURATION";
     String IMG = DOSSIER + "logo-cpe-solutions.PNG";

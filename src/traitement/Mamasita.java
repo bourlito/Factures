@@ -1,3 +1,5 @@
+package traitement;
+
 import dto.Entreprise;
 import dto.Ligne;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -14,7 +16,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-class Mamasita implements MotsCles {
+public class Mamasita {
     private static List<List<String>> data = new ArrayList<>();
     final List<List<String>> dataLigne = new ArrayList<>();
     final List<List<String>> dataIB = new ArrayList<>();
@@ -79,44 +81,44 @@ class Mamasita implements MotsCles {
             for (int i = 2; i < aData.size(); i++) {
                 if (!Objects.equals(aData.get(i), "0.0")) {
                     switch (i) {
-                        case NUM_COL_LI:
-                            remplirData(aData, dataLineLigne, NUM_COL_LI);
+                        case MotsCles.NUM_COL_LI:
+                            remplirData(aData, dataLineLigne, MotsCles.NUM_COL_LI);
                             break;
-                        case NUM_COL_IB:
-                            remplirData(aData, dataLineIB, NUM_COL_IB);
+                        case MotsCles.NUM_COL_IB:
+                            remplirData(aData, dataLineIB, MotsCles.NUM_COL_IB);
                             break;
-                        case NUM_COL_471:
-                            remplirData(aData, dataLine471, NUM_COL_471);
+                        case MotsCles.NUM_COL_471:
+                            remplirData(aData, dataLine471, MotsCles.NUM_COL_471);
                             break;
-                        case NUM_COL_LE:
-                            remplirData(aData, dataLineLe, NUM_COL_LE);
+                        case MotsCles.NUM_COL_LE:
+                            remplirData(aData, dataLineLe, MotsCles.NUM_COL_LE);
                             break;
-                        case NUM_COL_SF:
-                            remplirData(aData, dataLineSF, NUM_COL_SF);
+                        case MotsCles.NUM_COL_SF:
+                            remplirData(aData, dataLineSF, MotsCles.NUM_COL_SF);
                             break;
-                        case NUM_COL_AI:
-                            remplirData(aData, dataLineAI, NUM_COL_AI);
+                        case MotsCles.NUM_COL_AI:
+                            remplirData(aData, dataLineAI, MotsCles.NUM_COL_AI);
                             break;
-                        case NUM_COL_DP:
-                            remplirData(aData, dataLineDP, NUM_COL_DP);
+                        case MotsCles.NUM_COL_DP:
+                            remplirData(aData, dataLineDP, MotsCles.NUM_COL_DP);
                             break;
-                        case NUM_COL_TVA:
-                            remplirData(aData, dataLineTVA, NUM_COL_TVA);
+                        case MotsCles.NUM_COL_TVA:
+                            remplirData(aData, dataLineTVA, MotsCles.NUM_COL_TVA);
                             break;
-                        case NUM_COL_REV:
-                            remplirData(aData, dataLineREV, NUM_COL_REV);
+                        case MotsCles.NUM_COL_REV:
+                            remplirData(aData, dataLineREV, MotsCles.NUM_COL_REV);
                             break;
-                        case NUM_COL_EI:
-                            remplirData(aData, dataLineEI, NUM_COL_EI);
+                        case MotsCles.NUM_COL_EI:
+                            remplirData(aData, dataLineEI, MotsCles.NUM_COL_EI);
                             break;
-                        case NUM_COL_LK:
-                            remplirData(aData, dataLineLinkup, NUM_COL_LK);
+                        case MotsCles.NUM_COL_LK:
+                            remplirData(aData, dataLineLinkup, MotsCles.NUM_COL_LK);
                             break;
-                        case NUM_COL_ND:
-                            remplirData(aData, dataLineND, NUM_COL_ND);
+                        case MotsCles.NUM_COL_ND:
+                            remplirData(aData, dataLineND, MotsCles.NUM_COL_ND);
                             break;
-                        case NUM_COL_AF:
-                            remplirData(aData, dataLineAF, NUM_COL_AF);
+                        case MotsCles.NUM_COL_AF:
+                            remplirData(aData, dataLineAF, MotsCles.NUM_COL_AF);
                             break;
                     }
                 }
@@ -147,7 +149,7 @@ class Mamasita implements MotsCles {
         Ligne ligne;
         List<Ligne> lignes = new ArrayList<>();
 
-        if (tarif != TARIF_AF) {
+        if (tarif != MotsCles.TARIF_AF) {
             for (List<String> list : data) {
                 if (!list.isEmpty()) {
                     ligne = new Ligne();
@@ -325,7 +327,7 @@ class Mamasita implements MotsCles {
         return formatEntier;
     }
 
-    List<Entreprise> getAdresseTarif(String entadd) {
+    public List<Entreprise> getAdresseTarif(String entadd) {
         List<Entreprise> entreprises;
         FileInputStream fis = null;
         try {
@@ -384,10 +386,10 @@ class Mamasita implements MotsCles {
         return entreprises;
     }
 
-    void creerFichierErreur(Exception e) {
+    public void creerFichierErreur(Exception e) {
         FileWriter writer = null;
         try {
-            writer = new FileWriter(DOSSIER + "\\erreur.txt");
+            writer = new FileWriter(MotsCles.DOSSIER + "\\erreur.txt");
         } catch (IOException e1) {
             e1.printStackTrace();
         }
@@ -412,10 +414,10 @@ class Mamasita implements MotsCles {
         }
     }
 
-    void creerFichierErreur() {
+    public void creerFichierErreur() {
         FileWriter writer = null;
         try {
-            writer = new FileWriter(DOSSIER + "\\erreur.txt");
+            writer = new FileWriter(MotsCles.DOSSIER + "\\erreur.txt");
         } catch (IOException e1) {
             e1.printStackTrace();
         }

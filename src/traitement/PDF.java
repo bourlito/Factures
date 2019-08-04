@@ -1,8 +1,11 @@
+package traitement;
+
 import dto.Entreprise;
 import dto.Ligne;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
+import traitement.Mamasita;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -12,13 +15,13 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-class PDF extends Mamasita implements MotsCles {
+public class PDF extends Mamasita implements MotsCles {
     private static final Calendar calendar = Calendar.getInstance();
 
     private double totalHT = 0;
     private int totalLigne = 0;
 
-    void createPdf(HSSFSheet sheet, String filename, int nFacture, Entreprise entreprise) {
+    public void createPdf(HSSFSheet sheet, String filename, int nFacture, Entreprise entreprise) {
         HeaderTable event = null;
         try {
             event = new HeaderTable(nFacture, entreprise);
@@ -266,18 +269,18 @@ class PDF extends Mamasita implements MotsCles {
             populateTable(table, parseLignes(entreprise), entreprise);
         }
 
-        remplirIfNotEmpty(dataIB, "Import Banque", fontTitre, table, TARIF_IB, entreprise);
-        remplirIfNotEmpty(data471, "471", fontTitre, table, TARIF_471, entreprise);
-        remplirIfNotEmpty(dataLe, "Lettrage", fontTitre, table, TARIF_LE, entreprise);
-        remplirIfNotEmpty(dataSF, "ScanFact", fontTitre, table, TARIF_SF, entreprise);
-        remplirIfNotEmpty(dataAI, "Attache Image", fontTitre, table, TARIF_AI, entreprise);
-        remplirIfNotEmpty(dataDP, "Découpe PDF", fontTitre, table, TARIF_DP, entreprise);
-        remplirIfNotEmpty(dataTVA, "TVA", fontTitre, table, TARIF_TVA, entreprise);
-        remplirIfNotEmpty(dataREV, "Révision", fontTitre, table, TARIF_REV, entreprise);
-        remplirIfNotEmpty(dataEI, "Ecritures Importées", fontTitre, table, TARIF_EI, entreprise);
-        remplirIfNotEmpty(dataLinkup, "Linkup", fontTitre, table, TARIF_LK, entreprise);
-        remplirIfNotEmpty(dataND, "Nouveaux Dossiers", fontTitre, table, TARIF_ND, entreprise);
-        remplirIfNotEmpty(dataAF, "Dossiers Spécifiques", fontTitre, table, TARIF_AF, entreprise);
+        remplirIfNotEmpty(dataIB, "Import Banque", fontTitre, table, MotsCles.TARIF_IB, entreprise);
+        remplirIfNotEmpty(data471, "471", fontTitre, table, MotsCles.TARIF_471, entreprise);
+        remplirIfNotEmpty(dataLe, "Lettrage", fontTitre, table, MotsCles.TARIF_LE, entreprise);
+        remplirIfNotEmpty(dataSF, "ScanFact", fontTitre, table, MotsCles.TARIF_SF, entreprise);
+        remplirIfNotEmpty(dataAI, "Attache Image", fontTitre, table, MotsCles.TARIF_AI, entreprise);
+        remplirIfNotEmpty(dataDP, "Découpe traitement.PDF", fontTitre, table, MotsCles.TARIF_DP, entreprise);
+        remplirIfNotEmpty(dataTVA, "TVA", fontTitre, table, MotsCles.TARIF_TVA, entreprise);
+        remplirIfNotEmpty(dataREV, "Révision", fontTitre, table, MotsCles.TARIF_REV, entreprise);
+        remplirIfNotEmpty(dataEI, "Ecritures Importées", fontTitre, table, MotsCles.TARIF_EI, entreprise);
+        remplirIfNotEmpty(dataLinkup, "Linkup", fontTitre, table, MotsCles.TARIF_LK, entreprise);
+        remplirIfNotEmpty(dataND, "Nouveaux Dossiers", fontTitre, table, MotsCles.TARIF_ND, entreprise);
+        remplirIfNotEmpty(dataAF, "Dossiers Spécifiques", fontTitre, table, MotsCles.TARIF_AF, entreprise);
 
         try {
             document.add(table);
@@ -334,14 +337,14 @@ class PDF extends Mamasita implements MotsCles {
             Paragraph paragraph;
 
             cell = new PdfPCell();
-            Image image = Image.getInstance(IMG);
+            Image image = Image.getInstance(MotsCles.IMG);
             cell.addElement(image);
             cell.setBorder(0);
             cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
             table.addCell(cell);
 
             cell = new PdfPCell();
-            paragraph = new Paragraph(adresseCPE, new Font(Font.HELVETICA, 10));
+            paragraph = new Paragraph(MotsCles.adresseCPE, new Font(Font.HELVETICA, 10));
             cell.addElement(paragraph);
             cell.setBorder(0);
             table.addCell(cell);

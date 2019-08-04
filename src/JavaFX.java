@@ -14,6 +14,10 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import traitement.Mamasita;
+import traitement.MotsCles;
+import traitement.PDF;
+import traitement.XCL;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,7 +37,7 @@ public class JavaFX extends Application implements MotsCles {
     @Override
     public void start(Stage primaryStage) {
         Scene scene = new Scene(setGrid(primaryStage), 800, 500);
-        scene.getStylesheets().add(JavaFX.class.getResource("javafx.css").toExternalForm());
+        scene.getStylesheets().add(JavaFX.class.getResource("res/javafx.css").toExternalForm());
 
         primaryStage.setTitle("Factures");
         primaryStage.setScene(scene);

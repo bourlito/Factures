@@ -1,3 +1,5 @@
+package traitement;
+
 import dto.Entreprise;
 import dto.Ligne;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -5,6 +7,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.util.IOUtils;
+import traitement.Mamasita;
 
 import java.io.*;
 import java.text.NumberFormat;
@@ -13,11 +16,11 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-class XCL extends Mamasita implements MotsCles {
+public class XCL extends Mamasita implements MotsCles {
     private int totalLigne = 0;
     private double totalHT = 0;
 
-    void creerXCL(HSSFSheet sheet, String filename, int nFacture, Entreprise entreprise) {
+    public void creerXCL(HSSFSheet sheet, String filename, int nFacture, Entreprise entreprise) {
         Workbook wb = new HSSFWorkbook();
         creerFeuille(wb, sheet, entreprise, nFacture);
         FileOutputStream out = null;
@@ -55,7 +58,7 @@ class XCL extends Mamasita implements MotsCles {
         //info cpe + n°facture
         Row headerRow0 = sheet.createRow(sheet.getLastRowNum() + 1 + (first ? -1 : 0));
         headerRow0.setHeightInPoints(78.8f);
-        ajouterImage(wb, sheet, IMG, -1, headerRow0.getRowNum(), -1, 30, 0.9);
+        ajouterImage(wb, sheet, MotsCles.IMG, -1, headerRow0.getRowNum(), -1, 30, 0.9);
 
         Cell cellCPE = headerRow0.createCell(1);
         CellStyle cellCPEStyle = wb.createCellStyle();
@@ -63,7 +66,7 @@ class XCL extends Mamasita implements MotsCles {
         cellCPEStyle.setVerticalAlignment(VerticalAlignment.CENTER);
         cellCPEStyle.setFont(setFont(wb, (short) 11, false, false));
         cellCPE.setCellStyle(cellCPEStyle);
-        cellCPE.setCellValue(adresseCPE);
+        cellCPE.setCellValue(MotsCles.adresseCPE);
         sheet.addMergedRegion(new CellRangeAddress(headerRow0.getRowNum(), headerRow0.getRowNum(), 1, 5));
 
         Cell cellFact = headerRow0.createCell(6);
@@ -240,7 +243,7 @@ class XCL extends Mamasita implements MotsCles {
         Row cdnRow8 = sheet.createRow(sheet.getLastRowNum() + 1);
         cdnRow8.setHeightInPoints(45f);
         sheet.addMergedRegion(new CellRangeAddress(8, 8, 0, 7));
-        ajouterImage(wb, sheet, IMGREG, 8, cdnRow8.getRowNum(), 20, -1, 1.0);
+        ajouterImage(wb, sheet, MotsCles.IMGREG, 8, cdnRow8.getRowNum(), 20, -1, 1.0);
 
         Cell cellCdnVide = cdnRow8.createCell(0);
         cellCdnVide.setCellStyle(setCellStyle(wb, true, false, false, false));
@@ -294,16 +297,16 @@ class XCL extends Mamasita implements MotsCles {
         //entete de colonnes
         Row detailRow12 = sheet.createRow(12);
 
-        creerCell(detailRow12, wb, NUM_COL_DAT_SAI, true, "Date Saisie");
-        creerCell(detailRow12, wb, NUM_COL_NOM_DOS_0, false, "Nom dossier");
-        detailRow12.createCell(NUM_COL_NOM_DOS_1).setCellStyle(setCellStyle(wb, false, true, false, true));
-        detailRow12.createCell(NUM_COL_NOM_DOS_2).setCellStyle(setCellStyle(wb, false, true, true, true));
-        sheet.addMergedRegion(new CellRangeAddress(12, 12, NUM_COL_NOM_DOS_0, NUM_COL_NOM_DOS_2));
-        creerCell(detailRow12, wb, NUM_COL_NB_LI_0, false, "Nombre DTO.Ligne");
-        detailRow12.createCell(NUM_COL_NB_LI_1).setCellStyle(setCellStyle(wb, false, true, true, true));
-        sheet.addMergedRegion(new CellRangeAddress(12, 12, NUM_COL_NB_LI_0, NUM_COL_NB_LI_1));
-        creerCell(detailRow12, wb, NUM_COL_TRF_LI, true, "Tarif DTO.Ligne");
-        creerCell(detailRow12, wb, NUM_COL_THT, true, "Total HT");
+        creerCell(detailRow12, wb, MotsCles.NUM_COL_DAT_SAI, true, "Date Saisie");
+        creerCell(detailRow12, wb, MotsCles.NUM_COL_NOM_DOS_0, false, "Nom dossier");
+        detailRow12.createCell(MotsCles.NUM_COL_NOM_DOS_1).setCellStyle(setCellStyle(wb, false, true, false, true));
+        detailRow12.createCell(MotsCles.NUM_COL_NOM_DOS_2).setCellStyle(setCellStyle(wb, false, true, true, true));
+        sheet.addMergedRegion(new CellRangeAddress(12, 12, MotsCles.NUM_COL_NOM_DOS_0, MotsCles.NUM_COL_NOM_DOS_2));
+        creerCell(detailRow12, wb, MotsCles.NUM_COL_NB_LI_0, false, "Nombre DTO.Ligne");
+        detailRow12.createCell(MotsCles.NUM_COL_NB_LI_1).setCellStyle(setCellStyle(wb, false, true, true, true));
+        sheet.addMergedRegion(new CellRangeAddress(12, 12, MotsCles.NUM_COL_NB_LI_0, MotsCles.NUM_COL_NB_LI_1));
+        creerCell(detailRow12, wb, MotsCles.NUM_COL_TRF_LI, true, "Tarif DTO.Ligne");
+        creerCell(detailRow12, wb, MotsCles.NUM_COL_THT, true, "Total HT");
 
         //remplissage
         readXls(sheet1);
@@ -314,18 +317,18 @@ class XCL extends Mamasita implements MotsCles {
             remplirLigne(wb, sheet, parseLignes(entreprise), entreprise, nFacture);
         }
 
-        remplirIfNotEmpty(dataIB, wb, sheet, "Import Banque", TARIF_IB, entreprise, nFacture);
-        remplirIfNotEmpty(data471, wb, sheet, "471", TARIF_471, entreprise, nFacture);
-        remplirIfNotEmpty(dataLe, wb, sheet, "Lettrage", TARIF_LE, entreprise, nFacture);
-        remplirIfNotEmpty(dataSF, wb, sheet, "ScanFact", TARIF_SF, entreprise, nFacture);
-        remplirIfNotEmpty(dataAI, wb, sheet, "Attache Image", TARIF_AI, entreprise, nFacture);
-        remplirIfNotEmpty(dataDP, wb, sheet, "Découpe PDF", TARIF_DP, entreprise, nFacture);
-        remplirIfNotEmpty(dataTVA, wb, sheet, "TVA", TARIF_TVA, entreprise, nFacture);
-        remplirIfNotEmpty(dataREV, wb, sheet, "Révision", TARIF_REV, entreprise, nFacture);
-        remplirIfNotEmpty(dataEI, wb, sheet, "Ecritures Importées", TARIF_EI, entreprise, nFacture);
-        remplirIfNotEmpty(dataLinkup, wb, sheet, "Linkup", TARIF_LK, entreprise, nFacture);
-        remplirIfNotEmpty(dataND, wb, sheet, "Nouveaux Dossiers", TARIF_ND, entreprise, nFacture);
-        remplirIfNotEmpty(dataAF, wb, sheet, "Dossiers Spécifiques", TARIF_AF, entreprise, nFacture);
+        remplirIfNotEmpty(dataIB, wb, sheet, "Import Banque", MotsCles.TARIF_IB, entreprise, nFacture);
+        remplirIfNotEmpty(data471, wb, sheet, "471", MotsCles.TARIF_471, entreprise, nFacture);
+        remplirIfNotEmpty(dataLe, wb, sheet, "Lettrage", MotsCles.TARIF_LE, entreprise, nFacture);
+        remplirIfNotEmpty(dataSF, wb, sheet, "ScanFact", MotsCles.TARIF_SF, entreprise, nFacture);
+        remplirIfNotEmpty(dataAI, wb, sheet, "Attache Image", MotsCles.TARIF_AI, entreprise, nFacture);
+        remplirIfNotEmpty(dataDP, wb, sheet, "Découpe traitement.PDF", MotsCles.TARIF_DP, entreprise, nFacture);
+        remplirIfNotEmpty(dataTVA, wb, sheet, "TVA", MotsCles.TARIF_TVA, entreprise, nFacture);
+        remplirIfNotEmpty(dataREV, wb, sheet, "Révision", MotsCles.TARIF_REV, entreprise, nFacture);
+        remplirIfNotEmpty(dataEI, wb, sheet, "Ecritures Importées", MotsCles.TARIF_EI, entreprise, nFacture);
+        remplirIfNotEmpty(dataLinkup, wb, sheet, "Linkup", MotsCles.TARIF_LK, entreprise, nFacture);
+        remplirIfNotEmpty(dataND, wb, sheet, "Nouveaux Dossiers", MotsCles.TARIF_ND, entreprise, nFacture);
+        remplirIfNotEmpty(dataAF, wb, sheet, "Dossiers Spécifiques", MotsCles.TARIF_AF, entreprise, nFacture);
     }
 
     private void creerRecap(Workbook wb, Sheet sheet, Entreprise entreprise, int nFacture) {
@@ -478,16 +481,16 @@ class XCL extends Mamasita implements MotsCles {
 
             Row row = sheet.createRow(sheet.getLastRowNum() + 1);
 
-            creerCell(row, NUM_COL_DAT_SAI, cellStyle, ligne.getDate());
-            creerCell(row, NUM_COL_NOM_DOS_0, cellStyle, ligne.getEntreprise());
-            for (int i = NUM_COL_NOM_DOS_1; i <= NUM_COL_NOM_DOS_2; i++)
+            creerCell(row, MotsCles.NUM_COL_DAT_SAI, cellStyle, ligne.getDate());
+            creerCell(row, MotsCles.NUM_COL_NOM_DOS_0, cellStyle, ligne.getEntreprise());
+            for (int i = MotsCles.NUM_COL_NOM_DOS_1; i <= MotsCles.NUM_COL_NOM_DOS_2; i++)
                 row.createCell(i).setCellStyle(cellStyle);
-            sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), NUM_COL_NOM_DOS_0, NUM_COL_NOM_DOS_2));
-            creerCell(row, NUM_COL_NB_LI_0, cellStyle, formatEntier().format(ligne.getNbLigne()));
-            row.createCell(NUM_COL_NB_LI_1).setCellStyle(cellStyle);
-            sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), NUM_COL_NB_LI_0, NUM_COL_NB_LI_1));
-            creerCell(row, NUM_COL_TRF_LI, cellStyle, formatTriple().format(ligne.getTarif()));
-            creerCell(row, NUM_COL_THT, cellStyle, formatDouble().format(ligne.getTotal()) + "€");
+            sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), MotsCles.NUM_COL_NOM_DOS_0, MotsCles.NUM_COL_NOM_DOS_2));
+            creerCell(row, MotsCles.NUM_COL_NB_LI_0, cellStyle, formatEntier().format(ligne.getNbLigne()));
+            row.createCell(MotsCles.NUM_COL_NB_LI_1).setCellStyle(cellStyle);
+            sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), MotsCles.NUM_COL_NB_LI_0, MotsCles.NUM_COL_NB_LI_1));
+            creerCell(row, MotsCles.NUM_COL_TRF_LI, cellStyle, formatTriple().format(ligne.getTarif()));
+            creerCell(row, MotsCles.NUM_COL_THT, cellStyle, formatDouble().format(ligne.getTotal()) + "€");
 
             totalLigne += ligne.getNbLigne();
             totalHT += ligne.getTotal();
