@@ -17,7 +17,6 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class Mamasita {
-    private static List<List<String>> data = new ArrayList<>();
     final List<List<String>> dataLigne = new ArrayList<>();
     final List<List<String>> dataIB = new ArrayList<>();
     final List<List<String>> data471 = new ArrayList<>();
@@ -34,22 +33,32 @@ public class Mamasita {
 
     private final List<List<String>> address = new ArrayList<>();
 
+    /**
+     * methode de lecture d'un fichier excel
+     * @param sheet page correspondant aux données d'une entreprise
+     * @return les donnees dans une liste de listes
+     */
+    List<List<String>> readXls(HSSFSheet sheet) {
+        //remise a zero de la liste data
+        List<List<String>> data = new ArrayList<>();
 
-    void readXls(HSSFSheet sheet) {
-        data = new ArrayList<>();
         for (Row row : sheet) {
+            //saut de la premiere ligne
             if (row.getRowNum() == 0)
                 continue;
             List<String> dataLine = new ArrayList<>();
             for (Cell cell : row) {
                 try {
                     switch (cell.getColumnIndex()) {
+                        //recuperation de la date
                         case 0:
                             dataLine.add(new SimpleDateFormat("dd/MM/yyyy").format(cell.getDateCellValue()));
                             break;
+                        //recuperation des donnees textes
                         case 1:
                             dataLine.add(cell.getStringCellValue());
                             break;
+                        //recuparation des donnees numeriques
                         default:
                             dataLine.add(String.valueOf(cell.getNumericCellValue()));
                             break;
@@ -61,10 +70,16 @@ public class Mamasita {
             }
             data.add(dataLine);
         }
+        return data;
     }
 
-    void parseXls() {
+    /**
+     * methode de parsing de la liste data
+     * @param data liste de listes des donnees
+     */
+    void parseXls(List<List<String>> data) {
         for (List<String> aData : data) {
+            //initialisation des listes de donnees
             List<String> dataLineLigne = new ArrayList<>();
             List<String> dataLineIB = new ArrayList<>();
             List<String> dataLine471 = new ArrayList<>();
@@ -78,9 +93,11 @@ public class Mamasita {
             List<String> dataLineLinkup = new ArrayList<>();
             List<String> dataLineND = new ArrayList<>();
             List<String> dataLineAF = new ArrayList<>();
-            for (int i = 2; i < aData.size(); i++) {
-                if (!Objects.equals(aData.get(i), "0.0")) {
-                    switch (i) {
+
+            //tri des donnees existantes dans les differentes listes
+            for (int index = 2; index < aData.size(); index++) {
+                if (!Objects.equals(aData.get(index), "0.0")) {
+                    switch (index) {
                         case MotsCles.NUM_COL_LI:
                             remplirData(aData, dataLineLigne, MotsCles.NUM_COL_LI);
                             break;
@@ -123,6 +140,8 @@ public class Mamasita {
                     }
                 }
             }
+
+            //ajout des donnees a la liste correspondante
             dataLigne.add(dataLineLigne);
             dataIB.add(dataLineIB);
             data471.add(dataLine471);
@@ -139,16 +158,30 @@ public class Mamasita {
         }
     }
 
+    /**
+     * methode de remplissage des listes de donnees
+     * @param aData liste initiale
+     * @param data liste triee
+     * @param colonne numero de colonne de la liste triee
+     */
     private void remplirData(List<String> aData, List<String> data, int colonne) {
         data.add(aData.get(0));
         data.add(aData.get(1));
         data.add(aData.get(colonne));
     }
 
+    /**
+     * methode de creation des lignes
+     * @param data liste de listes d'entree
+     * @param tarif correspondant a la donnee
+     * @param entreprise traitee
+     * @return une liste de ligne
+     */
     List<Ligne> createLigne(List<List<String>> data, Integer tarif, Entreprise entreprise) {
         Ligne ligne;
         List<Ligne> lignes = new ArrayList<>();
 
+        //cas particulier des tarifs speciaux
         if (tarif != MotsCles.TARIF_AF) {
             for (List<String> list : data) {
                 if (!list.isEmpty()) {
@@ -161,6 +194,7 @@ public class Mamasita {
                     lignes.add(ligne);
                 }
             }
+        //cas classiques
         } else {
             for (List<String> list : data) {
                 if (!list.isEmpty()) {

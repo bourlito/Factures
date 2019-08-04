@@ -2,6 +2,9 @@ package dto;
 
 import java.util.List;
 
+/**
+ * objet entreprise
+ */
 public class Entreprise {
     private String nomEntreprise;
     private String alias;

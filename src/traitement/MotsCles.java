@@ -6,7 +6,11 @@ public interface MotsCles {
     String IMG = DOSSIER + "logo-cpe-solutions.PNG";
     String IMGREG = DOSSIER + "cdnReg.PNG";
 
-    String adresseCPE = "SARL CPE SOLUTIONS\n35-37 Rue de Rome, 75008 PARIS\nTél. 02 30 91 97 42\nSARL au Capital de 75 000 € - RCS de Paris 450 692 447\nTva intracommunautaire : FR76450692447";
+    String adresseCPE = "SARL CPE SOLUTIONS\n" +
+            "35-37 Rue de Rome, 75008 PARIS\n" +
+            "Tél. 02 30 91 97 42\n" +
+            "SARL au Capital de 75 000 € - RCS de Paris 450 692 447\n" +
+            "Tva intracommunautaire : FR76450692447";
 
     //correspond à la colonne dans le xcl_adresse pour les tarifs
     int TARIF_IB = 6;

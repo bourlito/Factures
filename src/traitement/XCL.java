@@ -302,15 +302,14 @@ public class XCL extends Mamasita implements MotsCles {
         detailRow12.createCell(MotsCles.NUM_COL_NOM_DOS_1).setCellStyle(setCellStyle(wb, false, true, false, true));
         detailRow12.createCell(MotsCles.NUM_COL_NOM_DOS_2).setCellStyle(setCellStyle(wb, false, true, true, true));
         sheet.addMergedRegion(new CellRangeAddress(12, 12, MotsCles.NUM_COL_NOM_DOS_0, MotsCles.NUM_COL_NOM_DOS_2));
-        creerCell(detailRow12, wb, MotsCles.NUM_COL_NB_LI_0, false, "Nombre DTO.Ligne");
+        creerCell(detailRow12, wb, MotsCles.NUM_COL_NB_LI_0, false, "Nombre Ligne");
         detailRow12.createCell(MotsCles.NUM_COL_NB_LI_1).setCellStyle(setCellStyle(wb, false, true, true, true));
         sheet.addMergedRegion(new CellRangeAddress(12, 12, MotsCles.NUM_COL_NB_LI_0, MotsCles.NUM_COL_NB_LI_1));
-        creerCell(detailRow12, wb, MotsCles.NUM_COL_TRF_LI, true, "Tarif DTO.Ligne");
+        creerCell(detailRow12, wb, MotsCles.NUM_COL_TRF_LI, true, "Tarif Ligne");
         creerCell(detailRow12, wb, MotsCles.NUM_COL_THT, true, "Total HT");
 
         //remplissage
-        readXls(sheet1);
-        parseXls();
+        this.parseXls(readXls(sheet1));
 
         if (isNotEmpty(dataLigne)) {
             creerEnteteType(wb, sheet, "Lignes");

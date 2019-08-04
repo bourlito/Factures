@@ -45,8 +45,7 @@ public class PDF extends Mamasita implements MotsCles {
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        readXls(sheet);
-        parseXls();
+        this.parseXls(readXls(sheet));
         try {
             document.add(new Paragraph("\n\n"));
         } catch (DocumentException e) {
@@ -250,7 +249,7 @@ public class PDF extends Mamasita implements MotsCles {
         Paragraph paragraph;
         Font fontTitre = new Font(Font.HELVETICA, 10, Font.BOLD, new BaseColor(46, 110, 175));
 
-        String[] tableTitleList = {"Date Saisie", "Nom Dossier", "Nombre Lignes", "Tarif DTO.Ligne", "Total HT"};
+        String[] tableTitleList = {"Date Saisie", "Nom Dossier", "Nombre Lignes", "Tarif Ligne", "Total HT"};
         for (String title : tableTitleList) {
             cell = new PdfPCell();
             paragraph = new Paragraph(title, fontTitre);

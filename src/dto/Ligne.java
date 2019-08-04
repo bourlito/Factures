@@ -1,5 +1,8 @@
 package dto;
 
+/**
+ * objet ligne
+ */
 public class Ligne {
     private String date;
     private String entreprise;
