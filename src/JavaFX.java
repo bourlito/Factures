@@ -14,10 +14,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import traitement.Mamasita;
-import traitement.MotsCles;
-import traitement.PDF;
-import traitement.XCL;
+import traitement.*;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,11 +25,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class JavaFX extends Application implements MotsCles {
+public class JavaFX extends Application {
     private static final Calendar calendar = Calendar.getInstance();
-    private String ENTREE = null;
-    private String ENTADD = null;
-    private String RESULT = null;
 
     @Override
     public void start(Stage primaryStage) {
@@ -92,7 +86,7 @@ public class JavaFX extends Application implements MotsCles {
             File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
                 labelXlFileAffich.setText(file.getName());
-                ENTREE = file.getAbsolutePath();
+                Parametres.setDecompte(file.getAbsolutePath());
             }
         });
 
@@ -103,7 +97,7 @@ public class JavaFX extends Application implements MotsCles {
             File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
                 labelXlAddAffich.setText(file.getName());
-                ENTADD = file.getAbsolutePath();
+                Parametres.setAdresses(file.getAbsolutePath());
             }
         });
 
@@ -114,27 +108,27 @@ public class JavaFX extends Application implements MotsCles {
                     File selectedDirectory = directoryChooser.showDialog(stage);
                     if (selectedDirectory != null) {
                         labelFolderAffich.setText(selectedDirectory.getName());
-                        RESULT = selectedDirectory.getAbsolutePath();
+                        Parametres.setDestination(selectedDirectory.getAbsolutePath());
                     }
                 }
         );
 
         btnValider.setOnAction(event -> {
-            if (nFact.getText().equals("") || nFact.getText() == null || ENTREE == null || ENTADD == null || RESULT == null) {
+            if (nFact.getText().equals("") || nFact.getText() == null || Parametres.getDecompte() == null || Parametres.getAdresses() == null || Parametres.getDestination() == null) {
                 scenetitle.setText("Il faut remplir tous les champs !");
                 scenetitle.setStyle("-fx-fill: tomato");
                 return;
             }
 
-            List<Entreprise> entreprises = new Mamasita().getAdresseTarif(ENTADD);
+            List<Entreprise> entreprises = new Mamasita().getAdresseTarif(Parametres.getAdresses());
             Entreprise entreprise = null;
 
             FileInputStream fis = null;
             try {
-                fis = new FileInputStream(new File(ENTREE));
+                fis = new FileInputStream(new File(Parametres.getDecompte()));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-                new PDF().creerFichierErreur(e);
+                Mamasita.creerFichierErreur(e.getMessage());
             }
             HSSFWorkbook wb = null;
             try {
@@ -142,7 +136,7 @@ public class JavaFX extends Application implements MotsCles {
                 wb = new HSSFWorkbook(fis);
             } catch (IOException e) {
                 e.printStackTrace();
-                new PDF().creerFichierErreur(e);
+                Mamasita.creerFichierErreur(e.getMessage());
             }
             int a = 0;
             int nFacture = a + Integer.parseInt(nFact.getText());
@@ -159,13 +153,11 @@ public class JavaFX extends Application implements MotsCles {
                 }
 
                 if (!entOk) {
-                    new PDF().creerFichierErreur();
+                    Mamasita.creerFichierErreur("verifier le nom de la feuille");
                     return;
                 }
 
-                NumberFormat nbFactFormat = NumberFormat.getInstance(Locale.FRANCE);
-                nbFactFormat.setMinimumIntegerDigits(2);
-                String libelleFac = RESULT + "\\Facture CPE traitement " + entreprise.getNomEntreprise() + " " + nbFactFormat.format(calendar.get(Calendar.MONTH)) + (calendar.get(Calendar.YEAR) - 2000);
+                String libelleFac = Parametres.getDestination() + "\\Facture CPE traitement " + entreprise.getNomEntreprise() + " " + Date.getLibelle();
 
                 new XCL().creerXCL(wb.getSheetAt(a), libelleFac + ".xls", nFacture, entreprise);
                 new PDF().createPdf(wb.getSheetAt(a), libelleFac + ".pdf", nFacture, entreprise);
@@ -180,7 +172,7 @@ public class JavaFX extends Application implements MotsCles {
     }
 
     private void configureFileChooser(FileChooser fileChooser) {
-        File folder = new File(DOSSIER);
+        File folder = new File(MotsCles.DOSSIER);
         if (folder.isDirectory()) {
             fileChooser.setInitialDirectory(folder);
         }
@@ -191,7 +183,7 @@ public class JavaFX extends Application implements MotsCles {
     }
 
     private void configureFolderChooser(DirectoryChooser directoryChooser) {
-        File folder = new File(DOSSIER);
+        File folder = new File(MotsCles.DOSSIER);
         if (folder.isDirectory()) {
             directoryChooser.setInitialDirectory(folder);
         }

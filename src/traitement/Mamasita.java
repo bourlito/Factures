@@ -65,7 +65,8 @@ public class Mamasita {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    creerFichierErreur(e);
+                    creerFichierErreur(e.getMessage()+"\n"
+                            +sheet.getSheetName() +" "+ getColumnLetter(cell.getColumnIndex()) + (cell.getRowIndex() + 1));
                 }
             }
             data.add(dataLine);
@@ -367,7 +368,7 @@ public class Mamasita {
         try {
             fis = new FileInputStream(new File(entadd));
         } catch (FileNotFoundException e) {
-            creerFichierErreur(e);
+            creerFichierErreur(e.getMessage());
             e.printStackTrace();
         }
         HSSFWorkbook wb = null;
@@ -375,7 +376,7 @@ public class Mamasita {
             assert fis != null;
             wb = new HSSFWorkbook(fis);
         } catch (IOException e) {
-            creerFichierErreur(e);
+            creerFichierErreur(e.getMessage());
             e.printStackTrace();
         }
         assert wb != null;
@@ -420,57 +421,19 @@ public class Mamasita {
         return entreprises;
     }
 
-    public void creerFichierErreur(Exception e) {
-        FileWriter writer = null;
+    public static void creerFichierErreur(String erreur) {
         try {
-            writer = new FileWriter(MotsCles.DOSSIER + "\\erreur.txt");
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-        try {
-            assert writer != null;
-            writer.write(e.getMessage());
-            if (e.getCause() != null)
-                writer.write(e.getCause().toString());
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-        try {
+            FileWriter writer = new FileWriter(Parametres.getDestination() + "\\erreur" + ".txt");
+            writer.write(erreur);
             writer.close();
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-        BufferedWriter bw = new BufferedWriter(writer);
-        try {
-            bw.close();
-        } catch (IOException e1) {
-            e1.printStackTrace();
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 
-    public void creerFichierErreur() {
-        FileWriter writer = null;
-        try {
-            writer = new FileWriter(MotsCles.DOSSIER + "\\erreur.txt");
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-        try {
-            assert writer != null;
-            writer.write("verifier le nom de la feuille");
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-        try {
-            writer.close();
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-        BufferedWriter bw = new BufferedWriter(writer);
-        try {
-            bw.close();
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
+    private String getColumnLetter(int index){
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        return alphabet.substring(index, index + 1);
     }
 }

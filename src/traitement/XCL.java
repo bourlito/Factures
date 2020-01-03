@@ -7,7 +7,6 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.util.IOUtils;
-import traitement.Mamasita;
 
 import java.io.*;
 import java.text.NumberFormat;
@@ -16,7 +15,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class XCL extends Mamasita implements MotsCles {
+public class XCL extends Mamasita {
     private int totalLigne = 0;
     private double totalHT = 0;
 
@@ -27,7 +26,7 @@ public class XCL extends Mamasita implements MotsCles {
         try {
             out = new FileOutputStream(filename);
         } catch (FileNotFoundException e) {
-            creerFichierErreur(e);
+            creerFichierErreur(e.getMessage());
             e.printStackTrace();
         }
         try {
@@ -36,7 +35,7 @@ public class XCL extends Mamasita implements MotsCles {
                 out.close();
             wb.close();
         } catch (IOException e) {
-            creerFichierErreur(e);
+            creerFichierErreur(e.getMessage());
             e.printStackTrace();
         }
     }
@@ -194,7 +193,7 @@ public class XCL extends Mamasita implements MotsCles {
         cellDateValueStyle.setAlignment(HorizontalAlignment.RIGHT);
         cellDateValueStyle.setFont(setFont(wb, (short) 11, false, false));
         cellDateValue.setCellStyle(cellDateValueStyle);
-        cellDateValue.setCellValue(setDate().get(0));
+        cellDateValue.setCellValue(Date.getDate());
 
         Cell cellDate1 = headerRow4.createCell(6);
         cellDate1.setCellStyle(setCellStyle(wb, true, false, false, false));
@@ -214,7 +213,7 @@ public class XCL extends Mamasita implements MotsCles {
         cellReglementValueStyle.setAlignment(HorizontalAlignment.RIGHT);
         cellReglementValueStyle.setFont(setFont(wb, (short) 11, false, false));
         cellReglementValue.setCellStyle(cellReglementValueStyle);
-        cellReglementValue.setCellValue(setDate().get(1));
+        cellReglementValue.setCellValue(Date.getARegler());
 
         if (!first)
             sheet.createRow(sheet.getLastRowNum() + 1);
@@ -504,7 +503,7 @@ public class XCL extends Mamasita implements MotsCles {
         try {
             is = new FileInputStream(fileName);
         } catch (FileNotFoundException e) {
-            creerFichierErreur(e);
+            creerFichierErreur(e.getMessage());
             e.printStackTrace();
         }
         byte[] bytes = new byte[0];
@@ -512,14 +511,14 @@ public class XCL extends Mamasita implements MotsCles {
             assert is != null;
             bytes = IOUtils.toByteArray(is);
         } catch (IOException e) {
-            creerFichierErreur(e);
+            creerFichierErreur(e.getMessage());
             e.printStackTrace();
         }
         int pictureIdx = wb.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
         try {
             is.close();
         } catch (IOException e) {
-            creerFichierErreur(e);
+            creerFichierErreur(e.getMessage());
             e.printStackTrace();
         }
 
@@ -541,48 +540,6 @@ public class XCL extends Mamasita implements MotsCles {
 
         Picture picture = drawing.createPicture(anchor, pictureIdx);
         picture.resize(1.0, resize2);
-    }
-
-    private ArrayList<String> setDate() {
-        ArrayList<String> listDate = new ArrayList<>();
-
-        StringBuilder sb = new StringBuilder();
-        switch (Calendar.getInstance().get(Calendar.MONTH)) {
-            case 0:
-            case 1:
-            case 3:
-            case 5:
-            case 7:
-            case 8:
-            case 10:
-                sb.append("31/");
-                break;
-            case 2:
-                sb.append("28/");
-                break;
-            default:
-                sb.append("30/");
-                break;
-        }
-
-        if (Calendar.getInstance().get(Calendar.MONTH) == Calendar.JANUARY) {
-            sb.append("12/");
-            sb.append(Calendar.getInstance().get(Calendar.YEAR) - 1);
-        } else {
-            sb.append(Calendar.getInstance().get(Calendar.MONTH));
-            sb.append("/");
-            sb.append(Calendar.getInstance().get(Calendar.YEAR));
-        }
-        listDate.add(sb.toString());
-
-        sb = new StringBuilder();
-        sb.append("20/");
-        sb.append(Calendar.getInstance().get(Calendar.MONTH) + 1);
-        sb.append("/");
-        sb.append(Calendar.getInstance().get(Calendar.YEAR));
-        listDate.add(sb.toString());
-
-        return listDate;
     }
 
     private Font setFont(Workbook wb, Short size, Boolean bold, Boolean blue) {

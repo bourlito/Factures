@@ -6,13 +6,18 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc429986-ef2a-49d5-94b8-583f9354bd5a" name="Default" comment="nettoyage">
+    <list default="true" id="cc429986-ef2a-49d5-94b8-583f9354bd5a" name="Default" comment="restructuration">
+      <change afterPath="$PROJECT_DIR$/src/traitement/Date.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/traitement/Parametres.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Factures.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Factures.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/JavaFX.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Factures/JavaFX.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JavaFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaFX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mamasita.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/traitement/Mamasita.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MotsCles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/traitement/MotsCles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PDF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/traitement/PDF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XCL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/traitement/XCL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/javafx.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/javafx.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/traitement/Mamasita.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/traitement/Mamasita.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/traitement/MotsCles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/traitement/MotsCles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/traitement/PDF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/traitement/PDF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/traitement/XCL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/traitement/XCL.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,40 +36,6 @@
         <option value="Class" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>20</find>
-      <find>getad</find>
-      <find>read</find>
-      <find>pars</find>
-      <find>createp</find>
-      <find>readxls</find>
-      <find>cre</find>
-      <find>createpd</find>
-      <find>enta</find>
-      <find>cale</find>
-      <find>excep</find>
-      <find>img</find>
-      <find>calend</find>
-      <find>entadd</find>
-      <find>entree</find>
-      <find>system.</find>
-      <find>forma</find>
-      <find>nou</find>
-      <find>nvDos</find>
-      <find>tota</find>
-      <find>catch</find>
-      <find>CPE</find>
-      <find>17</find>
-      <find>16</find>
-      <find>ajo</find>
-      <find>formatDouble</find>
-      <find>formatTri</find>
-      <find>formatT</find>
-      <find>formatE</find>
-      <find>button</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -85,21 +56,35 @@
     <option name="jreName" value="#JAVA_INTERNAL" />
   </component>
   <component name="ProjectId" id="1OxyeTwIczZ1d5hZqFRmH5Y3ttZ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Renaming" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.stylelint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.stylelint" value="" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="traitement.Parametres" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="traitement" />
       <recent name="DTO" />
@@ -265,7 +250,12 @@
       <workItem from="1564761515818" duration="2455000" />
       <workItem from="1564771336263" duration="33000" />
       <workItem from="1564932130498" duration="706000" />
-      <workItem from="1564933646557" duration="1498000" />
+      <workItem from="1564933646557" duration="1557000" />
+      <workItem from="1564944409751" duration="3980000" />
+      <workItem from="1565709123043" duration="54000" />
+      <workItem from="1577638840631" duration="4722000" />
+      <workItem from="1577995719486" duration="236000" />
+      <workItem from="1578045066628" duration="2388000" />
     </task>
     <task id="LOCAL-00001" summary="nettoyage">
       <created>1564934711143</created>
@@ -274,7 +264,21 @@
       <option name="project" value="LOCAL" />
       <updated>1564934711143</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="restructuration">
+      <created>1564935204492</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1564935204492</updated>
+    </task>
+    <task id="LOCAL-00003" summary="documentation">
+      <created>1564948369324</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1564948369324</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -285,15 +289,22 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/Factures" />
+    </ignored-roots>
     <MESSAGE value="nettoyage" />
-    <option name="LAST_COMMIT_MESSAGE" value="nettoyage" />
+    <MESSAGE value="restructuration" />
+    <MESSAGE value="documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="documentation" />
   </component>
   <component name="masterDetails">
     <states>

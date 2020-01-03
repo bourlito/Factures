@@ -5,7 +5,6 @@ import dto.Ligne;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
-import traitement.Mamasita;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,7 +14,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class PDF extends Mamasita implements MotsCles {
+public class PDF extends Mamasita {
     private static final Calendar calendar = Calendar.getInstance();
 
     private double totalHT = 0;
@@ -71,7 +70,7 @@ public class PDF extends Mamasita implements MotsCles {
         try {
             table.setWidths(headerwidths);
         } catch (DocumentException e) {
-            creerFichierErreur(e);
+            creerFichierErreur(e.getMessage());
             e.printStackTrace();
         }
         PdfPCell cell = new PdfPCell();
@@ -119,13 +118,13 @@ public class PDF extends Mamasita implements MotsCles {
         try {
             document.add(new Paragraph("\n"));
         } catch (DocumentException e) {
-            creerFichierErreur(e);
+            creerFichierErreur(e.getMessage());
             e.printStackTrace();
         }
         try {
             document.add(table);
         } catch (DocumentException e) {
-            creerFichierErreur(e);
+            creerFichierErreur(e.getMessage());
             e.printStackTrace();
         }
         document.close();
@@ -142,7 +141,7 @@ public class PDF extends Mamasita implements MotsCles {
         try {
             table.setWidths(headerwidths);
         } catch (DocumentException e) {
-            creerFichierErreur(e);
+            creerFichierErreur(e.getMessage());
             e.printStackTrace();
         }
         table.setTableEvent(new BorderEvent());
@@ -234,14 +233,14 @@ public class PDF extends Mamasita implements MotsCles {
         try {
             table.setWidths(headerwidths);
         } catch (DocumentException e) {
-            creerFichierErreur(e);
+            creerFichierErreur(e.getMessage());
             e.printStackTrace();
         }
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
         try {
             PdfWriter.getInstance(document, new FileOutputStream(RESULT));
         } catch (DocumentException | FileNotFoundException e) {
-            creerFichierErreur(e);
+            creerFichierErreur(e.getMessage());
             e.printStackTrace();
         }
         document.open();
@@ -284,7 +283,7 @@ public class PDF extends Mamasita implements MotsCles {
         try {
             document.add(table);
         } catch (DocumentException e) {
-            creerFichierErreur(e);
+            creerFichierErreur(e.getMessage());
             e.printStackTrace();
         }
         document.close();
@@ -392,63 +391,8 @@ public class PDF extends Mamasita implements MotsCles {
             cell.setBorder(0);
             table.addCell(cell);
 
-            String date = "";
-            String dateReg = "";
-            Calendar calendar = Calendar.getInstance();
-
-            switch (calendar.get(Calendar.MONTH)) {
-                case 1:
-                    date = "31/01/" + calendar.get(Calendar.YEAR);
-                    dateReg = "20/02/" + calendar.get(Calendar.YEAR);
-                    break;
-                case 2:
-                    date = "28/02/" + calendar.get(Calendar.YEAR);
-                    dateReg = "20/03/" + calendar.get(Calendar.YEAR);
-                    break;
-                case 3:
-                    date = "31/03/" + calendar.get(Calendar.YEAR);
-                    dateReg = "20/04/" + calendar.get(Calendar.YEAR);
-                    break;
-                case 4:
-                    date = "30/04/" + calendar.get(Calendar.YEAR);
-                    dateReg = "20/05/" + calendar.get(Calendar.YEAR);
-                    break;
-                case 5:
-                    date = "31/05/" + calendar.get(Calendar.YEAR);
-                    dateReg = "20/06/" + calendar.get(Calendar.YEAR);
-                    break;
-                case 6:
-                    date = "30/06/" + calendar.get(Calendar.YEAR);
-                    dateReg = "20/07/" + calendar.get(Calendar.YEAR);
-                    break;
-                case 7:
-                    date = "31/07/" + calendar.get(Calendar.YEAR);
-                    dateReg = "20/08/" + calendar.get(Calendar.YEAR);
-                    break;
-                case 8:
-                    date = "31/08/" + calendar.get(Calendar.YEAR);
-                    dateReg = "20/09/" + calendar.get(Calendar.YEAR);
-                    break;
-                case 9:
-                    date = "30/09/" + calendar.get(Calendar.YEAR);
-                    dateReg = "20/10/" + calendar.get(Calendar.YEAR);
-                    break;
-                case 10:
-                    date = "31/10/" + calendar.get(Calendar.YEAR);
-                    dateReg = "20/11/" + calendar.get(Calendar.YEAR);
-                    break;
-                case 11:
-                    date = "30/11/" + calendar.get(Calendar.YEAR);
-                    dateReg = "20/12/" + calendar.get(Calendar.YEAR);
-                    break;
-                case 0:
-                    date = "31/12/" + calendar.get(Calendar.YEAR);
-                    dateReg = "20/01/" + calendar.get(Calendar.YEAR) + 1;
-                    break;
-            }
-
             cell = new PdfPCell();
-            paragraph = new Paragraph("Date : " + date + "\nA régler avant le : " + dateReg, new Font(Font.HELVETICA, 10));
+            paragraph = new Paragraph("Date : " + Date.getDate() + "\nA régler avant le : " + Date.getARegler(), new Font(Font.HELVETICA, 10));
             paragraph.setAlignment(Element.ALIGN_RIGHT);
             cell.addElement(paragraph);
             cell.setBorderColor(baseColor);
