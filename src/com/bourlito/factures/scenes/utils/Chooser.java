@@ -2,7 +2,7 @@ package com.bourlito.factures.scenes.utils;
 
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import com.bourlito.factures.traitement.MotsCles;
+import com.bourlito.factures.MotsCles;
 
 import java.io.File;
 

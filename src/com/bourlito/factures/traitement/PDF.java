@@ -1,5 +1,6 @@
 package com.bourlito.factures.traitement;
 
+import com.bourlito.factures.MotsCles;
 import com.bourlito.factures.dto.Entreprise;
 import com.bourlito.factures.dto.Ligne;
 import com.itextpdf.text.*;

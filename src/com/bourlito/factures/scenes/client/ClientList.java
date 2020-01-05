@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import com.bourlito.factures.service.SClient;
 
 public class ClientList implements IView {
-    // TODO: export db client
 
     private Stage stage;
     private SClient sClient = SClient.getInstance();

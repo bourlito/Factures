@@ -18,7 +18,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="com.googlecode.json-simple:json-simple:1.1.1" level="project" />
-    <orderEntry type="library" name="org.apache.poi:poi:4.1.0" level="project" />
+    <orderEntry type="library" name="org.apache.poi:poi:4.1.1" level="project" />
     <orderEntry type="library" name="commons-codec:commons-codec:1.14" level="project" />
     <orderEntry type="library" name="com.itextpdf:itextpdf:5.5.13.1" level="project" />
   </component>

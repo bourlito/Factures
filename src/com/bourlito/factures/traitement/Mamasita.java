@@ -1,5 +1,6 @@
 package com.bourlito.factures.traitement;
 
+import com.bourlito.factures.MotsCles;
 import com.bourlito.factures.dto.Entreprise;
 import com.bourlito.factures.dto.Ligne;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -360,7 +361,7 @@ public class Mamasita {
                 continue;
             List<String> dataset = new ArrayList<>();
             for (Cell cell : row) {
-                switch (cell.getCellTypeEnum()) {
+                switch (cell.getCellType()) {
                     case NUMERIC:
                         dataset.add(String.valueOf(cell.getNumericCellValue()));
                         break;
