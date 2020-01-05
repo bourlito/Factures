@@ -1,10 +1,10 @@
 package com.bourlito.factures.scenes;
 
-import com.bourlito.factures.JavaFX;
 import com.bourlito.factures.dto.Entreprise;
+import com.bourlito.factures.scenes.client.ClientList;
+import com.bourlito.factures.scenes.utils.CScene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
@@ -36,16 +36,14 @@ public class Main implements IView{
     }
 
     @Override
-    public Scene getScene() {
+    public CScene getScene() {
 
         BorderPane root = new BorderPane();
         root.setPadding(new Insets(10));
 
         Button btnClients = new Button("Clients");
         btnClients.setOnAction(event -> {
-            Scene scene = new ClientList(stage).getScene();
-            scene.getStylesheets().add(JavaFX.STYLE);
-            stage.setScene(scene);
+            stage.setScene(new ClientList(stage).getScene());
         });
 
         ButtonBar bbar = new ButtonBar();
@@ -138,7 +136,7 @@ public class Main implements IView{
 
         root.setCenter(grid);
 
-        return new Scene(root, 800, 500);
+        return new CScene(root);
     }
 
     private static void valider(TextField nFact, Stage stage){

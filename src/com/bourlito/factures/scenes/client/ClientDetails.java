@@ -1,12 +1,14 @@
-package com.bourlito.factures.scenes;
+package com.bourlito.factures.scenes.client;
 
-import com.bourlito.factures.JavaFX;
 import com.bourlito.factures.Keys;
 import com.bourlito.factures.dto.Client;
+import com.bourlito.factures.scenes.IView;
+import com.bourlito.factures.scenes.tarifs.TarifsList;
+import com.bourlito.factures.scenes.tranches.TranchesList;
+import com.bourlito.factures.scenes.utils.CScene;
 import com.bourlito.factures.service.SClient;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -31,7 +33,7 @@ public class ClientDetails implements IView {
     }
 
     @Override
-    public Scene getScene() {
+    public CScene getScene() {
 
         BorderPane root = new BorderPane();
         root.setPadding(new Insets(10));
@@ -41,16 +43,12 @@ public class ClientDetails implements IView {
         btnSupprimer.setOnAction(event -> {
             SClient.getInstance().deleteClient(client);
 
-            Scene scene = new ClientList(stage).getScene();
-            scene.getStylesheets().add(JavaFX.STYLE);
-            stage.setScene(scene);
+            stage.setScene(new ClientList(stage).getScene());
         });
 
         Button btnAnnuler = new Button("Annuler");
         btnAnnuler.setOnAction(event -> {
-            Scene scene = new ClientList(stage).getScene();
-            scene.getStylesheets().add(JavaFX.STYLE);
-            stage.setScene(scene);
+            stage.setScene(new ClientList(stage).getScene());
         });
 
         Button btnValider = new Button("Valider");
@@ -60,9 +58,7 @@ public class ClientDetails implements IView {
                 SClient.getInstance().deleteClient(client);
             SClient.getInstance().addClient(newClient());
 
-            Scene scene = new ClientList(stage).getScene();
-            scene.getStylesheets().add(JavaFX.STYLE);
-            stage.setScene(scene);
+            stage.setScene(new ClientList(stage).getScene());
         });
 
         ButtonBar bbar = new ButtonBar();
@@ -113,17 +109,31 @@ public class ClientDetails implements IView {
         tVille.setText(client != null ? client.getVille() : "");
         grid.add(tVille, 1, 4);
 
-        Button btnTranches = new Button("Tranches");
-        btnTranches.setMinWidth(200);
-        grid.add(btnTranches, 0, 5);
+        Label lTranches = new Label(Keys.TRANCHES);
+        grid.add(lTranches, 0, 5);
 
-        Button btnTarifs = new Button("Tarifs");
-        btnTarifs.setMinWidth(200);
-        grid.add(btnTarifs, 1, 5);
+        int nbTranches = client != null ? client.getTranches().size() : 0;
+        Button btnTranches = new Button(String.valueOf(nbTranches));
+        btnTranches.setMaxWidth(200);
+        btnTranches.setOnAction(event -> {
+            stage.setScene(new TranchesList(stage, client).getScene());
+        });
+        grid.add(btnTranches, 1, 5);
+
+        Label lTarifs = new Label(Keys.TARIFS);
+        grid.add(lTarifs, 0, 6);
+
+        int nbTarifs = client != null ? client.getTarifs().size() : 0;
+        Button btnTarifs = new Button(String.valueOf(nbTarifs));
+        btnTarifs.setMaxWidth(200);
+        btnTarifs.setOnAction(event -> {
+            stage.setScene(new TarifsList(stage, client).getScene());
+        });
+        grid.add(btnTarifs, 1, 6);
 
         root.setCenter(grid);
 
-        return new Scene(root, 800, 500);
+        return new CScene(root);
     }
 
     @NotNull
@@ -135,6 +145,6 @@ public class ClientDetails implements IView {
         String cp = tCp.getText();
         String ville = tVille.getText();
 
-        return new Client(alias, nom, adresse, cp, ville, "", new ArrayList<>(), new ArrayList<>());
+        return new Client(alias, nom, adresse, cp, ville, client.getLibelleTranches(), client.getTranches(), client.getTarifs());
     }
 }

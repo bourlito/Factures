@@ -9,6 +9,7 @@ public interface Keys {
     String LIBELLE_TRANCHE = "libelle_tranche";
     String MIN = "min";
     String PRIX = "prix";
+    String COLONNE = "colonne";
     String TRANCHES = "tranches";
     String TARIFS = "tarifs";
 }

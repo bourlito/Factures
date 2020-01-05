@@ -1,7 +1,7 @@
 package com.bourlito.factures.scenes;
 
-import javafx.scene.Scene;
+import com.bourlito.factures.scenes.utils.CScene;
 
 public interface IView {
-    Scene getScene();
+    CScene getScene();
 }

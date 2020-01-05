@@ -5,6 +5,9 @@ public class Tranche {
     private int min;
     private double prix;
 
+    public Tranche() {
+    }
+
     public Tranche(int min, double prix) {
         this.min = min;
         this.prix = prix;

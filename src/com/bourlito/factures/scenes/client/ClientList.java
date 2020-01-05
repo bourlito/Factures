@@ -1,20 +1,15 @@
-package com.bourlito.factures.scenes;
+package com.bourlito.factures.scenes.client;
 
-import com.bourlito.factures.JavaFX;
 import com.bourlito.factures.dto.Client;
-import com.bourlito.factures.dto.Tarif;
-import com.bourlito.factures.dto.Tranche;
+import com.bourlito.factures.scenes.IView;
+import com.bourlito.factures.scenes.Main;
+import com.bourlito.factures.scenes.utils.CScene;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import com.bourlito.factures.service.SClient;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ClientList implements IView {
 
@@ -26,23 +21,19 @@ public class ClientList implements IView {
     }
 
     @Override
-    public Scene getScene() {
+    public CScene getScene() {
 
         BorderPane root = new BorderPane();
         root.setPadding(new Insets(10));
 
         Button btnRetour = new Button("Retour");
         btnRetour.setOnAction(event -> {
-            Scene scene = new Main(stage).getScene();
-            scene.getStylesheets().add(JavaFX.STYLE);
-            stage.setScene(scene);
+            stage.setScene(new Main(stage).getScene());
         });
 
         Button btnNew = new Button("Nouveau");
         btnNew.setOnAction(e -> {
-            Scene scene = new ClientDetails(stage).getScene();
-            scene.getStylesheets().add(JavaFX.STYLE);
-            stage.setScene(scene);
+            stage.setScene(new ClientDetails(stage).getScene());
         });
 
         ButtonBar bbar = new ButtonBar();
@@ -59,15 +50,13 @@ public class ClientList implements IView {
         for (Client client: sClient.getClients()) {
             Button title = new Button(client.getAlias());
             title.setOnAction(event -> {
-                Scene scene = new ClientDetails(stage, client).getScene();
-                scene.getStylesheets().add(JavaFX.STYLE);
-                stage.setScene(scene);
+                stage.setScene(new ClientDetails(stage, client).getScene());
             });
             pane.getChildren().addAll(title);
         }
 
         root.setCenter(pane);
 
-        return new Scene(root, 800, 500);
+        return new CScene(root);
     }
 }

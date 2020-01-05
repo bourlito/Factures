@@ -77,10 +77,11 @@ public class SClient {
             for (Object o2: jTarifs){
                 JSONObject jTranche = (JSONObject) o2;
 
+                String tColonne = (String) jTranche.get(Keys.COLONNE);
                 String tNom = (String) jTranche.get(Keys.NOM);
                 double tPrix = (double) jTranche.get(Keys.PRIX);
 
-                Tarif tarif = new Tarif(tNom, tPrix);
+                Tarif tarif = new Tarif(tColonne, tNom, tPrix);
                 tarifs.add(tarif);
             }
 

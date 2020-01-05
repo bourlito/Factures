@@ -51,6 +51,7 @@ public class Client implements Comparable<Client>{
         JSONArray jTarifs = new JSONArray();
         for (Tarif entry: tarifs){
             JSONObject tarif = new JSONObject();
+            tarif.put(Keys.COLONNE, entry.getColonne());
             tarif.put(Keys.NOM, entry.getNom());
             tarif.put(Keys.PRIX, entry.getPrix());
 
@@ -91,5 +92,37 @@ public class Client implements Comparable<Client>{
 
     public List<Tarif> getTarifs() {
         return tarifs;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public void setCp(String cp) {
+        this.cp = cp;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    public void setLibelleTranches(String libelleTranches) {
+        this.libelleTranches = libelleTranches;
+    }
+
+    public void setTranches(List<Tranche> tranches) {
+        this.tranches = tranches;
+    }
+
+    public void setTarifs(List<Tarif> tarifs) {
+        this.tarifs = tarifs;
     }
 }

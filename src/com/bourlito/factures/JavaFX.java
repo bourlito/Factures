@@ -1,7 +1,6 @@
 package com.bourlito.factures;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import com.bourlito.factures.scenes.Main;
 
@@ -11,13 +10,8 @@ public class JavaFX extends Application {
 
     @Override
     public void start(Stage stage) {
-
-        Scene scene = new Main(stage).getScene();
-        scene.getStylesheets().add(JavaFX.STYLE);
-        stage.setScene(scene);
-
         stage.setTitle("Factures");
-        stage.setScene(scene);
+        stage.setScene(new Main(stage).getScene());
         stage.show();
     }
 }
