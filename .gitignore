@@ -1,0 +1,5 @@
+#IntelliJ
+out/
+
+#Environnement
+.idea/workspace.xml
