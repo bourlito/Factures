@@ -1,6 +1,8 @@
 package com.bourlito.factures.dto;
 
-public class Tarif {
+import org.jetbrains.annotations.NotNull;
+
+public class Tarif implements Comparable<Tarif>{
 
     private String colonne;
     private String nom;
@@ -13,6 +15,11 @@ public class Tarif {
         this.colonne = colonne;
         this.nom = nom;
         this.prix = prix;
+    }
+
+    @Override
+    public int compareTo(@NotNull Tarif tarif) {
+        return this.getColonne().compareTo(tarif.getColonne());
     }
 
     public String getColonne() {
