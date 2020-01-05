@@ -29,6 +29,9 @@ import java.util.List;
 
 public class Main implements IView{
 
+    // TODO: retirer fichier adresse et decompte du main
+    // TODO: modifier adresse en utilisant db client
+
     private Stage stage;
 
     public Main(Stage stage) {

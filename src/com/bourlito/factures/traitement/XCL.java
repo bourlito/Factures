@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class XCL extends Mamasita {
+
+    // TODO: ajouter images xcl
+
     private int totalLigne = 0;
     private double totalHT = 0;
 

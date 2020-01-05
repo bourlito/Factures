@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import com.bourlito.factures.service.SClient;
 
 public class ClientList implements IView {
+    // TODO: export db client
 
     private Stage stage;
     private SClient sClient = SClient.getInstance();
@@ -36,9 +37,14 @@ public class ClientList implements IView {
             stage.setScene(new ClientDetails(stage).getScene());
         });
 
+        Button btnExport = new Button("Exporter");
+        btnExport.setOnAction(event -> {
+            sClient.exportDB();
+        });
+
         ButtonBar bbar = new ButtonBar();
         bbar.setPadding(new Insets(10, 0, 0, 10));
-        bbar.getButtons().addAll(btnRetour, btnNew);
+        bbar.getButtons().addAll(btnRetour, btnNew, btnExport);
         root.setBottom(bbar);
 
         // clients

@@ -45,6 +45,10 @@ public class SClient {
         this.writeDB();
     }
 
+    public void exportDB(){
+        db.export(this.insert());
+    }
+
     private void initClients(){
         JSONArray jClients = db.read();
 
@@ -91,10 +95,14 @@ public class SClient {
     }
 
     private void writeDB(){
+        db.write(this.insert());
+    }
+
+    private JSONArray insert(){
         JSONArray array = new JSONArray();
         for (Client client: clients)
             array.add(client.toJsonObject());
 
-        db.write(array);
+        return array;
     }
 }
