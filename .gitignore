@@ -1,5 +1,5 @@
 #IntelliJ
-out/
+out/*
 
 #Environnement
-.idea/
+.idea/*
