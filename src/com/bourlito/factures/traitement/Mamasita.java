@@ -1,5 +1,6 @@
 package com.bourlito.factures.traitement;
 
+import com.bourlito.factures.Erreur;
 import com.bourlito.factures.MotsCles;
 import com.bourlito.factures.dto.Entreprise;
 import com.bourlito.factures.dto.Ligne;
@@ -7,6 +8,8 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -14,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Mamasita {
+public abstract class Mamasita {
     final List<List<String>> dataLigne = new ArrayList<>();
     final List<List<String>> dataIB = new ArrayList<>();
     final List<List<String>> data471 = new ArrayList<>();
@@ -29,54 +32,88 @@ public class Mamasita {
     final List<List<String>> dataND = new ArrayList<>();
     final List<List<String>> dataAF = new ArrayList<>();
 
-    private final List<List<String>> address = new ArrayList<>();
+    private static final List<List<String>> address = new ArrayList<>();
 
-    /**
-     * methode de lecture d'un fichier excel
-     * @param sheet page correspondant aux données d'une entreprise
-     * @return les donnees dans une liste de listes
-     */
-    List<List<String>> readXls(HSSFSheet sheet) {
-        //remise a zero de la liste data
-        List<List<String>> data = new ArrayList<>();
+    Workbook wb;
+    HSSFSheet sheet;
+    String filename;
+    int nFacture;
+    Entreprise entreprise;
 
+    public Mamasita(HSSFSheet sheet, String filename, int nFacture, Entreprise entreprise) {
+        this.sheet = sheet;
+        this.filename = filename;
+        this.nFacture = nFacture;
+        this.entreprise = entreprise;
+        this.wb = new HSSFWorkbook();
+    }
+
+    @NotNull
+    public static List<Entreprise> getAdresseTarif(String entadd) {
+        List<Entreprise> entreprises;
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(new File(entadd));
+        } catch (FileNotFoundException e) {
+            Erreur.creerFichierErreur(e.getMessage());
+            e.printStackTrace();
+        }
+        HSSFWorkbook wb = null;
+        try {
+            assert fis != null;
+            wb = new HSSFWorkbook(fis);
+        } catch (IOException e) {
+            Erreur.creerFichierErreur(e.getMessage());
+            e.printStackTrace();
+        }
+        assert wb != null;
+        HSSFSheet sheet = wb.getSheetAt(0);
         for (Row row : sheet) {
-            //saut de la premiere ligne
             if (row.getRowNum() == 0)
                 continue;
-            List<String> dataLine = new ArrayList<>();
+            List<String> dataset = new ArrayList<>();
             for (Cell cell : row) {
-                try {
-                    switch (cell.getColumnIndex()) {
-                        //recuperation de la date
-                        case 0:
-                            dataLine.add(new SimpleDateFormat("dd/MM/yyyy").format(cell.getDateCellValue()));
-                            break;
-                        //recuperation des donnees textes
-                        case 1:
-                            dataLine.add(cell.getStringCellValue());
-                            break;
-                        //recuparation des donnees numeriques
-                        default:
-                            dataLine.add(String.valueOf(cell.getNumericCellValue()));
-                            break;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    creerFichierErreur(e.getMessage()+"\n"
-                            +sheet.getSheetName() +" "+ getColumnLetter(cell.getColumnIndex()) + (cell.getRowIndex() + 1));
+                switch (cell.getCellType()) {
+                    case NUMERIC:
+                        dataset.add(String.valueOf(cell.getNumericCellValue()));
+                        break;
+                    case STRING:
+                        dataset.add(String.valueOf(cell.getStringCellValue()));
+                        break;
                 }
             }
-            data.add(dataLine);
+            address.add(dataset);
         }
-        return data;
+
+        entreprises = new ArrayList<>();
+        List<Double> tarifs;
+        Entreprise entreprise;
+
+        for (List<String> list : address) {
+            int i = address.indexOf(list);
+            tarifs = new ArrayList<>();
+            for (int j = 5; j < address.get(i).size(); j++) {
+                tarifs.add(Double.parseDouble(address.get(i).get(j)));
+            }
+            entreprise = new Entreprise();
+            entreprise.setAlias(address.get(i).get(0));
+            entreprise.setNomEntreprise(address.get(i).get(1));
+            entreprise.setAdresse(address.get(i).get(2));
+            entreprise.setCp(address.get(i).get(3));
+            entreprise.setVille(address.get(i).get(4));
+            entreprise.setTarifs(tarifs);
+            entreprises.add(entreprise);
+        }
+
+        return entreprises;
     }
 
     /**
      * methode de parsing de la liste data
-     * @param data liste de listes des donnees
      */
-    void parseXls(List<List<String>> data) {
+    void parseXls() {
+        List<List<String>> data = this.readXls();
+
         for (List<String> aData : data) {
             //initialisation des listes de donnees
             List<String> dataLineLigne = new ArrayList<>();
@@ -158,25 +195,12 @@ public class Mamasita {
     }
 
     /**
-     * methode de remplissage des listes de donnees
-     * @param aData liste initiale
-     * @param data liste triee
-     * @param colonne numero de colonne de la liste triee
-     */
-    private void remplirData(List<String> aData, List<String> data, int colonne) {
-        data.add(aData.get(0));
-        data.add(aData.get(1));
-        data.add(aData.get(colonne));
-    }
-
-    /**
      * methode de creation des lignes
      * @param data liste de listes d'entree
      * @param tarif correspondant a la donnee
-     * @param entreprise traitee
      * @return une liste de ligne
      */
-    List<Ligne> createLigne(List<List<String>> data, Integer tarif, Entreprise entreprise) {
+    List<Ligne> createLigne(List<List<String>> data, Integer tarif) {
         Ligne ligne;
         List<Ligne> lignes = new ArrayList<>();
 
@@ -212,7 +236,7 @@ public class Mamasita {
     }
 
     List<Ligne> parseLignes(Entreprise entreprise) {
-        List<Ligne> lignes = createLigne(dataLigne, 0, entreprise);
+        List<Ligne> lignes = createLigne(dataLigne, 0);
         int i = 0;
         int lastnbligne1 = 0, lastnbligne2 = 0, lastnbligne3 = 0, lastnbligne4 = 0, lastnbligne5 = 0;
         int lastpos1 = 0, lastpos2 = 0, lastpos3 = 0, lastpos4 = 0, lastpos5 = 0;
@@ -326,7 +350,7 @@ public class Mamasita {
         return lignes;
     }
 
-    Boolean isNotEmpty(List<List<String>> data) {
+    Boolean isNotEmpty(@NotNull List<List<String>> data) {
         for (List<String> aData : data) {
             for (String field : aData) {
                 if (field != null) {
@@ -337,76 +361,59 @@ public class Mamasita {
         return false;
     }
 
-    public List<Entreprise> getAdresseTarif(String entadd) {
-        List<Entreprise> entreprises;
-        FileInputStream fis = null;
-        try {
-            fis = new FileInputStream(new File(entadd));
-        } catch (FileNotFoundException e) {
-            creerFichierErreur(e.getMessage());
-            e.printStackTrace();
-        }
-        HSSFWorkbook wb = null;
-        try {
-            assert fis != null;
-            wb = new HSSFWorkbook(fis);
-        } catch (IOException e) {
-            creerFichierErreur(e.getMessage());
-            e.printStackTrace();
-        }
-        assert wb != null;
-        HSSFSheet sheet = wb.getSheetAt(0);
+    /**
+     * methode de lecture d'un fichier excel
+     * @return les donnees dans une liste de listes
+     */
+    private List<List<String>> readXls() {
+        //remise a zero de la liste data
+        List<List<String>> data = new ArrayList<>();
+
         for (Row row : sheet) {
+            //saut de la premiere ligne
             if (row.getRowNum() == 0)
                 continue;
-            List<String> dataset = new ArrayList<>();
+            List<String> dataLine = new ArrayList<>();
             for (Cell cell : row) {
-                switch (cell.getCellType()) {
-                    case NUMERIC:
-                        dataset.add(String.valueOf(cell.getNumericCellValue()));
-                        break;
-                    case STRING:
-                        dataset.add(String.valueOf(cell.getStringCellValue()));
-                        break;
+                try {
+                    switch (cell.getColumnIndex()) {
+                        //recuperation de la date
+                        case 0:
+                            dataLine.add(new SimpleDateFormat("dd/MM/yyyy").format(cell.getDateCellValue()));
+                            break;
+                        //recuperation des donnees textes
+                        case 1:
+                            dataLine.add(cell.getStringCellValue());
+                            break;
+                        //recuparation des donnees numeriques
+                        default:
+                            dataLine.add(String.valueOf(cell.getNumericCellValue()));
+                            break;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Erreur.creerFichierErreur(e.getMessage()+"\n"
+                            +sheet.getSheetName() +" "+ getColumnLetter(cell.getColumnIndex()) + (cell.getRowIndex() + 1));
                 }
             }
-            address.add(dataset);
+            data.add(dataLine);
         }
-
-        entreprises = new ArrayList<>();
-        List<Double> tarifs;
-        Entreprise entreprise;
-
-        for (List<String> list : address) {
-            int i = address.indexOf(list);
-            tarifs = new ArrayList<>();
-            for (int j = 5; j < address.get(i).size(); j++) {
-                tarifs.add(Double.parseDouble(address.get(i).get(j)));
-            }
-            entreprise = new Entreprise();
-            entreprise.setAlias(address.get(i).get(0));
-            entreprise.setNomEntreprise(address.get(i).get(1));
-            entreprise.setAdresse(address.get(i).get(2));
-            entreprise.setCp(address.get(i).get(3));
-            entreprise.setVille(address.get(i).get(4));
-            entreprise.setTarifs(tarifs);
-            entreprises.add(entreprise);
-        }
-
-        return entreprises;
+        return data;
     }
 
-    public static void creerFichierErreur(String erreur) {
-        try {
-            FileWriter writer = new FileWriter(MotsCles.DOSSIER + "erreur" + ".txt");
-            writer.write(erreur);
-            writer.close();
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+    /**
+     * methode de remplissage des listes de donnees
+     * @param aData liste initiale
+     * @param data liste triee
+     * @param colonne numero de colonne de la liste triee
+     */
+    private void remplirData(@NotNull List<String> aData, @NotNull List<String> data, int colonne) {
+        data.add(aData.get(0));
+        data.add(aData.get(1));
+        data.add(aData.get(colonne));
     }
 
+    @NotNull
     private String getColumnLetter(int index){
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         return alphabet.substring(index, index + 1);
