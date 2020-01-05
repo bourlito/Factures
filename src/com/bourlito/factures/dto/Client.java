@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Client implements Comparable<Client>{
@@ -87,10 +88,12 @@ public class Client implements Comparable<Client>{
     }
 
     public List<Tranche> getTranches() {
+        Collections.sort(tranches);
         return tranches;
     }
 
     public List<Tarif> getTarifs() {
+        Collections.sort(tarifs);
         return tarifs;
     }
 
