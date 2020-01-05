@@ -10,4 +10,9 @@ public class CScene extends Scene {
         super(root, 800, 500);
         this.getStylesheets().add(JavaFX.STYLE);
     }
+
+    public CScene(Parent root, double width, double height) {
+        super(root, width, height);
+        this.getStylesheets().add(JavaFX.STYLE);
+    }
 }

@@ -1,12 +1,15 @@
 package com.bourlito.factures.scenes.client;
 
+import com.bourlito.factures.MotsCles;
 import com.bourlito.factures.dto.Client;
 import com.bourlito.factures.scenes.IView;
 import com.bourlito.factures.scenes.Main;
 import com.bourlito.factures.scenes.utils.CScene;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import com.bourlito.factures.service.SClient;
@@ -39,6 +42,8 @@ public class ClientList implements IView {
         Button btnExport = new Button("Exporter");
         btnExport.setOnAction(event -> {
             sClient.exportDB();
+
+            exportWindow().show();
         });
 
         ButtonBar bbar = new ButtonBar();
@@ -63,5 +68,21 @@ public class ClientList implements IView {
         root.setCenter(pane);
 
         return new CScene(root);
+    }
+
+    private Stage exportWindow(){
+        Label label = new Label("Base de données exportée ("+ MotsCles.DOSSIER +"clients.json)");
+
+        BorderPane pane = new BorderPane();
+        pane.setCenter(label);
+
+        Scene secondScene = new CScene(pane, stage.getWidth(), stage.getHeight()/3);
+
+        // New window (Stage)
+        Stage newWindow = new Stage();
+        newWindow.setTitle("Export");
+        newWindow.setScene(secondScene);
+
+        return newWindow;
     }
 }
