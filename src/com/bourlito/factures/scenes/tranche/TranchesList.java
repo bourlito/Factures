@@ -1,11 +1,10 @@
-package com.bourlito.factures.scenes.tranches;
+package com.bourlito.factures.scenes.tranche;
 
 import com.bourlito.factures.Keys;
 import com.bourlito.factures.dto.Client;
 import com.bourlito.factures.dto.Tranche;
 import com.bourlito.factures.scenes.IView;
 import com.bourlito.factures.scenes.client.ClientDetails;
-import com.bourlito.factures.scenes.tarifs.TarifsDetails;
 import com.bourlito.factures.scenes.utils.CScene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -35,6 +34,9 @@ public class TranchesList implements IView {
 
         Button btnRetour = new Button("Retour");
         btnRetour.setOnAction(event -> {
+            String libelleTranches = tLibelle.getText();
+            client.setLibelleTranches(libelleTranches);
+
             stage.setScene(new ClientDetails(stage, client).getScene());
         });
 
@@ -43,18 +45,9 @@ public class TranchesList implements IView {
             stage.setScene(new TranchesDetails(stage, client).getScene());
         });
 
-        Button btnValider = new Button("Valider");
-        btnValider.setId("btnValider");
-        btnValider.setOnAction(e -> {
-            String libelleTranches = tLibelle.getText();
-            client.setLibelleTranches(libelleTranches);
-
-            stage.setScene(new ClientDetails(stage, client).getScene());
-        });
-
         ButtonBar bbar = new ButtonBar();
         bbar.setPadding(new Insets(10, 0, 0, 10));
-        bbar.getButtons().addAll(btnRetour, btnNew, btnValider);
+        bbar.getButtons().addAll(btnRetour, btnNew);
         root.setBottom(bbar);
 
         HBox hBox = new HBox();

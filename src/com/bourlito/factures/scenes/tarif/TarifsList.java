@@ -1,4 +1,4 @@
-package com.bourlito.factures.scenes.tarifs;
+package com.bourlito.factures.scenes.tarif;
 
 import com.bourlito.factures.dto.Client;
 import com.bourlito.factures.dto.Tarif;
@@ -8,7 +8,6 @@ import com.bourlito.factures.scenes.utils.CScene;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;

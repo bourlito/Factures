@@ -1,4 +1,4 @@
-package com.bourlito.factures.scenes.tranches;
+package com.bourlito.factures.scenes.tranche;
 
 import com.bourlito.factures.Keys;
 import com.bourlito.factures.dto.Client;
@@ -16,9 +16,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class TranchesDetails implements IView {
-
-    // TODO: revoir btnAnnuler pour Tranches et Tarifs
-    // TODO: ajouter btnSupprimer pour Tranches et Tarifs
 
     private Stage stage;
     private Client client;
@@ -43,6 +40,14 @@ public class TranchesDetails implements IView {
         BorderPane root = new BorderPane();
         root.setPadding(new Insets(10));
 
+        Button btnSupprimer = new Button("Supprimer");
+        btnSupprimer.setId("btnSupprimer");
+        btnSupprimer.setOnAction(event -> {
+            client.getTranches().remove(tranche);
+
+            stage.setScene(new TranchesList(stage, client).getScene());
+        });
+
         Button btnAnnuler = new Button("Annuler");
         btnAnnuler.setOnAction(event -> {
             stage.setScene(new TranchesList(stage, client).getScene());
@@ -66,7 +71,9 @@ public class TranchesDetails implements IView {
 
         ButtonBar bbar = new ButtonBar();
         bbar.setPadding(new Insets(10, 0, 0, 10));
-        bbar.getButtons().addAll(btnAnnuler, btnValider);
+        if (tranche != null)
+            bbar.getButtons().addAll(btnSupprimer, btnAnnuler, btnValider);
+        else bbar.getButtons().addAll(btnAnnuler, btnValider);
         root.setBottom(bbar);
 
         GridPane grid = new GridPane();

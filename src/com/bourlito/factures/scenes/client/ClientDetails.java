@@ -3,8 +3,8 @@ package com.bourlito.factures.scenes.client;
 import com.bourlito.factures.Keys;
 import com.bourlito.factures.dto.Client;
 import com.bourlito.factures.scenes.IView;
-import com.bourlito.factures.scenes.tarifs.TarifsList;
-import com.bourlito.factures.scenes.tranches.TranchesList;
+import com.bourlito.factures.scenes.tarif.TarifsList;
+import com.bourlito.factures.scenes.tranche.TranchesList;
 import com.bourlito.factures.scenes.utils.CScene;
 import com.bourlito.factures.service.SClient;
 import javafx.geometry.Insets;
@@ -14,8 +14,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
 
 public class ClientDetails implements IView {
 

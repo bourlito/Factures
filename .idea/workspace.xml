@@ -7,34 +7,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc429986-ef2a-49d5-94b8-583f9354bd5a" name="Default" comment="restructuration">
-      <change afterPath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/tarifs/TarifsDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/tarifs/TarifsList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/tranches/TranchesDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/tranches/TranchesList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/utils/CScene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/JavaFX.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/JavaFX.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/Keys.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/Keys.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/db/clients.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/db/clients.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/dto/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/dto/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/dto/Tarif.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/dto/Tarif.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/dto/Tranche.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/dto/Tranche.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/scenes/ClientDetails.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/scenes/ClientList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/scenes/IView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/scenes/IView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/scenes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/scenes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/service/SClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/service/SClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bourlito/factures/JavaFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/JavaFX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bourlito/factures/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/Keys.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bourlito/factures/db/clients.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/db/clients.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bourlito/factures/dto/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/dto/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bourlito/factures/dto/Tarif.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/dto/Tarif.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bourlito/factures/dto/Tranche.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/dto/Tranche.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/ClientDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/client/ClientDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/ClientList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/client/ClientList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/IView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/IView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bourlito/factures/service/SClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/service/SClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/scenes/client/ClientDetails.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/scenes/client/ClientDetails.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/scenes/tarifs/TarifsDetails.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/scenes/tarifs/TarifsList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/scenes/tranches/TranchesDetails.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/com/bourlito/factures/scenes/tranches/TranchesList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/client/ClientDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/client/ClientDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/tarifs/TarifsDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/tarif/TarifsDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/tarifs/TarifsList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/tarif/TarifsList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/tranches/TranchesDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/tranche/TranchesDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/tranches/TranchesList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/tranche/TranchesList.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -283,6 +267,7 @@
       <workItem from="1578166689713" duration="1592000" />
       <workItem from="1578188178663" duration="5581000" />
       <workItem from="1578218107054" duration="8055000" />
+      <workItem from="1578245012755" duration="518000" />
     </task>
     <task id="LOCAL-00001" summary="nettoyage">
       <created>1564934711143</created>
