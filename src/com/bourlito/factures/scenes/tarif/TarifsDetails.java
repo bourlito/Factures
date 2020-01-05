@@ -54,6 +54,7 @@ public class TarifsDetails implements IView {
         });
 
         Button btnValider = new Button("Valider");
+        btnValider.setId("btnValider");
         btnValider.setOnAction(e -> {
             if (tarif != null){
                 client.getTarifs().remove(tarif);

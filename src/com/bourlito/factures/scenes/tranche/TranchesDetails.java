@@ -54,6 +54,7 @@ public class TranchesDetails implements IView {
         });
 
         Button btnValider = new Button("Valider");
+        btnValider.setId("btnValider");
         btnValider.setOnAction(e -> {
             if (tranche != null){
                 client.getTranches().remove(tranche);
