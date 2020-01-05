@@ -3,3 +3,4 @@ out/production/*
 
 #Environnement
 .idea/*
+src/com/bourlito/factures/db/client.json
