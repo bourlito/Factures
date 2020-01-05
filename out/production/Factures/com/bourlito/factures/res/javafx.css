@@ -1,0 +1,22 @@
+.button {
+    -fx-cursor: hand;
+    -fx-width: 200px;
+}
+
+#btnValider {
+    -fx-background-color: limegreen;
+    -fx-text-fill: white;
+}
+
+#btnValider:hover {
+    -fx-background-color: rgb(51, 235, 51);
+}
+
+#btnSupprimer {
+    -fx-background-color: tomato;
+    -fx-text-fill: white;
+}
+
+#btnSupprimer:hover {
+    -fx-background-color: #e15740;
+}

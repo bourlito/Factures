@@ -7,23 +7,75 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc429986-ef2a-49d5-94b8-583f9354bd5a" name="Default" comment="restructuration">
-      <change afterPath="$PROJECT_DIR$/src/traitement/Date.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/traitement/Parametres.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/com_googlecode_json_simple_json_simple_1_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/com_itextpdf_itextpdf_5_5_13_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/commons_codec_commons_codec_1_14.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_apache_poi_poi_4_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bourlito/factures/JavaFX.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bourlito/factures/Keys.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bourlito/factures/db/Database.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bourlito/factures/dto/Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bourlito/factures/dto/Tarif.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bourlito/factures/dto/Tranche.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/ClientDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/ClientList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/IView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/utils/Chooser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bourlito/factures/service/SClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bourlito/factures/traitement/NumFormat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/cssdialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cssdialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/commons_codec_1_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/poi_3.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Factures.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Factures.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Factures/JavaFX.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Factures/JavaFX.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JavaFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaFX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/traitement/Mamasita.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/traitement/Mamasita.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/traitement/MotsCles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/traitement/MotsCles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/traitement/PDF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/traitement/PDF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/traitement/XCL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/traitement/XCL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Factures_jar/Factures.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Factures_jar/Factures.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/JavaFX.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Factures/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/dto/Entreprise.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/dto/Ligne.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/res/javafx.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/traitement/Date.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/traitement/Mamasita$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/traitement/Mamasita.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/traitement/MotsCles.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/traitement/PDF$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/traitement/PDF$BorderEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/traitement/PDF$HeaderTable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/traitement/PDF.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/traitement/Parametres.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Factures/traitement/XCL.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JavaFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/scenes/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dto/Entreprise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/dto/Entreprise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dto/Ligne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/dto/Ligne.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/javafx.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/res/javafx.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/traitement/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/traitement/Date.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/traitement/Mamasita.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/traitement/Mamasita.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/traitement/MotsCles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/traitement/MotsCles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/traitement/PDF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/traitement/PDF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/traitement/Parametres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/traitement/Parametres.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/traitement/XCL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bourlito/factures/traitement/XCL.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FavoritesManager">
     <favorites_list name="Factures" />
@@ -32,6 +84,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -58,6 +111,8 @@
   <component name="ProjectId" id="1OxyeTwIczZ1d5hZqFRmH5Y3ttZ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="derby" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
@@ -65,7 +120,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Renaming" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../json-20190722.jar!/" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -75,7 +130,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.stylelint" value="" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -83,6 +138,10 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="scenes.utils.SceneMap" />
+      <recent name="pages.Chooser" />
+      <recent name="pages.Main" />
+      <recent name="traitement.NumFormat" />
       <recent name="traitement.Parametres" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -90,6 +149,7 @@
       <recent name="DTO" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="scenes" />
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -110,7 +170,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.JavaFX">
+  <component name="RunManager" selected="JAR Application.Factures.jar">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -118,38 +178,13 @@
       </method>
     </configuration>
     <configuration name="JavaFX" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="JavaFX" />
+      <option name="MAIN_CLASS_NAME" value="com.bourlito.factures.JavaFX" />
       <module name="Factures" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PDF" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="traitement.PDF" />
-      <module name="Factures" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="XCL" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="traitement.XCL" />
-      <module name="Factures" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="getAdresseTarif" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="getAdresseTarif" />
-      <module name="Factures" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -161,6 +196,10 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="Factures.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/Factures_jar/Factures.jar" />
+      <method v="2" />
     </configuration>
     <configuration default="true" type="TestNG">
       <option name="TEST_OBJECT" value="CLASS" />
@@ -182,15 +221,12 @@
     </configuration>
     <list>
       <item itemvalue="Application.JavaFX" />
-      <item itemvalue="Application.XCL" />
-      <item itemvalue="Application.getAdresseTarif" />
-      <item itemvalue="Application.PDF" />
+      <item itemvalue="JAR Application.Factures.jar" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JAR Application.Factures.jar" />
         <item itemvalue="Application.JavaFX" />
-        <item itemvalue="Application.PDF" />
-        <item itemvalue="Application.getAdresseTarif" />
       </list>
     </recent_temporary>
   </component>
@@ -256,6 +292,17 @@
       <workItem from="1577638840631" duration="4722000" />
       <workItem from="1577995719486" duration="236000" />
       <workItem from="1578045066628" duration="2388000" />
+      <workItem from="1578049479735" duration="615000" />
+      <workItem from="1578056575855" duration="5532000" />
+      <workItem from="1578063839870" duration="7516000" />
+      <workItem from="1578086781841" duration="638000" />
+      <workItem from="1578087459348" duration="3459000" />
+      <workItem from="1578094301592" duration="3753000" />
+      <workItem from="1578132004718" duration="3829000" />
+      <workItem from="1578163817257" duration="2094000" />
+      <workItem from="1578166689713" duration="1592000" />
+      <workItem from="1578188178663" duration="5581000" />
+      <workItem from="1578218107054" duration="235000" />
     </task>
     <task id="LOCAL-00001" summary="nettoyage">
       <created>1564934711143</created>
@@ -305,116 +352,5 @@
     <MESSAGE value="restructuration" />
     <MESSAGE value="documentation" />
     <option name="LAST_COMMIT_MESSAGE" value="documentation" />
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArquillianSettingsConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <last-edited>Factures:jar</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.5" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>No facets are configured</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>Factures</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>commons-codec-1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ScopeChooserConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>
