@@ -1,6 +1,6 @@
 package com.bourlito.factures.scenes.client;
 
-import com.bourlito.factures.MotsCles;
+import com.bourlito.factures.utils.MotsCles;
 import com.bourlito.factures.dto.Client;
 import com.bourlito.factures.scenes.IView;
 import com.bourlito.factures.scenes.Main;

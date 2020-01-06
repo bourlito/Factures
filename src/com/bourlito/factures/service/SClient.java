@@ -1,6 +1,6 @@
 package com.bourlito.factures.service;
 
-import com.bourlito.factures.Keys;
+import com.bourlito.factures.utils.Keys;
 import com.bourlito.factures.db.Database;
 import com.bourlito.factures.dto.Client;
 import com.bourlito.factures.dto.Tarif;

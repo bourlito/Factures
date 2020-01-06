@@ -1,6 +1,6 @@
 package com.bourlito.factures.scenes.tarif;
 
-import com.bourlito.factures.Keys;
+import com.bourlito.factures.utils.Keys;
 import com.bourlito.factures.dto.Client;
 import com.bourlito.factures.dto.Tarif;
 import com.bourlito.factures.scenes.IView;

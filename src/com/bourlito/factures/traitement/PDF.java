@@ -1,9 +1,11 @@
 package com.bourlito.factures.traitement;
 
-import com.bourlito.factures.Erreur;
-import com.bourlito.factures.MotsCles;
+import com.bourlito.factures.utils.Erreur;
+import com.bourlito.factures.utils.MotsCles;
 import com.bourlito.factures.dto.Entreprise;
 import com.bourlito.factures.dto.Ligne;
+import com.bourlito.factures.utils.Date;
+import com.bourlito.factures.utils.NumFormat;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import org.apache.poi.hssf.usermodel.HSSFSheet;

@@ -1,6 +1,6 @@
 package com.bourlito.factures.db;
 
-import com.bourlito.factures.MotsCles;
+import com.bourlito.factures.utils.MotsCles;
 import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;

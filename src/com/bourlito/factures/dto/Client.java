@@ -1,6 +1,6 @@
 package com.bourlito.factures.dto;
 
-import com.bourlito.factures.Keys;
+import com.bourlito.factures.utils.Keys;
 import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

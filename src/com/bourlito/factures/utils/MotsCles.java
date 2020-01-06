@@ -1,4 +1,4 @@
-package com.bourlito.factures;
+package com.bourlito.factures.utils;
 
 public interface MotsCles {
     String DOSSIER = "D:\\Perso\\projetFrancois\\";

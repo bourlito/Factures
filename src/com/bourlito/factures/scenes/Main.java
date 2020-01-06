@@ -1,10 +1,12 @@
 package com.bourlito.factures.scenes;
 
-import com.bourlito.factures.Erreur;
-import com.bourlito.factures.Parametres;
+import com.bourlito.factures.utils.Erreur;
+import com.bourlito.factures.utils.Parametres;
 import com.bourlito.factures.dto.Entreprise;
 import com.bourlito.factures.scenes.client.ClientList;
 import com.bourlito.factures.scenes.utils.CScene;
+import com.bourlito.factures.utils.Date;
+import com.bourlito.factures.utils.NumFormat;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;

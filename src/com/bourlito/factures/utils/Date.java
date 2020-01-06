@@ -1,4 +1,4 @@
-package com.bourlito.factures.traitement;
+package com.bourlito.factures.utils;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -1,6 +1,6 @@
 package com.bourlito.factures.scenes.tranche;
 
-import com.bourlito.factures.Keys;
+import com.bourlito.factures.utils.Keys;
 import com.bourlito.factures.dto.Client;
 import com.bourlito.factures.dto.Tranche;
 import com.bourlito.factures.scenes.IView;

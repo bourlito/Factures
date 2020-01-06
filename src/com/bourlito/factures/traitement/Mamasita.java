@@ -1,7 +1,7 @@
 package com.bourlito.factures.traitement;
 
-import com.bourlito.factures.Erreur;
-import com.bourlito.factures.MotsCles;
+import com.bourlito.factures.utils.Erreur;
+import com.bourlito.factures.utils.MotsCles;
 import com.bourlito.factures.dto.Entreprise;
 import com.bourlito.factures.dto.Ligne;
 import org.apache.poi.hssf.usermodel.HSSFSheet;

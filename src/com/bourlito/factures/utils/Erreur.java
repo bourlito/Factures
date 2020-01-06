@@ -1,4 +1,4 @@
-package com.bourlito.factures;
+package com.bourlito.factures.utils;
 
 import java.io.FileWriter;
 import java.io.IOException;
