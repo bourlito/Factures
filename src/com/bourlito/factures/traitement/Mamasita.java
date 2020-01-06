@@ -14,7 +14,6 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Mamasita {
     final List<List<String>> dataLigne = new ArrayList<>();
@@ -38,8 +37,8 @@ public class Mamasita {
     int nFacture;
     Entreprise entreprise;
 
-    int totalLigne = 0;
-    double totalHT = 0;
+    private int totalLigne = 0;
+    private double totalHT = 0;
     int nvDos = 0;
 
     public Mamasita(HSSFSheet sheet, String filename, int nFacture, Entreprise entreprise) {
@@ -47,14 +46,16 @@ public class Mamasita {
         this.filename = filename;
         this.nFacture = nFacture;
         this.entreprise = entreprise;
+
+        this.parseXls();
     }
 
     @NotNull
-    public static List<Entreprise> getAdresseTarif(String entadd) {
+    public static List<Entreprise> getAdresseTarif() {
         List<Entreprise> entreprises;
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream(new File(entadd));
+            fis = new FileInputStream(new File(MotsCles.DOSSIER + "address.xls"));
         } catch (FileNotFoundException e) {
             Erreur.creerFichierErreur(e.getMessage());
             e.printStackTrace();
@@ -112,7 +113,7 @@ public class Mamasita {
     /**
      * methode de parsing de la liste data
      */
-    void parseXls() {
+    private void parseXls() {
         List<List<String>> data = this.readXls();
 
         for (List<String> aData : data) {
@@ -133,7 +134,7 @@ public class Mamasita {
 
             //tri des donnees existantes dans les differentes listes
             for (int index = 2; index < aData.size(); index++) {
-                if (!Objects.equals(aData.get(index), "0.0")) {
+                if (!aData.get(index).equals("0.0")) {
                     switch (index) {
                         case MotsCles.NUM_COL_LI:
                             remplirData(aData, dataLineLigne, MotsCles.NUM_COL_LI);
@@ -196,7 +197,8 @@ public class Mamasita {
     }
 
     /**
-     * methode de creation des lignes
+     * methode de creation des lignes :
+     * transforme une liste de string en une ligne
      * @param data liste de listes d'entree
      * @param tarif correspondant a la donnee
      * @return une liste de ligne
@@ -205,7 +207,7 @@ public class Mamasita {
         Ligne ligne;
         List<Ligne> lignes = new ArrayList<>();
 
-        //cas particulier des tarifs speciaux
+        //cas classiqe
         if (tarif != MotsCles.TARIF_AF) {
             for (List<String> list : data) {
                 if (!list.isEmpty()) {
@@ -216,9 +218,15 @@ public class Mamasita {
                     ligne.setTarif(entreprise.getTarifs().get(tarif));
                     ligne.setTotal(ligne.getNbLigne() * ligne.getTarif());
                     lignes.add(ligne);
+
+                    totalLigne += ligne.getNbLigne();
+                    totalHT += ligne.getTotal();
+
+                    if (tarif == MotsCles.TARIF_ND)
+                        nvDos++;
                 }
             }
-        //cas classiques
+        //cas tarif speciaux
         } else {
             for (List<String> list : data) {
                 if (!list.isEmpty()) {
@@ -229,9 +237,15 @@ public class Mamasita {
                     ligne.setTarif(Double.parseDouble(list.get(2)));
                     ligne.setTotal(ligne.getNbLigne() * ligne.getTarif());
                     lignes.add(ligne);
+
+                    totalLigne += ligne.getNbLigne();
+                    totalHT += ligne.getTotal();
                 }
             }
         }
+
+        entreprise.setTotalLigne(totalLigne);
+        entreprise.setTotalHT(totalHT);
 
         return lignes;
     }
@@ -351,7 +365,7 @@ public class Mamasita {
         return lignes;
     }
 
-    Boolean isNotEmpty(@NotNull List<List<String>> data) {
+    static Boolean isNotEmpty(@NotNull List<List<String>> data) {
         for (List<String> aData : data) {
             for (String field : aData) {
                 if (field != null) {
@@ -363,8 +377,9 @@ public class Mamasita {
     }
 
     /**
-     * methode de lecture d'un fichier excel
-     * @return les donnees dans une liste de listes
+     * methode de lecture d'un fichier excel :
+     * chaque ligne correspond a une une liste de strings, ou chaque string est ue cellule
+     * @return une liste de listes de strings
      */
     private List<List<String>> readXls() {
         //remise a zero de la liste data
@@ -399,6 +414,7 @@ public class Mamasita {
             }
             data.add(dataLine);
         }
+
         return data;
     }
 

@@ -49,7 +49,7 @@ public class PDF extends Mamasita {
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        this.parseXls();
+
         try {
             document.add(new Paragraph("\n\n"));
         } catch (DocumentException e) {
@@ -257,7 +257,6 @@ public class PDF extends Mamasita {
         remplirIfNotEmpty(dataLinkup, "Linkup", MotsCles.TARIF_LK);
         remplirIfNotEmpty(dataND, "Nouveaux Dossiers", MotsCles.TARIF_ND);
         remplirIfNotEmpty(dataAF, "Dossiers Spécifiques", MotsCles.TARIF_AF);
-        nvDos = createLigne(dataND, MotsCles.TARIF_ND).size();
 
         try {
             document.add(table);
@@ -287,13 +286,7 @@ public class PDF extends Mamasita {
             creerCell(new Paragraph(NumFormat.fEntier().format(ligne.getNbLigne()), font), table);
             creerCell(new Paragraph(NumFormat.fTriple().format(ligne.getTarif()), font), table);
             creerCell(new Paragraph(NumFormat.fDouble().format(ligne.getTotal()) + "€", font), table);
-
-            totalLigne += ligne.getNbLigne();
-            totalHT += ligne.getTotal();
-
         }
-        entreprise.setTotalLigne(totalLigne);
-        entreprise.setTotalHT(totalHT);
     }
 
     private void remplirIfNotEmpty(List<List<String>> data, String entete, int tarif) {

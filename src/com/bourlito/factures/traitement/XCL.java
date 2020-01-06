@@ -316,9 +316,6 @@ public class XCL extends Mamasita {
         creerCell(detailRow12, MotsCles.NUM_COL_TRF_LI, true, "Tarif Ligne");
         creerCell(detailRow12, MotsCles.NUM_COL_THT, true, "Total HT");
 
-        //remplissage
-        this.parseXls();
-
         if (isNotEmpty(dataLigne)) {
             creerEnteteType("Lignes");
             remplirLigne(parseLignes(entreprise));
@@ -336,7 +333,6 @@ public class XCL extends Mamasita {
         remplirIfNotEmpty(dataLinkup, "Linkup", MotsCles.TARIF_LK);
         remplirIfNotEmpty(dataND, "Nouveaux Dossiers", MotsCles.TARIF_ND);
         remplirIfNotEmpty(dataAF, "Dossiers Spécifiques", MotsCles.TARIF_AF);
-        nvDos = createLigne(dataND, MotsCles.TARIF_ND).size();
     }
 
     private void creerRecap() {
@@ -498,13 +494,7 @@ public class XCL extends Mamasita {
             sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), MotsCles.NUM_COL_NB_LI_0, MotsCles.NUM_COL_NB_LI_1));
             creerCell(row, MotsCles.NUM_COL_TRF_LI, cellStyle, NumFormat.fTriple().format(ligne.getTarif()));
             creerCell(row, MotsCles.NUM_COL_THT, cellStyle, NumFormat.fDouble().format(ligne.getTotal()) + "€");
-
-            totalLigne += ligne.getNbLigne();
-            totalHT += ligne.getTotal();
         }
-
-        entreprise.setTotalLigne(totalLigne);
-        entreprise.setTotalHT(totalHT);
     }
 
     private void ajouterImage(String fileName, Integer col2, Integer row1, Integer dx1, Integer dy1, Double resize2) {

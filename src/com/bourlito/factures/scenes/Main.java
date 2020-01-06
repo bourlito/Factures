@@ -1,12 +1,9 @@
 package com.bourlito.factures.scenes;
 
-import com.bourlito.factures.utils.Erreur;
-import com.bourlito.factures.utils.Parametres;
+import com.bourlito.factures.utils.*;
 import com.bourlito.factures.dto.Entreprise;
 import com.bourlito.factures.scenes.client.ClientList;
 import com.bourlito.factures.scenes.utils.CScene;
-import com.bourlito.factures.utils.Date;
-import com.bourlito.factures.utils.NumFormat;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -65,15 +62,9 @@ public class Main implements IView{
         Label labelFolderAffich = new Label();
         grid.add(labelFolderAffich, 1, 2);
 
-        Button btnXlAdd = new Button("Fichier d'adresses");
-        btnXlAdd.setMinWidth(200);
-        grid.add(btnXlAdd, 0, 3);
-        Label labelXlAddAffich = new Label();
-        grid.add(labelXlAddAffich, 1, 3);
-
         Button btnClients = new Button("Clients");
         btnClients.setMinWidth(200);
-        grid.add(btnClients, 0, 4);
+        grid.add(btnClients, 0, 3);
         btnClients.setOnAction(event -> {
             stage.setScene(new ClientList(stage).getScene());
         });
@@ -81,18 +72,7 @@ public class Main implements IView{
         Button btnValider = new Button("Valider");
         btnValider.setId("btnValider");
         btnValider.setMinWidth(200);
-        grid.add(btnValider, 1, 4);
-
-        btnXlAdd.setOnAction(e -> {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Fichier d'adresses");
-            Chooser.configureFileChooser(fileChooser);
-            File file = fileChooser.showOpenDialog(stage);
-            if (file != null) {
-                labelXlAddAffich.setText(file.getName());
-                Parametres.setAdresses(file.getAbsolutePath());
-            }
-        });
+        grid.add(btnValider, 1, 3);
 
         btnFolder.setOnAction(e -> {
             DirectoryChooser directoryChooser = new DirectoryChooser();
@@ -106,7 +86,7 @@ public class Main implements IView{
         });
 
         btnValider.setOnAction(event -> {
-            if (nFact.getText().equals("") || nFact.getText() == null || Parametres.getAdresses() == null || Parametres.getDestination() == null) {
+            if (nFact.getText().equals("") || nFact.getText() == null || Parametres.getDestination() == null) {
                 scenetitle.setText("Il faut remplir tous les champs !");
                 scenetitle.setStyle("-fx-fill: tomato");
                 return;
@@ -119,7 +99,7 @@ public class Main implements IView{
     }
 
     private static void valider(TextField nFact, Stage stage){
-        List<Entreprise> entreprises = Mamasita.getAdresseTarif(Parametres.getAdresses());
+        List<Entreprise> entreprises = Mamasita.getAdresseTarif();
         Entreprise entreprise = null;
 
         FileInputStream fis = null;
