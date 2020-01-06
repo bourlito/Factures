@@ -20,9 +20,6 @@ public class XCL extends Mamasita {
     // TODO: ajouter images
     // TODO: type de cellule (nbLigne -> num, totalHT -> formula)
 
-    private int totalLigne = 0;
-    private double totalHT = 0;
-
     private HSSFWorkbook wb;
     private HSSFSheet sheet;
 
@@ -337,6 +334,7 @@ public class XCL extends Mamasita {
         remplirIfNotEmpty(dataLinkup, "Linkup", MotsCles.TARIF_LK);
         remplirIfNotEmpty(dataND, "Nouveaux Dossiers", MotsCles.TARIF_ND);
         remplirIfNotEmpty(dataAF, "Dossiers Spécifiques", MotsCles.TARIF_AF);
+        nvDos = createLigne(dataND, MotsCles.TARIF_ND).size();
     }
 
     private void creerRecap() {
@@ -360,8 +358,7 @@ public class XCL extends Mamasita {
 
         Cell cellRemarqueValue = recapRow.createCell(1);
         cellRemarqueValue.setCellStyle(setCellStyle(true, true, false, false));
-        int nvDos = createLigne(dataND, 16).size();
-        cellRemarqueValue.setCellValue(nvDos < 1 ? nvDos + " Nouveau Dossier" : nvDos + " Nouveaux Dossiers");
+        cellRemarqueValue.setCellValue(nvDos <= 1 ? nvDos + " Nouveau Dossier" : nvDos + " Nouveaux Dossiers");
 
         recapRow.createCell(2).setCellStyle(setCellStyle(false, true, true, false));
 

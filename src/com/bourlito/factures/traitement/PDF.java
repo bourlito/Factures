@@ -16,9 +16,6 @@ import java.util.List;
 
 public class PDF extends Mamasita {
 
-    private double totalHT = 0;
-    private int totalLigne = 0;
-
     private PdfPTable table;
     private Font fontTitre = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD, new BaseColor(46, 110, 175));
 
@@ -62,12 +59,6 @@ public class PDF extends Mamasita {
             e.printStackTrace();
         }
 
-        int nvDos = createLigne(dataND, 16).size();
-        for (Ligne ligne : createLigne(dataLigne, 0))
-            totalLigne += ligne.getNbLigne();
-        for (Ligne ligne : createLigne(dataLe, 8))
-            totalLigne += ligne.getNbLigne();
-
         Font font = new Font(Font.FontFamily.HELVETICA, 11);
 
         PdfPTable table = new PdfPTable(5);
@@ -91,11 +82,7 @@ public class PDF extends Mamasita {
         cell.setBorder(0);
         table.addCell(cell);
 
-        String phrase;
-        if (nvDos == 0 || nvDos == 1)
-            phrase = nvDos + " nouveau dossier\n";
-        else
-            phrase = nvDos + " nouveaux dossiers\n";
+        String phrase = nvDos <= 1 ? nvDos + " Nouveau Dossier" : nvDos + " Nouveaux Dossiers";
 
         paragraph = new Paragraph(phrase, font);
         cell = new PdfPCell();
@@ -268,6 +255,7 @@ public class PDF extends Mamasita {
         remplirIfNotEmpty(dataLinkup, "Linkup", MotsCles.TARIF_LK);
         remplirIfNotEmpty(dataND, "Nouveaux Dossiers", MotsCles.TARIF_ND);
         remplirIfNotEmpty(dataAF, "Dossiers Spécifiques", MotsCles.TARIF_AF);
+        nvDos = createLigne(dataND, MotsCles.TARIF_ND).size();
 
         try {
             document.add(table);

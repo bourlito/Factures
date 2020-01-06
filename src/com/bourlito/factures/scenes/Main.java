@@ -154,7 +154,7 @@ public class Main implements IView{
                 return;
             }
 
-            String libelleFac = Parametres.getDestination() + "\\Facture CPE com.bourlito.factures.traitement " + entreprise.getNomEntreprise() + " " + Date.getLibelle() + " - " + NumFormat.fNbFact().format(nFacture);
+            String libelleFac = Parametres.getDestination() + "\\Facture CPE traitement " + entreprise.getNomEntreprise() + " " + Date.getLibelle() + " - " + NumFormat.fNbFact().format(nFacture);
 
             new XCL(wb.getSheetAt(a), libelleFac + ".xls", nFacture, entreprise).creerXCL();
             new PDF(wb.getSheetAt(a), libelleFac + ".pdf", nFacture, entreprise).createPdf();

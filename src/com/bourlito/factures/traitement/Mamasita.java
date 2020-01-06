@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Mamasita {
+public class Mamasita {
     final List<List<String>> dataLigne = new ArrayList<>();
     final List<List<String>> dataIB = new ArrayList<>();
     final List<List<String>> data471 = new ArrayList<>();
@@ -37,6 +37,10 @@ public abstract class Mamasita {
     String filename;
     int nFacture;
     Entreprise entreprise;
+
+    int totalLigne = 0;
+    double totalHT = 0;
+    int nvDos = 0;
 
     public Mamasita(HSSFSheet sheet, String filename, int nFacture, Entreprise entreprise) {
         this.decompteSheet = sheet;
