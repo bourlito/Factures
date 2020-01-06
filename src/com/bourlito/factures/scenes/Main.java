@@ -35,8 +35,6 @@ import java.io.IOException;
 
 public class Main implements IView{
 
-    // TODO: modifier adresse en utilisant db client
-
     private Stage stage;
     private static File destination;
     private static String nFact = "";
@@ -100,7 +98,7 @@ public class Main implements IView{
         });
 
         btnValider.setOnAction(event -> {
-            if (tNum.getText().equals("") || tNum.getText() == null || destination != null) {
+            if (tNum.getText().equals("") || tNum.getText() == null || destination == null) {
                 scenetitle.setText("Il faut remplir tous les champs !");
                 scenetitle.setStyle("-fx-fill: tomato");
                 return;

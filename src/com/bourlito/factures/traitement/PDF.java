@@ -100,7 +100,7 @@ public class PDF extends Mamasita {
         cell.setBorder(0);
         table.addCell(cell);
 
-        paragraph = new Paragraph("Total nombre de Lignes : " + NumFormat.fEntier().format(totalLigne) + "\nTotal € HT : " + NumFormat.fDouble().format(totalHT) + "€\nTVA (20%) : " + NumFormat.fDouble().format(totalHT * 0.2) + "€\nTotal € TTC : " + NumFormat.fDouble().format(totalHT * 1.2) + "€", font);
+        paragraph = new Paragraph("Total nombre de Lignes : " + NumFormat.fEntier().format(totalLigne) + "\nTotal € HT : " + NumFormat.fDouble().format(totalHT) + " €\nTVA (20%) : " + NumFormat.fDouble().format(totalHT * 0.2) + " €\nTotal € TTC : " + NumFormat.fDouble().format(totalHT * 1.2) + " €", font);
         paragraph.setAlignment(Element.ALIGN_CENTER);
         cell = new PdfPCell();
         cell.addElement(paragraph);
@@ -275,7 +275,7 @@ public class PDF extends Mamasita {
             creerCell(new Paragraph(ligne.getEntreprise(), font));
             creerCell(new Paragraph(NumFormat.fEntier().format(ligne.getNbLigne()), font));
             creerCell(new Paragraph(NumFormat.fTriple().format(ligne.getTarif()), font));
-            creerCell(new Paragraph(NumFormat.fDouble().format(ligne.getTotal()) + "€", font));
+            creerCell(new Paragraph(NumFormat.fDouble().format(ligne.getTotal()) + " €", font));
         }
     }
 

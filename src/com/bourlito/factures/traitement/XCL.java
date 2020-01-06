@@ -2,10 +2,7 @@ package com.bourlito.factures.traitement;
 
 import com.bourlito.factures.dto.Client;
 import com.bourlito.factures.dto.Ligne;
-import com.bourlito.factures.utils.Date;
-import com.bourlito.factures.utils.Erreur;
-import com.bourlito.factures.utils.MotsCles;
-import com.bourlito.factures.utils.NumFormat;
+import com.bourlito.factures.utils.*;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
@@ -20,7 +17,6 @@ import java.util.List;
 public class XCL extends Mamasita {
 
     // TODO: ajouter images
-    // TODO: type de cellule (nbLigne -> num, totalHT -> formula)
 
     private HSSFWorkbook wb;
     private HSSFSheet sheet;
@@ -478,11 +474,11 @@ public class XCL extends Mamasita {
             for (int i = MotsCles.NUM_COL_NOM_DOS_1; i <= MotsCles.NUM_COL_NOM_DOS_2; i++)
                 row.createCell(i).setCellStyle(cellStyle);
             sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), MotsCles.NUM_COL_NOM_DOS_0, MotsCles.NUM_COL_NOM_DOS_2));
-            creerCell(row, MotsCles.NUM_COL_NB_LI_0, cellStyle, NumFormat.fEntier().format(ligne.getNbLigne()));
+            creerCell(row, cellStyle, (int) ligne.getNbLigne());
             row.createCell(MotsCles.NUM_COL_NB_LI_1).setCellStyle(cellStyle);
             sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), MotsCles.NUM_COL_NB_LI_0, MotsCles.NUM_COL_NB_LI_1));
-            creerCell(row, MotsCles.NUM_COL_TRF_LI, cellStyle, NumFormat.fTriple().format(ligne.getTarif()));
-            creerCell(row, MotsCles.NUM_COL_THT, cellStyle, NumFormat.fDouble().format(ligne.getTotal()) + "€");
+            creerCell(row, cellStyle, ligne.getTarif());
+            creerCell(row);
         }
     }
 
@@ -587,5 +583,33 @@ public class XCL extends Mamasita {
         Cell cell = row.createCell(col);
         cell.setCellStyle(cellStyle);
         cell.setCellValue(texte);
+    }
+
+    private void creerCell(@NotNull Row row, CellStyle cellStyle, int number) {
+        Cell cell = row.createCell(MotsCles.NUM_COL_NB_LI_0);
+        cell.setCellStyle(cellStyle);
+        cell.setCellValue(number);
+    }
+
+    private void creerCell(@NotNull Row row, CellStyle cellStyle, double number) {
+        Cell cell = row.createCell(MotsCles.NUM_COL_TRF_LI);
+        cell.setCellStyle(cellStyle);
+        cell.setCellValue(number);
+    }
+
+    private void creerCell(@NotNull Row row) {
+        String formule = Column.getLetterFromInt(MotsCles.NUM_COL_NB_LI_0) + (row.getRowNum() +1)
+                + "*" + Column.getLetterFromInt(MotsCles.NUM_COL_TRF_LI) + (row.getRowNum() +1);
+
+        DataFormat df = wb.createDataFormat();
+        CellStyle cellStyle = setCellStyle(true, true, true, true);
+        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+        cellStyle.setFont(setFont((short) 11, false, false));
+        cellStyle.setShrinkToFit(true);
+        cellStyle.setDataFormat(df.getFormat("0.00 €"));
+
+        Cell cell = row.createCell(MotsCles.NUM_COL_THT);
+        cell.setCellStyle(cellStyle);
+        cell.setCellFormula(formule);
     }
 }

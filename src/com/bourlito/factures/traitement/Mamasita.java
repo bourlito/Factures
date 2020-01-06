@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Mamasita {
+
+    // TODO: changer en singleton et faire tout le traitement ici, reserver PDF et XCL pour les visuels
+
     final List<List<String>> dataLigne = new ArrayList<>();
     private final List<List<String>> dataIB = new ArrayList<>();
     private final List<List<String>> data471 = new ArrayList<>();
