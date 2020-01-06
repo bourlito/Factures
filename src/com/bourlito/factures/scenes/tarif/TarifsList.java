@@ -5,12 +5,17 @@ import com.bourlito.factures.dto.Tarif;
 import com.bourlito.factures.scenes.IView;
 import com.bourlito.factures.scenes.client.ClientDetails;
 import com.bourlito.factures.scenes.utils.CScene;
+import com.bourlito.factures.service.STarif;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+
+import java.util.List;
 
 public class TarifsList implements IView {
 
@@ -33,32 +38,36 @@ public class TarifsList implements IView {
             stage.setScene(new ClientDetails(stage, client).getScene());
         });
 
-        Button btnNew = new Button("Nouveau");
-        btnNew.setOnAction(e -> {
-            stage.setScene(new TarifsDetails(stage, client).getScene());
-        });
-
         ButtonBar bbar = new ButtonBar();
         bbar.setPadding(new Insets(10, 0, 0, 10));
-        bbar.getButtons().addAll(btnRetour, btnNew);
+        bbar.getButtons().addAll(btnRetour);
         root.setBottom(bbar);
 
-        if (client != null){
-            FlowPane pane = new FlowPane();
-            pane.setHgap(20);
-            pane.setVgap(10);
-            pane.setPadding(new Insets(25, 25, 25, 25));
+        GridPane pane = new GridPane();
+        pane.setAlignment(Pos.CENTER);
+        pane.setHgap(20);
+        pane.setVgap(10);
+        pane.setPadding(new Insets(25, 25, 25, 25));
 
-            for (Tarif tarif: client.getTarifs()) {
-                Button title = new Button(tarif.getNom());
-                title.setOnAction(event -> {
-                    stage.setScene(new TarifsDetails(stage, client, tarif).getScene());
-                });
-                pane.getChildren().addAll(title);
+        int i = 0, j = 0;
+        for (Tarif tarif: client.getTarifs()) {
+
+            Button btn = new Button(tarif.getNom());
+            btn.setMinWidth(200);
+            pane.add(btn, j, i);
+
+            btn.setOnAction(event -> {
+                stage.setScene(new TarifsDetails(stage, client, tarif).getScene());
+            });
+
+            if (j == 2){
+                i++;
+                j = 0;
             }
-
-            root.setCenter(pane);
+            else j++;
         }
+
+        root.setCenter(pane);
 
         return new CScene(root);
     }

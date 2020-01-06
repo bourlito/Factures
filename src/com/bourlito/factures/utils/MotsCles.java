@@ -12,21 +12,7 @@ public interface MotsCles {
             "SARL au Capital de 75 000 € - RCS de Paris 450 692 447\n" +
             "Tva intracommunautaire : FR76450692447";
 
-    //correspond à la colonne dans le xcl_adresse pour les tarifs
-    int TARIF_IB = 6;
-    int TARIF_471 = 7;
-    int TARIF_LE = 8;
-    int TARIF_SF = 9;
-    int TARIF_AI = 10;
-    int TARIF_DP = 11;
-    int TARIF_TVA = 12;
-    int TARIF_REV = 13;
-    int TARIF_EI = 14;
-    int TARIF_LK = 15;
-    int TARIF_ND = 16;
-    int TARIF_AF = 17;
-
-    //correspond à la colonne dans le xcl_décompte pour le type de ligne
+    // correspond à la colonne dans le xcl_décompte pour le type de ligne
     int NUM_COL_LI = 2;
     int NUM_COL_IB = 3;
     int NUM_COL_471 = 4;
@@ -41,7 +27,7 @@ public interface MotsCles {
     int NUM_COL_ND = 13;
     int NUM_COL_AF = 14;
 
-    //correspond à la colonne de la facture xcl
+    // correspond à la colonne de la facture xcl
     int NUM_COL_DAT_SAI = 0;
     int NUM_COL_NOM_DOS_0 = 1;
     int NUM_COL_NOM_DOS_1 = 2;
@@ -50,4 +36,21 @@ public interface MotsCles {
     int NUM_COL_NB_LI_1 = 5;
     int NUM_COL_TRF_LI = 6;
     int NUM_COL_THT = 7;
+    
+    // libelle tarifs
+    String LIBELLE_LI = "Lignes";
+    String LIBELLE_IB = "Import Banque";
+    String LIBELLE_471 = "471";
+    String LIBELLE_LE = "Lettrage";
+    String LIBELLE_SF = "ScanFact";
+    String LIBELLE_AI = "Attache Image";
+    String LIBELLE_DP = "Découpe PDF";
+    String LIBELLE_TVA = "TVA";
+    String LIBELLE_REV = "Révision";
+    String LIBELLE_EI = "Ecritures Importées";
+    String LIBELLE_LK = "Linkup";
+    String LIBELLE_ND = "Nouveaux Dossiers";
+    String LIBELLE_AF = "Dossiers Spécifiques";
+
+    double TARIF_DEFAULT = 0.0;
 }

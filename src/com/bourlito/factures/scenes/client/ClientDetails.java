@@ -1,5 +1,6 @@
 package com.bourlito.factures.scenes.client;
 
+import com.bourlito.factures.service.STarif;
 import com.bourlito.factures.utils.Keys;
 import com.bourlito.factures.dto.Client;
 import com.bourlito.factures.scenes.IView;
@@ -20,10 +21,6 @@ public class ClientDetails implements IView {
     private Stage stage;
     private Client client;
     private TextField tAlias, tNom, tAdresse, tCp, tVille;
-
-    public ClientDetails(Stage stage) {
-        this.stage = stage;
-    }
 
     public ClientDetails(Stage stage, Client client) {
         this.stage = stage;
@@ -110,7 +107,7 @@ public class ClientDetails implements IView {
         Label lTranches = new Label(Keys.TRANCHES);
         grid.add(lTranches, 0, 5);
 
-        int nbTranches = client != null ? client.getTranches().size() : 0;
+        int nbTranches = client.getTranches().size();
         Button btnTranches = new Button(String.valueOf(nbTranches));
         btnTranches.setMaxWidth(200);
         btnTranches.setOnAction(event -> {
@@ -121,7 +118,7 @@ public class ClientDetails implements IView {
         Label lTarifs = new Label(Keys.TARIFS);
         grid.add(lTarifs, 0, 6);
 
-        int nbTarifs = client != null ? client.getTarifs().size() : 0;
+        int nbTarifs = client.getTarifs().size();
         Button btnTarifs = new Button(String.valueOf(nbTarifs));
         btnTarifs.setMaxWidth(200);
         btnTarifs.setOnAction(event -> {

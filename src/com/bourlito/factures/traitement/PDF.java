@@ -1,10 +1,10 @@
 package com.bourlito.factures.traitement;
 
-import com.bourlito.factures.utils.Erreur;
-import com.bourlito.factures.utils.MotsCles;
-import com.bourlito.factures.dto.Entreprise;
+import com.bourlito.factures.dto.Client;
 import com.bourlito.factures.dto.Ligne;
 import com.bourlito.factures.utils.Date;
+import com.bourlito.factures.utils.Erreur;
+import com.bourlito.factures.utils.MotsCles;
 import com.bourlito.factures.utils.NumFormat;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
@@ -21,14 +21,14 @@ public class PDF extends Mamasita {
     private PdfPTable table;
     private Font fontTitre = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD, new BaseColor(46, 110, 175));
 
-    public PDF(HSSFSheet sheet, String filename, int nFacture, Entreprise entreprise) {
-        super(sheet, filename, nFacture, entreprise);
+    public PDF(HSSFSheet sheet, String filename, int nFacture, Client client) {
+        super(sheet, filename, nFacture, client);
     }
 
     public void createPdf() {
         HeaderTable event = null;
         try {
-            event = new HeaderTable(nFacture, entreprise);
+            event = new HeaderTable();
         } catch (DocumentException | IOException e) {
             e.printStackTrace();
         }
@@ -100,7 +100,7 @@ public class PDF extends Mamasita {
         cell.setBorder(0);
         table.addCell(cell);
 
-        paragraph = new Paragraph("Total nombre de Lignes : " + NumFormat.fEntier().format(entreprise.getTotalLigne()) + "\nTotal € HT : " + NumFormat.fDouble().format(entreprise.getTotalHT()) + "€\nTVA (20%) : " + NumFormat.fDouble().format(entreprise.getTotalHT() * 0.2) + "€\nTotal € TTC : " + NumFormat.fDouble().format(entreprise.getTotalHT() * 1.2) + "€", font);
+        paragraph = new Paragraph("Total nombre de Lignes : " + NumFormat.fEntier().format(totalLigne) + "\nTotal € HT : " + NumFormat.fDouble().format(totalHT) + "€\nTVA (20%) : " + NumFormat.fDouble().format(totalHT * 0.2) + "€\nTotal € TTC : " + NumFormat.fDouble().format(totalHT * 1.2) + "€", font);
         paragraph.setAlignment(Element.ALIGN_CENTER);
         cell = new PdfPCell();
         cell.addElement(paragraph);
@@ -240,23 +240,12 @@ public class PDF extends Mamasita {
         }
 
         if (isNotEmpty(dataLigne)) {
-            cell = new PdfPCell(new Paragraph("Lignes", fontTitre));
+            cell = new PdfPCell(new Paragraph(client.getLibelleTranches(), fontTitre));
             createTableHeader(table, cell);
-            populateTable(table, parseLignes(entreprise));
+            remplirLignes(parseLignes());
         }
 
-        remplirIfNotEmpty(dataIB, "Import Banque", MotsCles.TARIF_IB);
-        remplirIfNotEmpty(data471, "471", MotsCles.TARIF_471);
-        remplirIfNotEmpty(dataLe, "Lettrage", MotsCles.TARIF_LE);
-        remplirIfNotEmpty(dataSF, "ScanFact", MotsCles.TARIF_SF);
-        remplirIfNotEmpty(dataAI, "Attache Image", MotsCles.TARIF_AI);
-        remplirIfNotEmpty(dataDP, "Découpe PDF", MotsCles.TARIF_DP);
-        remplirIfNotEmpty(dataTVA, "TVA", MotsCles.TARIF_TVA);
-        remplirIfNotEmpty(dataREV, "Révision", MotsCles.TARIF_REV);
-        remplirIfNotEmpty(dataEI, "Ecritures Importées", MotsCles.TARIF_EI);
-        remplirIfNotEmpty(dataLinkup, "Linkup", MotsCles.TARIF_LK);
-        remplirIfNotEmpty(dataND, "Nouveaux Dossiers", MotsCles.TARIF_ND);
-        remplirIfNotEmpty(dataAF, "Dossiers Spécifiques", MotsCles.TARIF_AF);
+        remplirAllIfNotEmpty();
 
         try {
             document.add(table);
@@ -277,27 +266,28 @@ public class PDF extends Mamasita {
         table.addCell(cell);
     }
 
-    private void populateTable(PdfPTable table, @NotNull List<Ligne> data) {
+    private void remplirLignes(@NotNull List<Ligne> data) {
+
         Font font = new Font(Font.FontFamily.HELVETICA, 10);
 
         for (Ligne ligne : data) {
-            creerCell(new Paragraph(ligne.getDate(), font), table);
-            creerCell(new Paragraph(ligne.getEntreprise(), font), table);
-            creerCell(new Paragraph(NumFormat.fEntier().format(ligne.getNbLigne()), font), table);
-            creerCell(new Paragraph(NumFormat.fTriple().format(ligne.getTarif()), font), table);
-            creerCell(new Paragraph(NumFormat.fDouble().format(ligne.getTotal()) + "€", font), table);
+            creerCell(new Paragraph(ligne.getDate(), font));
+            creerCell(new Paragraph(ligne.getEntreprise(), font));
+            creerCell(new Paragraph(NumFormat.fEntier().format(ligne.getNbLigne()), font));
+            creerCell(new Paragraph(NumFormat.fTriple().format(ligne.getTarif()), font));
+            creerCell(new Paragraph(NumFormat.fDouble().format(ligne.getTotal()) + "€", font));
         }
     }
 
-    private void remplirIfNotEmpty(List<List<String>> data, String entete, int tarif) {
+    public void remplirIfNotEmpty(List<List<String>> data, String entete, int numCol) {
         if (isNotEmpty(data)) {
             PdfPCell cell = new PdfPCell(new Paragraph(entete, fontTitre));
             createTableHeader(table, cell);
-            populateTable(table, createLigne(data, tarif));
+            remplirLignes(createLigne(data, numCol));
         }
     }
 
-    private void creerCell(@NotNull Paragraph paragraph, @NotNull PdfPTable table) {
+    private void creerCell(@NotNull Paragraph paragraph) {
         PdfPCell cell = new PdfPCell();
         paragraph.setAlignment(Element.ALIGN_CENTER);
         cell.addElement(paragraph);
@@ -307,11 +297,11 @@ public class PDF extends Mamasita {
         table.addCell(cell);
     }
 
-    private static class HeaderTable extends PdfPageEventHelper {
+    private class HeaderTable extends PdfPageEventHelper {
         private final PdfPTable table;
         private float tableHeight;
 
-        private HeaderTable(int nFacture, @NotNull Entreprise entreprise) throws DocumentException, IOException {
+        private HeaderTable() throws DocumentException, IOException {
 
             table = new PdfPTable(4);
             table.setTotalWidth(495);
@@ -368,7 +358,7 @@ public class PDF extends Mamasita {
             table.addCell(cell);
 
             cell = new PdfPCell();
-            paragraph = new Paragraph(entreprise.getNomEntreprise() + "\nAdresse : " + entreprise.getAdresse() + "\nCP : " + entreprise.getCp().substring(0, 5) + "   Ville : " + entreprise.getVille(), new Font(Font.FontFamily.HELVETICA, 10));
+            paragraph = new Paragraph(client.getNom() + "\nAdresse : " + client.getAdresse() + "\nCP : " + client.getCp() + "   Ville : " + client.getVille(), new Font(Font.FontFamily.HELVETICA, 10));
             cell.addElement(paragraph);
             cell.setBorderColor(baseColor);
             cell.setColspan(2);

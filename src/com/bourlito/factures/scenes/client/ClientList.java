@@ -6,6 +6,7 @@ import com.bourlito.factures.scenes.IView;
 import com.bourlito.factures.scenes.Main;
 import com.bourlito.factures.scenes.utils.CScene;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
@@ -36,7 +37,7 @@ public class ClientList implements IView {
 
         Button btnNew = new Button("Nouveau");
         btnNew.setOnAction(e -> {
-            stage.setScene(new ClientDetails(stage).getScene());
+            stage.setScene(new ClientDetails(stage, new Client()).getScene());
         });
 
         Button btnExport = new Button("Exporter");
@@ -53,6 +54,7 @@ public class ClientList implements IView {
 
         // clients
         FlowPane pane = new FlowPane();
+        pane.setAlignment(Pos.CENTER);
         pane.setHgap(20);
         pane.setVgap(10);
         pane.setPadding(new Insets(25, 25, 25, 25));

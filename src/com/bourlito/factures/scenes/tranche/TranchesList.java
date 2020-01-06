@@ -1,11 +1,13 @@
 package com.bourlito.factures.scenes.tranche;
 
+import com.bourlito.factures.service.STranche;
 import com.bourlito.factures.utils.Keys;
 import com.bourlito.factures.dto.Client;
 import com.bourlito.factures.dto.Tranche;
 import com.bourlito.factures.scenes.IView;
 import com.bourlito.factures.scenes.client.ClientDetails;
 import com.bourlito.factures.scenes.utils.CScene;
+import com.bourlito.factures.utils.MotsCles;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -13,6 +15,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
+import java.util.List;
 
 public class TranchesList implements IView {
 
@@ -59,27 +63,26 @@ public class TranchesList implements IView {
 
         tLibelle = new TextField();
         tLibelle.setMaxWidth(200);
-        tLibelle.setText(client != null ? client.getLibelleTranches() : "");
+        tLibelle.setText(client != null ? client.getLibelleTranches() : MotsCles.LIBELLE_LI);
 
         hBox.getChildren().addAll(lLibelle, tLibelle);
         root.setTop(hBox);
 
-        if (client != null){
-            FlowPane pane = new FlowPane();
-            pane.setHgap(20);
-            pane.setVgap(10);
-            pane.setPadding(new Insets(25, 25, 25, 25));
+        FlowPane pane = new FlowPane();
+        pane.setAlignment(Pos.CENTER);
+        pane.setHgap(20);
+        pane.setVgap(10);
+        pane.setPadding(new Insets(25, 25, 25, 25));
 
-            for (Tranche tranche: client.getTranches()) {
-                Button title = new Button(String.valueOf(tranche.getMin()));
-                title.setOnAction(event -> {
-                    stage.setScene(new TranchesDetails(stage, client, tranche).getScene());
-                });
-                pane.getChildren().addAll(title);
-            }
-
-            root.setCenter(pane);
+        for (Tranche tranche: client.getTranches()) {
+            Button title = new Button(String.valueOf(tranche.getMin()));
+            title.setOnAction(event -> {
+                stage.setScene(new TranchesDetails(stage, client, tranche).getScene());
+            });
+            pane.getChildren().addAll(title);
         }
+
+        root.setCenter(pane);
 
         return new CScene(root);
     }

@@ -1,367 +1,159 @@
 package com.bourlito.factures.traitement;
 
+import com.bourlito.factures.dto.Client;
+import com.bourlito.factures.dto.Ligne;
+import com.bourlito.factures.dto.Tranche;
+import com.bourlito.factures.utils.Column;
 import com.bourlito.factures.utils.Erreur;
 import com.bourlito.factures.utils.MotsCles;
-import com.bourlito.factures.dto.Entreprise;
-import com.bourlito.factures.dto.Ligne;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mamasita {
+public abstract class Mamasita {
     final List<List<String>> dataLigne = new ArrayList<>();
-    final List<List<String>> dataIB = new ArrayList<>();
-    final List<List<String>> data471 = new ArrayList<>();
-    final List<List<String>> dataLe = new ArrayList<>();
-    final List<List<String>> dataSF = new ArrayList<>();
-    final List<List<String>> dataAI = new ArrayList<>();
-    final List<List<String>> dataDP = new ArrayList<>();
-    final List<List<String>> dataTVA = new ArrayList<>();
-    final List<List<String>> dataREV = new ArrayList<>();
-    final List<List<String>> dataEI = new ArrayList<>();
-    final List<List<String>> dataLinkup = new ArrayList<>();
-    final List<List<String>> dataND = new ArrayList<>();
-    final List<List<String>> dataAF = new ArrayList<>();
+    private final List<List<String>> dataIB = new ArrayList<>();
+    private final List<List<String>> data471 = new ArrayList<>();
+    private final List<List<String>> dataLe = new ArrayList<>();
+    private final List<List<String>> dataSF = new ArrayList<>();
+    private final List<List<String>> dataAI = new ArrayList<>();
+    private final List<List<String>> dataDP = new ArrayList<>();
+    private final List<List<String>> dataTVA = new ArrayList<>();
+    private final List<List<String>> dataREV = new ArrayList<>();
+    private final List<List<String>> dataEI = new ArrayList<>();
+    private final List<List<String>> dataLinkup = new ArrayList<>();
+    private final List<List<String>> dataND = new ArrayList<>();
+    private final List<List<String>> dataAF = new ArrayList<>();
 
     private static final List<List<String>> address = new ArrayList<>();
 
     private HSSFSheet decompteSheet;
     String filename;
     int nFacture;
-    Entreprise entreprise;
+    Client client;
 
-    private int totalLigne = 0;
-    private double totalHT = 0;
+    int totalLigne = 0;
+    double totalHT = 0;
     int nvDos = 0;
 
-    public Mamasita(HSSFSheet sheet, String filename, int nFacture, Entreprise entreprise) {
+    Mamasita(HSSFSheet sheet, String filename, int nFacture, Client client) {
         this.decompteSheet = sheet;
         this.filename = filename;
         this.nFacture = nFacture;
-        this.entreprise = entreprise;
+        this.client = client;
 
         this.parseXls();
-    }
-
-    @NotNull
-    public static List<Entreprise> getAdresseTarif() {
-        List<Entreprise> entreprises;
-        FileInputStream fis = null;
-        try {
-            fis = new FileInputStream(new File(MotsCles.DOSSIER + "address.xls"));
-        } catch (FileNotFoundException e) {
-            Erreur.creerFichierErreur(e.getMessage());
-            e.printStackTrace();
-        }
-        HSSFWorkbook wb = null;
-        try {
-            assert fis != null;
-            wb = new HSSFWorkbook(fis);
-        } catch (IOException e) {
-            Erreur.creerFichierErreur(e.getMessage());
-            e.printStackTrace();
-        }
-        assert wb != null;
-        HSSFSheet sheet = wb.getSheetAt(0);
-        for (Row row : sheet) {
-            if (row.getRowNum() == 0)
-                continue;
-            List<String> dataset = new ArrayList<>();
-            for (Cell cell : row) {
-                switch (cell.getCellType()) {
-                    case NUMERIC:
-                        dataset.add(String.valueOf(cell.getNumericCellValue()));
-                        break;
-                    case STRING:
-                        dataset.add(String.valueOf(cell.getStringCellValue()));
-                        break;
-                }
-            }
-            address.add(dataset);
-        }
-
-        entreprises = new ArrayList<>();
-        List<Double> tarifs;
-        Entreprise entreprise;
-
-        for (List<String> list : address) {
-            int i = address.indexOf(list);
-            tarifs = new ArrayList<>();
-            for (int j = 5; j < address.get(i).size(); j++) {
-                tarifs.add(Double.parseDouble(address.get(i).get(j)));
-            }
-            entreprise = new Entreprise();
-            entreprise.setAlias(address.get(i).get(0));
-            entreprise.setNomEntreprise(address.get(i).get(1));
-            entreprise.setAdresse(address.get(i).get(2));
-            entreprise.setCp(address.get(i).get(3));
-            entreprise.setVille(address.get(i).get(4));
-            entreprise.setTarifs(tarifs);
-            entreprises.add(entreprise);
-        }
-
-        return entreprises;
-    }
-
-    /**
-     * methode de parsing de la liste data
-     */
-    private void parseXls() {
-        List<List<String>> data = this.readXls();
-
-        for (List<String> aData : data) {
-            //initialisation des listes de donnees
-            List<String> dataLineLigne = new ArrayList<>();
-            List<String> dataLineIB = new ArrayList<>();
-            List<String> dataLine471 = new ArrayList<>();
-            List<String> dataLineLe = new ArrayList<>();
-            List<String> dataLineSF = new ArrayList<>();
-            List<String> dataLineAI = new ArrayList<>();
-            List<String> dataLineDP = new ArrayList<>();
-            List<String> dataLineTVA = new ArrayList<>();
-            List<String> dataLineREV = new ArrayList<>();
-            List<String> dataLineEI = new ArrayList<>();
-            List<String> dataLineLinkup = new ArrayList<>();
-            List<String> dataLineND = new ArrayList<>();
-            List<String> dataLineAF = new ArrayList<>();
-
-            //tri des donnees existantes dans les differentes listes
-            for (int index = 2; index < aData.size(); index++) {
-                if (!aData.get(index).equals("0.0")) {
-                    switch (index) {
-                        case MotsCles.NUM_COL_LI:
-                            remplirData(aData, dataLineLigne, MotsCles.NUM_COL_LI);
-                            break;
-                        case MotsCles.NUM_COL_IB:
-                            remplirData(aData, dataLineIB, MotsCles.NUM_COL_IB);
-                            break;
-                        case MotsCles.NUM_COL_471:
-                            remplirData(aData, dataLine471, MotsCles.NUM_COL_471);
-                            break;
-                        case MotsCles.NUM_COL_LE:
-                            remplirData(aData, dataLineLe, MotsCles.NUM_COL_LE);
-                            break;
-                        case MotsCles.NUM_COL_SF:
-                            remplirData(aData, dataLineSF, MotsCles.NUM_COL_SF);
-                            break;
-                        case MotsCles.NUM_COL_AI:
-                            remplirData(aData, dataLineAI, MotsCles.NUM_COL_AI);
-                            break;
-                        case MotsCles.NUM_COL_DP:
-                            remplirData(aData, dataLineDP, MotsCles.NUM_COL_DP);
-                            break;
-                        case MotsCles.NUM_COL_TVA:
-                            remplirData(aData, dataLineTVA, MotsCles.NUM_COL_TVA);
-                            break;
-                        case MotsCles.NUM_COL_REV:
-                            remplirData(aData, dataLineREV, MotsCles.NUM_COL_REV);
-                            break;
-                        case MotsCles.NUM_COL_EI:
-                            remplirData(aData, dataLineEI, MotsCles.NUM_COL_EI);
-                            break;
-                        case MotsCles.NUM_COL_LK:
-                            remplirData(aData, dataLineLinkup, MotsCles.NUM_COL_LK);
-                            break;
-                        case MotsCles.NUM_COL_ND:
-                            remplirData(aData, dataLineND, MotsCles.NUM_COL_ND);
-                            break;
-                        case MotsCles.NUM_COL_AF:
-                            remplirData(aData, dataLineAF, MotsCles.NUM_COL_AF);
-                            break;
-                    }
-                }
-            }
-
-            //ajout des donnees a la liste correspondante
-            dataLigne.add(dataLineLigne);
-            dataIB.add(dataLineIB);
-            data471.add(dataLine471);
-            dataLe.add(dataLineLe);
-            dataSF.add(dataLineSF);
-            dataAI.add(dataLineAI);
-            dataDP.add(dataLineDP);
-            dataTVA.add(dataLineTVA);
-            dataREV.add(dataLineREV);
-            dataEI.add(dataLineEI);
-            dataLinkup.add(dataLineLinkup);
-            dataND.add(dataLineND);
-            dataAF.add(dataLineAF);
-        }
     }
 
     /**
      * methode de creation des lignes :
      * transforme une liste de string en une ligne
      * @param data liste de listes d'entree
-     * @param tarif correspondant a la donnee
+     * @param numCol correspondant a la donnee
      * @return une liste de ligne
      */
-    List<Ligne> createLigne(List<List<String>> data, Integer tarif) {
+    List<Ligne> createLigne(List<List<String>> data, Integer numCol) {
         Ligne ligne;
         List<Ligne> lignes = new ArrayList<>();
 
-        //cas classiqe
-        if (tarif != MotsCles.TARIF_AF) {
-            for (List<String> list : data) {
-                if (!list.isEmpty()) {
-                    ligne = new Ligne();
-                    ligne.setDate(list.get(0));
-                    ligne.setEntreprise(list.get(1));
+        for (List<String> list : data) {
+            if (!list.isEmpty()) {
+                ligne = new Ligne();
+                ligne.setDate(list.get(0));
+                ligne.setEntreprise(list.get(1));
+
+                if (numCol == MotsCles.NUM_COL_LI){
                     ligne.setNbLigne((int) Double.parseDouble(list.get(2)));
-                    ligne.setTarif(entreprise.getTarifs().get(tarif));
-                    ligne.setTotal(ligne.getNbLigne() * ligne.getTarif());
-                    lignes.add(ligne);
-
-                    totalLigne += ligne.getNbLigne();
-                    totalHT += ligne.getTotal();
-
-                    if (tarif == MotsCles.TARIF_ND)
-                        nvDos++;
+                    ligne.setTarif(client.getTranches().get(0).getPrix());
                 }
-            }
-        //cas tarif speciaux
-        } else {
-            for (List<String> list : data) {
-                if (!list.isEmpty()) {
-                    ligne = new Ligne();
-                    ligne.setDate(list.get(0));
-                    ligne.setEntreprise(list.get(1));
+
+                else if (numCol == MotsCles.NUM_COL_AF){
                     ligne.setNbLigne(1);
                     ligne.setTarif(Double.parseDouble(list.get(2)));
-                    ligne.setTotal(ligne.getNbLigne() * ligne.getTarif());
-                    lignes.add(ligne);
-
-                    totalLigne += ligne.getNbLigne();
-                    totalHT += ligne.getTotal();
                 }
+
+                else {
+                    ligne.setNbLigne((int) Double.parseDouble(list.get(2)));
+                    ligne.setTarif(client.getTarifs().get(numCol -3).getPrix());
+                }
+
+                ligne.setTotal(ligne.getNbLigne() * ligne.getTarif());
+                lignes.add(ligne);
+
+                totalLigne += ligne.getNbLigne();
+
+                if (numCol != MotsCles.NUM_COL_LI)
+                    totalHT += ligne.getTotal();
+
+                if (numCol == MotsCles.NUM_COL_ND)
+                    nvDos++;
             }
         }
-
-        entreprise.setTotalLigne(totalLigne);
-        entreprise.setTotalHT(totalHT);
 
         return lignes;
     }
 
-    List<Ligne> parseLignes(Entreprise entreprise) {
-        List<Ligne> lignes = createLigne(dataLigne, 0);
-        int i = 0;
-        int lastnbligne1 = 0, lastnbligne2 = 0, lastnbligne3 = 0, lastnbligne4 = 0, lastnbligne5 = 0;
-        int lastpos1 = 0, lastpos2 = 0, lastpos3 = 0, lastpos4 = 0, lastpos5 = 0;
-        List<Double> tarif = entreprise.getTarifs();
-        List<Integer> tranche = new ArrayList<>();
+    List<Ligne> parseLignes(){
+        List<Ligne> lignes = createLigne(dataLigne, MotsCles.NUM_COL_LI);
+        List<Tranche> tranches = client.getTranches();
+        int nbLigne = 0;
+        int[] lastNbLigne = new int[tranches.size() -1];
+        int[] lastPos = new int[tranches.size() -1];
 
-        for (Ligne ligne : lignes) {
+        for (Ligne ligne : lignes){
 
-            if (0 <= i && i <= 5000) {
-                ligne.setTarif(tarif.get(0));
-                ligne.setTotal(ligne.getNbLigne() * ligne.getTarif());
-                lastpos1 = lignes.indexOf(ligne);
-                lastnbligne1 = i;
-            } else if (5000 < i && i <= 10000) {
-                ligne.setTarif(tarif.get(1));
-                ligne.setTotal(ligne.getTarif() * ligne.getNbLigne());
-                lastpos2 = lignes.indexOf(ligne);
-                lastnbligne2 = i;
-            } else if (10000 < i && i <= 15000) {
-                ligne.setTarif(tarif.get(2));
-                ligne.setTotal(ligne.getTarif() * ligne.getNbLigne());
-                lastpos3 = lignes.indexOf(ligne);
-                lastnbligne3 = i;
-            } else if (15000 < i && i <= 20000) {
-                ligne.setTarif(tarif.get(3));
-                ligne.setTotal(ligne.getTarif() * ligne.getNbLigne());
-                lastpos4 = lignes.indexOf(ligne);
-                lastnbligne4 = i;
-            } else if (20000 < i && i <= 50000) {
-                ligne.setTarif(tarif.get(4));
-                ligne.setTotal(ligne.getTarif() * ligne.getNbLigne());
-                lastpos5 = lignes.indexOf(ligne);
-                lastnbligne5 = i;
-            } else if (50000 < i) {
-                ligne.setTarif(tarif.get(5));
-                ligne.setTotal(ligne.getTarif() * ligne.getNbLigne());
+            for (int i = 0; i < tranches.size(); i++){
+                Tranche tranche = tranches.get(i);
+
+                if (tranches.size() != i+1 &&
+                        (nbLigne == 0 || tranche.getMin() < nbLigne)
+                        && nbLigne <= tranches.get(i+1).getMin()) {
+                    ligne.setTarif(tranche.getPrix());
+                    ligne.setTotal(ligne.getTarif() * ligne.getNbLigne());
+
+                    lastNbLigne[i] = nbLigne;
+                    lastPos[i] = lignes.indexOf(ligne);
+                    break;
+                }
+
+                else if (tranches.size() == i+1 && (nbLigne == 0 || tranche.getMin() < nbLigne)){
+                    ligne.setTarif(tranche.getPrix());
+                    ligne.setTotal(ligne.getTarif() * ligne.getNbLigne());
+                    break;
+                }
             }
-            i += ligne.getNbLigne();
+
+            nbLigne += ligne.getNbLigne();
+            totalHT += ligne.getTotal();
         }
 
-        tranche.add(5000);
-        tranche.add(10000);
-        tranche.add(15000);
-        tranche.add(20000);
-        tranche.add(50000);
+        for (int i = 0; i < lastPos.length; i++){
+            if (lastPos[i] + i + 1 == lignes.size()) break;
 
-        if (lastnbligne1 != 0 && lastpos1 != 0 && i > 5000 && !tarif.get(0).equals(tarif.get(1))) {
-            Ligne test = new Ligne();
-            test.setDate(lignes.get(lastpos1).getDate());
-            test.setEntreprise(lignes.get(lastpos1).getEntreprise());
-            test.setNbLigne(tranche.get(0) - lastnbligne1);
-            test.setTarif(tarif.get(0));
-            test.setTotal(test.getNbLigne() * test.getTarif());
-            lignes.get(lastpos1).setNbLigne(lignes.get(lastpos1).getNbLigne() - test.getNbLigne());
-            lignes.get(lastpos1).setTarif(tarif.get(1));
-            lignes.get(lastpos1).setTotal(lignes.get(lastpos1).getNbLigne() * lignes.get(lastpos1).getTarif());
-            lignes.add(lastpos1, test);
+            Ligne nouv = new Ligne();
+            Ligne init = lignes.get(lastPos[i] + i);
+            totalHT -= init.getTotal();
+
+            nouv.setDate(init.getDate());
+            nouv.setEntreprise(init.getEntreprise());
+            nouv.setNbLigne(tranches.get(i + 1).getMin() - lastNbLigne[i]);
+            nouv.setTarif(tranches.get(i).getPrix());
+            nouv.setTotal(nouv.getNbLigne() * nouv.getTarif());
+            totalHT += nouv.getTotal();
+
+            init.setNbLigne(init.getNbLigne() - nouv.getNbLigne());
+            init.setTarif(tranches.get(i + 1).getPrix());
+            init.setTotal(init.getNbLigne() * init.getTarif());
+            totalHT += init.getTotal();
+
+            lignes.add(lastPos[i] + i, nouv);
         }
 
-        if (lastnbligne2 != 0 && lastpos2 != 0 && i > 10000 && !tarif.get(1).equals(tarif.get(2))) {
-            Ligne test = new Ligne();
-            test.setDate(lignes.get(lastpos2 + 1).getDate());
-            test.setEntreprise(lignes.get(lastpos2 + 1).getEntreprise());
-            test.setNbLigne(tranche.get(1) - lastnbligne2);
-            test.setTarif(tarif.get(1));
-            test.setTotal(test.getNbLigne() * test.getTarif());
-            lignes.get(lastpos2 + 1).setNbLigne(lignes.get(lastpos2 + 1).getNbLigne() - test.getNbLigne());
-            lignes.get(lastpos2 + 1).setTarif(tarif.get(2));
-            lignes.get(lastpos2 + 1).setTotal(lignes.get(lastpos2 + 1).getNbLigne() * lignes.get(lastpos2 + 1).getTarif());
-            lignes.add(lastpos2 + 1, test);
-        }
-
-        if (lastnbligne3 != 0 && lastpos3 != 0 && i > 15000 && !tarif.get(2).equals(tarif.get(3))) {
-            Ligne test = new Ligne();
-            test.setDate(lignes.get(lastpos3 + 2).getDate());
-            test.setEntreprise(lignes.get(lastpos3 + 2).getEntreprise());
-            test.setNbLigne(tranche.get(2) - lastnbligne3);
-            test.setTarif(tarif.get(2));
-            test.setTotal(test.getNbLigne() * test.getTarif());
-            lignes.get(lastpos3 + 2).setNbLigne(lignes.get(lastpos3 + 2).getNbLigne() - test.getNbLigne());
-            lignes.get(lastpos3 + 2).setTarif(tarif.get(3));
-            lignes.get(lastpos3 + 2).setTotal(lignes.get(lastpos3 + 2).getNbLigne() * lignes.get(lastpos3 + 2).getTarif());
-            lignes.add(lastpos3 + 3, test);
-        }
-
-        if (lastnbligne4 != 0 && lastpos4 != 0 && i > 20000 && !tarif.get(3).equals(tarif.get(4))) {
-            Ligne test = new Ligne();
-            test.setDate(lignes.get(lastpos4 + 3).getDate());
-            test.setEntreprise(lignes.get(lastpos4 + 3).getEntreprise());
-            test.setNbLigne(tranche.get(3) - lastnbligne4);
-            test.setTarif(tarif.get(3));
-            test.setTotal(test.getNbLigne() * test.getTarif());
-            lignes.get(lastpos4 + 3).setNbLigne(lignes.get(lastpos4 + 3).getNbLigne() - test.getNbLigne());
-            lignes.get(lastpos4 + 3).setTarif(tarif.get(4));
-            lignes.get(lastpos4 + 3).setTotal(lignes.get(lastpos4 + 3).getNbLigne() * lignes.get(lastpos4 + 3).getTarif());
-            lignes.add(lastpos4 + 4, test);
-        }
-
-        if (lastnbligne5 != 0 && lastpos5 != 0 && i > 50000 && !tarif.get(4).equals(tarif.get(5))) {
-            Ligne test = new Ligne();
-            test.setDate(lignes.get(lastpos5 + 4).getDate());
-            test.setEntreprise(lignes.get(lastpos5 + 4).getEntreprise());
-            test.setNbLigne(tranche.get(4) - lastnbligne5);
-            test.setTarif(tarif.get(4));
-            test.setTotal(test.getNbLigne() * test.getTarif());
-            lignes.get(lastpos5 + 4).setNbLigne(lignes.get(lastpos5 + 4).getNbLigne() - test.getNbLigne());
-            lignes.get(lastpos5 + 4).setTarif(tarif.get(5));
-            lignes.get(lastpos5 + 4).setTotal(lignes.get(lastpos5 + 4).getNbLigne() * lignes.get(lastpos5 + 4).getTarif());
-            lignes.add(lastpos5 + 5, test);
-        }
         return lignes;
     }
 
@@ -376,12 +168,104 @@ public class Mamasita {
         return false;
     }
 
+    void remplirAllIfNotEmpty(){
+        remplirIfNotEmpty(dataIB, client.getTarifs().get(MotsCles.NUM_COL_IB -3).getNom(), MotsCles.NUM_COL_IB);
+        remplirIfNotEmpty(data471, client.getTarifs().get(MotsCles.NUM_COL_471 -3).getNom(), MotsCles.NUM_COL_471);
+        remplirIfNotEmpty(dataLe, client.getTarifs().get(MotsCles.NUM_COL_LE -3).getNom(), MotsCles.NUM_COL_LE);
+        remplirIfNotEmpty(dataSF, client.getTarifs().get(MotsCles.NUM_COL_SF -3).getNom(), MotsCles.NUM_COL_SF);
+        remplirIfNotEmpty(dataAI, client.getTarifs().get(MotsCles.NUM_COL_AI -3).getNom(), MotsCles.NUM_COL_AI);
+        remplirIfNotEmpty(dataDP, client.getTarifs().get(MotsCles.NUM_COL_DP -3).getNom(), MotsCles.NUM_COL_DP);
+        remplirIfNotEmpty(dataTVA, client.getTarifs().get(MotsCles.NUM_COL_TVA -3).getNom(), MotsCles.NUM_COL_TVA);
+        remplirIfNotEmpty(dataREV, client.getTarifs().get(MotsCles.NUM_COL_REV -3).getNom(), MotsCles.NUM_COL_REV);
+        remplirIfNotEmpty(dataEI, client.getTarifs().get(MotsCles.NUM_COL_EI -3).getNom(), MotsCles.NUM_COL_EI);
+        remplirIfNotEmpty(dataLinkup, client.getTarifs().get(MotsCles.NUM_COL_LK -3).getNom(), MotsCles.NUM_COL_LK);
+        remplirIfNotEmpty(dataND, client.getTarifs().get(MotsCles.NUM_COL_ND -3).getNom(), MotsCles.NUM_COL_ND);
+        remplirIfNotEmpty(dataAF, client.getTarifs().get(MotsCles.NUM_COL_AF -3).getNom(), MotsCles.NUM_COL_AF);
+    }
+
+    abstract void remplirIfNotEmpty(List<List<String>> data, String libelle, int numCol);
+
+    /**
+     * methode de parsing de la liste data
+     */
+    private void parseXls() {
+        List<List<String>> data = this.readXls(decompteSheet);
+
+        //initialisation des listes de donnees
+        List<String> dataLineLigne, dataLineIB, dataLine471, dataLineLe, dataLineSF, dataLineAI,
+                dataLineDP, dataLineTVA, dataLineREV, dataLineEI, dataLineLinkup, dataLineND, dataLineAF;
+
+        for (List<String> aData : data) {
+
+            //tri des donnees existantes dans les differentes listes
+            for (int index = 2; index < aData.size(); index++) {
+                if (!aData.get(index).equals("0.0")) {
+                    switch (index) {
+                        case MotsCles.NUM_COL_LI:
+                            dataLineLigne = remplirData(aData, MotsCles.NUM_COL_LI);
+                            dataLigne.add(dataLineLigne);
+                            break;
+                        case MotsCles.NUM_COL_IB:
+                            dataLineIB = remplirData(aData, MotsCles.NUM_COL_IB);
+                            dataIB.add(dataLineIB);
+                            break;
+                        case MotsCles.NUM_COL_471:
+                            dataLine471 = remplirData(aData, MotsCles.NUM_COL_471);
+                            data471.add(dataLine471);
+                            break;
+                        case MotsCles.NUM_COL_LE:
+                            dataLineLe = remplirData(aData, MotsCles.NUM_COL_LE);
+                            dataLe.add(dataLineLe);
+                            break;
+                        case MotsCles.NUM_COL_SF:
+                            dataLineSF = remplirData(aData, MotsCles.NUM_COL_SF);
+                            dataSF.add(dataLineSF);
+                            break;
+                        case MotsCles.NUM_COL_AI:
+                            dataLineAI = remplirData(aData, MotsCles.NUM_COL_AI);
+                            dataAI.add(dataLineAI);
+                            break;
+                        case MotsCles.NUM_COL_DP:
+                            dataLineDP = remplirData(aData, MotsCles.NUM_COL_DP);
+                            dataDP.add(dataLineDP);
+                            break;
+                        case MotsCles.NUM_COL_TVA:
+                            dataLineTVA = remplirData(aData, MotsCles.NUM_COL_TVA);
+                            dataTVA.add(dataLineTVA);
+                            break;
+                        case MotsCles.NUM_COL_REV:
+                            dataLineREV = remplirData(aData, MotsCles.NUM_COL_REV);
+                            dataREV.add(dataLineREV);
+                            break;
+                        case MotsCles.NUM_COL_EI:
+                            dataLineEI = remplirData(aData, MotsCles.NUM_COL_EI);
+                            dataEI.add(dataLineEI);
+                            break;
+                        case MotsCles.NUM_COL_LK:
+                            dataLineLinkup = remplirData(aData, MotsCles.NUM_COL_LK);
+                            dataLinkup.add(dataLineLinkup);
+                            break;
+                        case MotsCles.NUM_COL_ND:
+                            dataLineND = remplirData(aData, MotsCles.NUM_COL_ND);
+                            dataND.add(dataLineND);
+                            break;
+                        case MotsCles.NUM_COL_AF:
+                            dataLineAF = remplirData(aData, MotsCles.NUM_COL_AF);
+                            dataAF.add(dataLineAF);
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * methode de lecture d'un fichier excel :
      * chaque ligne correspond a une une liste de strings, ou chaque string est ue cellule
      * @return une liste de listes de strings
+     * @param decompteSheet la feuille du decompte
      */
-    private List<List<String>> readXls() {
+    private List<List<String>> readXls(HSSFSheet decompteSheet) {
         //remise a zero de la liste data
         List<List<String>> data = new ArrayList<>();
 
@@ -409,7 +293,7 @@ public class Mamasita {
                 } catch (Exception e) {
                     e.printStackTrace();
                     Erreur.creerFichierErreur(e.getMessage()+"\n"
-                            +decompteSheet.getSheetName() +" "+ getColumnLetter(cell.getColumnIndex()) + (cell.getRowIndex() + 1));
+                            + decompteSheet.getSheetName() +" "+ Column.getLetterFromInt(cell.getColumnIndex()) + (cell.getRowIndex() + 1));
                 }
             }
             data.add(dataLine);
@@ -419,20 +303,19 @@ public class Mamasita {
     }
 
     /**
-     * methode de remplissage des listes de donnees
-     * @param aData liste initiale
-     * @param data liste triee
-     * @param colonne numero de colonne de la liste triee
+     * methode de remplissage des listes de donnees :
+     * transforme une liste complete en liste specifique
+     * @param aData liste de toutes les cellules d'une ligne
+     * @param colonne numero de colonne
+     * @return liste string specifique a la colonne
      */
-    private void remplirData(@NotNull List<String> aData, @NotNull List<String> data, int colonne) {
+    private List<String> remplirData(@NotNull List<String> aData, int colonne) {
+        List<String> data = new ArrayList<>();
+
         data.add(aData.get(0));
         data.add(aData.get(1));
         data.add(aData.get(colonne));
-    }
 
-    @NotNull
-    private String getColumnLetter(int index){
-        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        return alphabet.substring(index, index + 1);
+        return data;
     }
 }

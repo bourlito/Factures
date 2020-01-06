@@ -62,7 +62,6 @@ public class TarifsDetails implements IView {
 
             else tarif = new Tarif();
 
-            tarif.setColonne(tColonne.getText());
             tarif.setNom(tNom.getText());
             tarif.setPrix(Double.parseDouble(tPrix.getText()));
 
@@ -87,22 +86,21 @@ public class TarifsDetails implements IView {
         Label lColonne = new Label(Keys.COLONNE);
         grid.add(lColonne,0,0);
 
-        tColonne = new TextField();
-        tColonne.setText(tarif != null ? tarif.getColonne() : "");
-        grid.add(tColonne,1,0);
+        Label lCol = new Label(tarif.getColonne());
+        grid.add(lCol,1,0);
 
         Label lNom = new Label(Keys.NOM);
         grid.add(lNom,0,1);
 
         tNom = new TextField();
-        tNom.setText(tarif != null ? tarif.getNom() : "");
+        tNom.setText(tarif.getNom());
         grid.add(tNom,1,1);
 
         Label lPrix = new Label(Keys.PRIX);
         grid.add(lPrix,0,2);
 
         tPrix = new TextField();
-        tPrix.setText(tarif != null ? String.valueOf(tarif.getPrix()) : "");
+        tPrix.setText(String.valueOf(tarif.getPrix()));
         grid.add(tPrix,1,2);
 
         root.setCenter(grid);

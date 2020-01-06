@@ -1,10 +1,10 @@
 package com.bourlito.factures.traitement;
 
-import com.bourlito.factures.utils.Erreur;
-import com.bourlito.factures.utils.MotsCles;
-import com.bourlito.factures.dto.Entreprise;
+import com.bourlito.factures.dto.Client;
 import com.bourlito.factures.dto.Ligne;
 import com.bourlito.factures.utils.Date;
+import com.bourlito.factures.utils.Erreur;
+import com.bourlito.factures.utils.MotsCles;
 import com.bourlito.factures.utils.NumFormat;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -25,8 +25,8 @@ public class XCL extends Mamasita {
     private HSSFWorkbook wb;
     private HSSFSheet sheet;
 
-    public XCL(HSSFSheet sheet, String filename, int nFacture, Entreprise entreprise) {
-        super(sheet, filename, nFacture, entreprise);
+    public XCL(HSSFSheet sheet, String filename, int nFacture, Client client) {
+        super(sheet, filename, nFacture, client);
         this.wb = new HSSFWorkbook();
     }
 
@@ -74,7 +74,7 @@ public class XCL extends Mamasita {
         cellCPEStyle.setWrapText(true);
         cellCPEStyle.setVerticalAlignment(VerticalAlignment.CENTER);
         cellCPEStyle.setFont(setFont((short) 11, false, false));
-        cellCPE.setCellStyle(cellCPEStyle); // FIXME
+        cellCPE.setCellStyle(cellCPEStyle);
         cellCPE.setCellValue(MotsCles.adresseCPE);
         sheet.addMergedRegion(new CellRangeAddress(headerRow0.getRowNum(), headerRow0.getRowNum(), 1, 5));
 
@@ -130,7 +130,7 @@ public class XCL extends Mamasita {
         CellStyle cellClientNomValueStyle = setCellStyle(false, true, false, false);
         cellClientNomValueStyle.setFont(setFont((short) 11, false, false));
         cellClientNomValue.setCellStyle(cellClientNomValueStyle);
-        cellClientNomValue.setCellValue(entreprise.getNomEntreprise());
+        cellClientNomValue.setCellValue(client.getNom());
 
         Cell cellClientNomValue1 = headerRow3.createCell(3);
         cellClientNomValue1.setCellStyle(setCellStyle(false, true, false, false));
@@ -154,7 +154,7 @@ public class XCL extends Mamasita {
         CellStyle cellClientAdressValueStyle = wb.createCellStyle();
         cellClientAdressValueStyle.setFont(setFont((short) 11, false, false));
         cellClientAdressValue.setCellStyle(cellClientAdressValueStyle);
-        cellClientAdressValue.setCellValue(entreprise.getAdresse());
+        cellClientAdressValue.setCellValue(client.getAdresse());
 
         Cell cellClientAdressValue2 = headerRow4.createCell(4);
         cellClientAdressValue2.setCellStyle(setCellStyle(false, false, true, false));
@@ -175,7 +175,7 @@ public class XCL extends Mamasita {
         CellStyle cellClientCPValueStyle = setCellStyle(false, false, false, true);
         cellClientCPValueStyle.setFont(setFont((short) 11, false, false));
         cellClientCPValue.setCellStyle(cellClientCPValueStyle);
-        cellClientCPValue.setCellValue(entreprise.getCp().substring(0, 5));
+        cellClientCPValue.setCellValue(client.getCp());
 
         Cell cellClientVille = headerRow5.createCell(3);
         CellStyle cellClientVilleStyle = setCellStyle(false, false, false, true);
@@ -187,7 +187,7 @@ public class XCL extends Mamasita {
         CellStyle cellClientVilleValueStyle = setCellStyle(false, false, true, true);
         cellClientVilleValueStyle.setFont(setFont((short) 11, false, false));
         cellClientVilleValue.setCellStyle(cellClientVilleValueStyle);
-        cellClientVilleValue.setCellValue(entreprise.getVille());
+        cellClientVilleValue.setCellValue(client.getVille());
 
         //a regler avant le
         Cell cellDate = headerRow3.createCell(6);
@@ -318,21 +318,10 @@ public class XCL extends Mamasita {
 
         if (isNotEmpty(dataLigne)) {
             creerEnteteType("Lignes");
-            remplirLigne(parseLignes(entreprise));
+            remplirLigne(parseLignes());
         }
 
-        remplirIfNotEmpty(dataIB, "Import Banque", MotsCles.TARIF_IB);
-        remplirIfNotEmpty(data471, "471", MotsCles.TARIF_471);
-        remplirIfNotEmpty(dataLe, "Lettrage", MotsCles.TARIF_LE);
-        remplirIfNotEmpty(dataSF, "ScanFact", MotsCles.TARIF_SF);
-        remplirIfNotEmpty(dataAI, "Attache Image", MotsCles.TARIF_AI);
-        remplirIfNotEmpty(dataDP, "Découpe PDF", MotsCles.TARIF_DP);
-        remplirIfNotEmpty(dataTVA, "TVA", MotsCles.TARIF_TVA);
-        remplirIfNotEmpty(dataREV, "Révision", MotsCles.TARIF_REV);
-        remplirIfNotEmpty(dataEI, "Ecritures Importées", MotsCles.TARIF_EI);
-        remplirIfNotEmpty(dataLinkup, "Linkup", MotsCles.TARIF_LK);
-        remplirIfNotEmpty(dataND, "Nouveaux Dossiers", MotsCles.TARIF_ND);
-        remplirIfNotEmpty(dataAF, "Dossiers Spécifiques", MotsCles.TARIF_AF);
+        remplirAllIfNotEmpty();
     }
 
     private void creerRecap() {
@@ -397,7 +386,7 @@ public class XCL extends Mamasita {
         cellTotalValueStyle.setFont(setFont((short) 12, true, false));
         cellTotalValueStyle.setAlignment(HorizontalAlignment.CENTER);
         cellTotalValue.setCellStyle(cellTotalValueStyle);
-        cellTotalValue.setCellValue(entreprise.getTotalLigne());
+        cellTotalValue.setCellValue(totalLigne);
 
         recapRow2.createCell(4).setCellStyle(setCellStyle(true, false, false, false));
         recapRow2.createCell(7).setCellStyle(setCellStyle(false, false, true, false));
@@ -416,7 +405,7 @@ public class XCL extends Mamasita {
         cellTotalHTValueStyle.setFont(setFont((short) 11, false, false));
         cellTotalHTValueStyle.setAlignment(HorizontalAlignment.CENTER);
         cellTotalHTValue.setCellStyle(cellTotalHTValueStyle);
-        cellTotalHTValue.setCellValue(NumFormat.fDouble().format(entreprise.getTotalHT()) + " €");
+        cellTotalHTValue.setCellValue(NumFormat.fDouble().format(totalHT) + " €");
 
         Cell cellTVA = recapRow4.createCell(4);
         CellStyle cellTVAStyle = setCellStyle(true, false, false, false);
@@ -432,7 +421,7 @@ public class XCL extends Mamasita {
         cellTVAValueStyle.setFont(setFont((short) 11, false, false));
         cellTVAValueStyle.setAlignment(HorizontalAlignment.CENTER);
         cellTVAValue.setCellStyle(cellTVAValueStyle);
-        cellTVAValue.setCellValue(NumFormat.fDouble().format(entreprise.getTotalHT() * 0.2) + " €");
+        cellTVAValue.setCellValue(NumFormat.fDouble().format(totalHT * 0.2) + " €");
 
         Cell cellTotalTTC = recapRow5.createCell(4);
         CellStyle cellTotalTTCStyle = setCellStyle(true, false, false, false);
@@ -448,7 +437,7 @@ public class XCL extends Mamasita {
         cellTotalTTCValueStyle.setFont(setFont((short) 11, false, false));
         cellTotalTTCValueStyle.setAlignment(HorizontalAlignment.CENTER);
         cellTotalTTCValue.setCellStyle(cellTotalTTCValueStyle);
-        cellTotalTTCValue.setCellValue(NumFormat.fDouble().format(entreprise.getTotalHT() * 1.2) + " €");
+        cellTotalTTCValue.setCellValue(NumFormat.fDouble().format(totalHT * 1.2) + " €");
 
         recapRow6.createCell(4).setCellStyle(setCellStyle(true, false, false, true));
         recapRow6.createCell(5).setCellStyle(setCellStyle(false, false, false, true));
@@ -578,10 +567,10 @@ public class XCL extends Mamasita {
         return cellStyle;
     }
 
-    private void remplirIfNotEmpty(List<List<String>> data, String entete, int tarif) {
+    public void remplirIfNotEmpty(List<List<String>> data, String entete, int numCol) {
         if (isNotEmpty(data)) {
             creerEnteteType(entete);
-            remplirLigne(createLigne(data, tarif));
+            remplirLigne(createLigne(data, numCol));
         }
     }
 

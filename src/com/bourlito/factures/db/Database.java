@@ -6,10 +6,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class Database {
 
@@ -57,7 +54,7 @@ public class Database {
 
         try {
             return  (JSONArray) parser.parse(new FileReader(DB_PATH + DB_NAME));
-        } catch (IOException | ParseException e) {
+        } catch (ParseException | IOException e) {
             e.printStackTrace();
             return null;
         }

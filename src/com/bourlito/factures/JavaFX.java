@@ -1,5 +1,7 @@
 package com.bourlito.factures;
 
+import com.bourlito.factures.dto.Client;
+import com.bourlito.factures.service.SClient;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import com.bourlito.factures.scenes.Main;

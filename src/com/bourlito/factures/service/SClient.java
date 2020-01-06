@@ -35,6 +35,15 @@ public class SClient {
         return clients;
     }
 
+    public Client getClientByAlias(String alias){
+        for (Client client: clients){
+            if (client.getAlias().equals(alias))
+                return client;
+        }
+
+        return null;
+    }
+
     public void addClient(Client client) {
         clients.add(client);
         this.writeDB();

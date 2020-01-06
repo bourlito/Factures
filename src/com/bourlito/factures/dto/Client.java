@@ -1,6 +1,9 @@
 package com.bourlito.factures.dto;
 
+import com.bourlito.factures.service.STarif;
+import com.bourlito.factures.service.STranche;
 import com.bourlito.factures.utils.Keys;
+import com.bourlito.factures.utils.MotsCles;
 import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -9,9 +12,15 @@ import java.util.Collections;
 import java.util.List;
 
 public class Client implements Comparable<Client>{
-    private String alias, nom, adresse, cp, ville, libelleTranches;
+    private String alias = "", nom = "", adresse = "", cp = "", ville = "", libelleTranches;
     private List<Tranche> tranches;
     private List<Tarif> tarifs;
+
+    public Client() {
+        this.libelleTranches = MotsCles.LIBELLE_LI;
+        this.tranches = STranche.getInstance().getDefaultTranches();
+        this.tarifs = STarif.getInstance().getDefaultTarifs();
+    }
 
     public Client(String alias, String nom, String adresse, String cp, String ville, String libelleTranches, List<Tranche> tranches, List<Tarif> tarifs) {
         this.alias = alias;
@@ -95,26 +104,6 @@ public class Client implements Comparable<Client>{
     public List<Tarif> getTarifs() {
         Collections.sort(tarifs);
         return tarifs;
-    }
-
-    public void setAlias(String alias) {
-        this.alias = alias;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
-    public void setCp(String cp) {
-        this.cp = cp;
-    }
-
-    public void setVille(String ville) {
-        this.ville = ville;
     }
 
     public void setLibelleTranches(String libelleTranches) {
