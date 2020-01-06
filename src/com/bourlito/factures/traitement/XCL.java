@@ -5,6 +5,7 @@ import com.bourlito.factures.MotsCles;
 import com.bourlito.factures.dto.Entreprise;
 import com.bourlito.factures.dto.Ligne;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.util.IOUtils;
@@ -16,13 +17,18 @@ import java.util.List;
 
 public class XCL extends Mamasita {
 
-    // TODO: ajouter images xcl
+    // TODO: ajouter images
+    // TODO: type de cellule (nbLigne -> num, totalHT -> formula)
 
     private int totalLigne = 0;
     private double totalHT = 0;
 
+    private HSSFWorkbook wb;
+    private HSSFSheet sheet;
+
     public XCL(HSSFSheet sheet, String filename, int nFacture, Entreprise entreprise) {
         super(sheet, filename, nFacture, entreprise);
+        this.wb = new HSSFWorkbook();
     }
 
     public void creerXCL() {
@@ -46,7 +52,7 @@ public class XCL extends Mamasita {
     }
 
     private void creerFeuille() {
-        Sheet sheet = wb.createSheet("Facture");
+        sheet = wb.createSheet("Facture");
         sheet.setDefaultRowHeightInPoints(15f);
         sheet.setDefaultColumnWidth(10);
         sheet.setColumnWidth(5, 256 * 5);
@@ -69,7 +75,7 @@ public class XCL extends Mamasita {
         cellCPEStyle.setWrapText(true);
         cellCPEStyle.setVerticalAlignment(VerticalAlignment.CENTER);
         cellCPEStyle.setFont(setFont((short) 11, false, false));
-        cellCPE.setCellStyle(cellCPEStyle);
+        cellCPE.setCellStyle(cellCPEStyle); // FIXME
         cellCPE.setCellValue(MotsCles.adresseCPE);
         sheet.addMergedRegion(new CellRangeAddress(headerRow0.getRowNum(), headerRow0.getRowNum(), 1, 5));
 

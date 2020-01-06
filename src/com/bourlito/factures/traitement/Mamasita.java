@@ -8,7 +8,6 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
@@ -34,18 +33,16 @@ public abstract class Mamasita {
 
     private static final List<List<String>> address = new ArrayList<>();
 
-    Workbook wb;
-    HSSFSheet sheet;
+    private HSSFSheet decompteSheet;
     String filename;
     int nFacture;
     Entreprise entreprise;
 
     public Mamasita(HSSFSheet sheet, String filename, int nFacture, Entreprise entreprise) {
-        this.sheet = sheet;
+        this.decompteSheet = sheet;
         this.filename = filename;
         this.nFacture = nFacture;
         this.entreprise = entreprise;
-        this.wb = new HSSFWorkbook();
     }
 
     @NotNull
@@ -369,7 +366,7 @@ public abstract class Mamasita {
         //remise a zero de la liste data
         List<List<String>> data = new ArrayList<>();
 
-        for (Row row : sheet) {
+        for (Row row : decompteSheet) {
             //saut de la premiere ligne
             if (row.getRowNum() == 0)
                 continue;
@@ -393,7 +390,7 @@ public abstract class Mamasita {
                 } catch (Exception e) {
                     e.printStackTrace();
                     Erreur.creerFichierErreur(e.getMessage()+"\n"
-                            +sheet.getSheetName() +" "+ getColumnLetter(cell.getColumnIndex()) + (cell.getRowIndex() + 1));
+                            +decompteSheet.getSheetName() +" "+ getColumnLetter(cell.getColumnIndex()) + (cell.getRowIndex() + 1));
                 }
             }
             data.add(dataLine);
