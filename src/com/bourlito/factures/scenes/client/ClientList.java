@@ -40,16 +40,9 @@ public class ClientList implements IView {
             stage.setScene(new ClientDetails(stage, new Client()).getScene());
         });
 
-        Button btnExport = new Button("Exporter");
-        btnExport.setOnAction(event -> {
-            sClient.exportDB();
-
-            exportWindow().show();
-        });
-
         ButtonBar bbar = new ButtonBar();
         bbar.setPadding(new Insets(10, 0, 0, 10));
-        bbar.getButtons().addAll(btnRetour, btnNew, btnExport);
+        bbar.getButtons().addAll(btnRetour, btnNew);
         root.setBottom(bbar);
 
         // clients

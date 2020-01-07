@@ -10,7 +10,6 @@ import java.io.*;
 
 public class Database {
 
-    private static final String DB_PATH = "src\\com\\bourlito\\factures\\db\\";
     private static final String DB_NAME = "clients.json";
     private static Database INSTANCE = null;
 
@@ -24,19 +23,6 @@ public class Database {
     }
 
     public void write(@NotNull JSONArray array){
-        try {
-
-            File file = new File(DB_PATH + DB_NAME);
-            FileWriter fr = new FileWriter(file);
-            fr.write(array.toString());
-            fr.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void export(@NotNull JSONArray array){
         try {
 
             File file = new File(MotsCles.DOSSIER + DB_NAME);
@@ -53,7 +39,10 @@ public class Database {
         JSONParser parser = new JSONParser();
 
         try {
-            return  (JSONArray) parser.parse(new FileReader(DB_PATH + DB_NAME));
+            return (JSONArray) parser.parse(new FileReader(MotsCles.DOSSIER + DB_NAME));
+        } catch (FileNotFoundException e){
+            this.write(new JSONArray());
+            return this.read();
         } catch (ParseException | IOException e) {
             e.printStackTrace();
             return null;

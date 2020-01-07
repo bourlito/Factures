@@ -54,10 +54,6 @@ public class SClient {
         this.writeDB();
     }
 
-    public void exportDB(){
-        db.export(this.insert());
-    }
-
     private void initClients(){
         JSONArray jClients = db.read();
 
