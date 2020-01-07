@@ -34,7 +34,6 @@ public class STarif {
         tarifs.add(new Tarif(Column.getLetterFromInt(MotsCles.NUM_COL_EI), MotsCles.LIBELLE_EI, MotsCles.TARIF_DEFAULT));
         tarifs.add(new Tarif(Column.getLetterFromInt(MotsCles.NUM_COL_LK), MotsCles.LIBELLE_LK, MotsCles.TARIF_DEFAULT));
         tarifs.add(new Tarif(Column.getLetterFromInt(MotsCles.NUM_COL_ND), MotsCles.LIBELLE_ND, MotsCles.TARIF_DEFAULT));
-        tarifs.add(new Tarif(Column.getLetterFromInt(MotsCles.NUM_COL_AF), MotsCles.LIBELLE_AF, MotsCles.TARIF_DEFAULT));
 
         return tarifs;
     }

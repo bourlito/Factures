@@ -183,7 +183,7 @@ public abstract class Mamasita {
         remplirIfNotEmpty(dataEI, client.getTarifs().get(MotsCles.NUM_COL_EI -3).getNom(), MotsCles.NUM_COL_EI);
         remplirIfNotEmpty(dataLinkup, client.getTarifs().get(MotsCles.NUM_COL_LK -3).getNom(), MotsCles.NUM_COL_LK);
         remplirIfNotEmpty(dataND, client.getTarifs().get(MotsCles.NUM_COL_ND -3).getNom(), MotsCles.NUM_COL_ND);
-        remplirIfNotEmpty(dataAF, client.getTarifs().get(MotsCles.NUM_COL_AF -3).getNom(), MotsCles.NUM_COL_AF);
+        remplirIfNotEmpty(dataAF, MotsCles.LIBELLE_AF, MotsCles.NUM_COL_AF);
     }
 
     abstract void remplirIfNotEmpty(List<List<String>> data, String libelle, int numCol);

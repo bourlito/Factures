@@ -40,14 +40,6 @@ public class TarifsDetails implements IView {
         BorderPane root = new BorderPane();
         root.setPadding(new Insets(10));
 
-        Button btnSupprimer = new Button("Supprimer");
-        btnSupprimer.setId("btnSupprimer");
-        btnSupprimer.setOnAction(event -> {
-            client.getTarifs().remove(tarif);
-
-            stage.setScene(new TarifsList(stage, client).getScene());
-        });
-
         Button btnAnnuler = new Button("Annuler");
         btnAnnuler.setOnAction(event -> {
             stage.setScene(new TarifsList(stage, client).getScene());
@@ -72,9 +64,7 @@ public class TarifsDetails implements IView {
 
         ButtonBar bbar = new ButtonBar();
         bbar.setPadding(new Insets(10, 0, 0, 10));
-        if (tarif != null)
-            bbar.getButtons().addAll(btnSupprimer, btnAnnuler, btnValider);
-        else bbar.getButtons().addAll(btnAnnuler, btnValider);
+        bbar.getButtons().addAll(btnAnnuler, btnValider);
         root.setBottom(bbar);
 
         GridPane grid = new GridPane();

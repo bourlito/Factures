@@ -60,7 +60,7 @@ public class TarifsList implements IView {
                 stage.setScene(new TarifsDetails(stage, client, tarif).getScene());
             });
 
-            if (j == 2){
+            if (j == 1){
                 i++;
                 j = 0;
             }

@@ -53,30 +53,26 @@ public class Main implements IView{
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
-        Text scenetitle = new Text("Coucou petite perruche");
-        scenetitle.setFont(javafx.scene.text.Font.font("Tahoma", FontWeight.NORMAL, 20));
-        grid.add(scenetitle, 0, 0, 2, 1);
-
         Label lNum = new Label("N° de première facture :");
-        grid.add(lNum, 0, 1);
+        grid.add(lNum, 0, 0);
         tNum = new TextField();
         tNum.setMaxWidth(200);
         tNum.setText(nFact);
         tNum.textProperty().addListener((observable, oldValue, newValue) -> {
             nFact = newValue;
         });
-        grid.add(tNum, 1, 1);
+        grid.add(tNum, 1, 0);
 
         Button btnDest = new Button("Dossier de destination");
         btnDest.setMinWidth(200);
-        grid.add(btnDest, 0, 2);
+        grid.add(btnDest, 0, 1);
         Label lDest = new Label();
         lDest.setText(destination != null ? destination.getName() : "");
-        grid.add(lDest, 1, 2);
+        grid.add(lDest, 1, 1);
 
         Button btnClients = new Button("Clients");
         btnClients.setMinWidth(200);
-        grid.add(btnClients, 0, 3);
+        grid.add(btnClients, 0, 2);
         btnClients.setOnAction(event -> {
             stage.setScene(new ClientList(stage).getScene());
         });
@@ -84,7 +80,7 @@ public class Main implements IView{
         Button btnValider = new Button("Valider");
         btnValider.setId("btnValider");
         btnValider.setMinWidth(200);
-        grid.add(btnValider, 1, 3);
+        grid.add(btnValider, 1, 2);
 
         btnDest.setOnAction(e -> {
             DirectoryChooser directoryChooser = new DirectoryChooser();
@@ -99,12 +95,10 @@ public class Main implements IView{
 
         btnValider.setOnAction(event -> {
             if (tNum.getText().equals("") || tNum.getText() == null || destination == null) {
-                scenetitle.setText("Il faut remplir tous les champs !");
-                scenetitle.setStyle("-fx-fill: tomato");
-                return;
+                Erreur.creerFichierErreur("Il faut remplir tous les champs !");
             }
 
-            this.valider();
+            else this.valider();
         });
 
         return new CScene(grid);
