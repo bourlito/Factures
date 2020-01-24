@@ -40,9 +40,11 @@ public class Database {
 
         try {
             return (JSONArray) parser.parse(new FileReader(MotsCles.DOSSIER + DB_NAME));
+
         } catch (FileNotFoundException e){
             this.write(new JSONArray());
             return this.read();
+
         } catch (ParseException | IOException e) {
             e.printStackTrace();
             return null;

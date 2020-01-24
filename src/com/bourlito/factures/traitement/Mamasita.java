@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Mamasita {
+abstract class Mamasita {
 
     // TODO: changer en singleton et faire tout le traitement ici, reserver PDF et XCL pour les visuels
 
@@ -32,8 +32,6 @@ public abstract class Mamasita {
     private final List<List<String>> dataLinkup = new ArrayList<>();
     private final List<List<String>> dataND = new ArrayList<>();
     private final List<List<String>> dataAF = new ArrayList<>();
-
-    private static final List<List<String>> address = new ArrayList<>();
 
     private HSSFSheet decompteSheet;
     String filename;
