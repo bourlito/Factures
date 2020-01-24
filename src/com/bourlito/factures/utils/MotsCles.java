@@ -3,7 +3,7 @@ package com.bourlito.factures.utils;
 public interface MotsCles {
     // String DOSSIER = "D:\\CPE Solutions\\Factures\\";
     // String DOSSIER = "C:\\Users\\franc\\Desktop\\CPE SOLUTIONS\\FACTURATION\\";
-    String DOSSIER = "C:\\";
+    String DOSSIER = "C:\\Users\\Public\\";
 
     String IMG = DOSSIER + "logo-cpe-solutions.PNG";
     String IMGREG = DOSSIER + "cdnReg.PNG";
