@@ -65,6 +65,7 @@ public class PDF extends Mamasita {
 
         PdfPTable table = new PdfPTable(5);
         table.setWidthPercentage(100);
+        table.setKeepTogether(true);
         int[] headerwidths = {25, 5, 60, 5, 60};
         try {
             table.setWidths(headerwidths);
