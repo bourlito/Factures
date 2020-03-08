@@ -6,23 +6,20 @@ import com.bourlito.factures.scenes.utils.CScene;
 import com.bourlito.factures.scenes.utils.Chooser;
 import com.bourlito.factures.service.SClient;
 import com.bourlito.factures.traitement.PDF;
+import com.bourlito.factures.traitement.Recap;
 import com.bourlito.factures.traitement.XCL;
 import com.bourlito.factures.utils.Date;
 import com.bourlito.factures.utils.Erreur;
 import com.bourlito.factures.utils.NumFormat;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -37,7 +34,7 @@ public class Main implements IView{
 
     private Stage stage;
     private static File destination;
-    private static String nFact = "";
+    private static String nFact = "1";
     private TextField tNum;
 
     public Main(Stage stage) {
@@ -105,26 +102,21 @@ public class Main implements IView{
     }
 
     private void valider(){
-
-        FileInputStream fis = null;
+        HSSFWorkbook wb;
         try {
-            fis = new FileInputStream(new File(destination.getAbsolutePath() + "\\decompte.xls"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            Erreur.creerFichierErreur(e.getMessage());
-        }
-        HSSFWorkbook wb = null;
-        try {
-            assert fis != null;
+            FileInputStream fis = new FileInputStream(new File(destination.getAbsolutePath() + "\\decompte.xls"));
             wb = new HSSFWorkbook(fis);
         } catch (IOException e) {
-            e.printStackTrace();
             Erreur.creerFichierErreur(e.getMessage());
+            e.printStackTrace();
+            return;
         }
+
         int a = 0;
         int nFacture = a + Integer.parseInt(tNum.getText());
-        do {
-            assert wb != null;
+        Recap recap = new Recap(destination.getAbsolutePath() + "\\_recap.xls");
+
+        while (a < wb.getNumberOfSheets()) {
             HSSFSheet sheet = wb.getSheetAt(a);
 
             Client client = SClient.getInstance().getClientByAlias(sheet.getSheetName());
@@ -137,11 +129,14 @@ public class Main implements IView{
             String libelleFac = destination.getAbsolutePath() + "\\Facture CPE traitement " + client.getNom() + " " + Date.getLibelle() + " - " + NumFormat.fNbFact().format(nFacture);
 
             new XCL(wb.getSheetAt(a), libelleFac + ".xls", nFacture, client).creerXCL();
-            new PDF(wb.getSheetAt(a), libelleFac + ".pdf", nFacture, client).createPdf();
+            PDF pdf = new PDF(wb.getSheetAt(a), libelleFac + ".pdf", nFacture, client);
+            pdf.createPdf();
+
+            recap.insert(client, nFacture, pdf.getTotalHT());
 
             a++;
             nFacture++;
-        } while (a < wb.getNumberOfSheets());
+        }
 
         finishWindow().show();
     }

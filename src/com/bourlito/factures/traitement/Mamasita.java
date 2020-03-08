@@ -319,4 +319,8 @@ abstract class Mamasita {
 
         return data;
     }
+
+    public double getTotalHT() {
+        return totalHT;
+    }
 }
