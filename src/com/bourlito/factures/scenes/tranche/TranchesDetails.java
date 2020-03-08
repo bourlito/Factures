@@ -24,11 +24,22 @@ public class TranchesDetails implements IView {
 
     private TextField tMin, tPrix;
 
+    /**
+     * constructeur
+     * @param stage a utiliser
+     * @param client associe
+     */
     public TranchesDetails(Stage stage, Client client) {
         this.stage = stage;
         this.client = client;
     }
 
+    /**
+     * constructeur
+     * @param stage a utiliser
+     * @param client associe
+     * @param tranche dont les informations seront affichees
+     */
     public TranchesDetails(Stage stage, Client client, Tranche tranche) {
         this.stage = stage;
         this.client = client;

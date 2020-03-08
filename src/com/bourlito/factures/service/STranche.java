@@ -10,8 +10,15 @@ public class STranche {
 
     private static STranche INSTANCE = null;
 
+    /**
+     * constructeur
+     */
     private STranche(){}
 
+    /**
+     * cree l'instance si elle n'existe pas
+     * @return l'instance de STranche
+     */
     public static STranche getInstance(){
         if (INSTANCE == null)
             INSTANCE = new STranche();
@@ -19,6 +26,10 @@ public class STranche {
         return INSTANCE;
     }
 
+    /**
+     * methode de recuperation des tranches par defaut
+     * @return la liste des tranches par defaut
+     */
     public List<Tranche> getDefaultTranches() {
         List<Tranche> tranches = new ArrayList<>();
         tranches.add(new Tranche(0, Constants.TARIF_DEFAULT));

@@ -37,6 +37,10 @@ public class Main implements IView{
     private static String nFact = "1";
     private TextField tNum;
 
+    /**
+     * constructeur
+     * @param stage la fenetre principale
+     */
     public Main(Stage stage) {
         this.stage = stage;
     }
@@ -97,6 +101,9 @@ public class Main implements IView{
         return new CScene(grid);
     }
 
+    /**
+     * methode de validation des parametres rentres cans la fenetre principale
+     */
     private void valider(){
         HSSFWorkbook wb;
         try {
@@ -137,6 +144,10 @@ public class Main implements IView{
         finishWindow().show();
     }
 
+    /**
+     * methode de creation d'une fenetre de fin
+     * @return la fenetre de fin du programme
+     */
     private Stage finishWindow(){
         Stage newWindow = new Stage();
         newWindow.setTitle("Terminer");

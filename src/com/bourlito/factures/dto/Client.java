@@ -13,8 +13,8 @@ import java.util.List;
 
 public class Client implements Comparable<Client>{
     private String alias = "", nom = "", adresse = "", cp = "", ville = "", libelleTranches;
-    private List<Tranche> tranches;
-    private List<Tarif> tarifs;
+    private final List<Tranche> tranches;
+    private final List<Tarif> tarifs;
 
     public Client() {
         this.libelleTranches = Constants.LIBELLE_LI;

@@ -13,8 +13,15 @@ public class Database {
     private static final String DB_NAME = "clients.json";
     private static Database INSTANCE = null;
 
+    /**
+     * constructeur
+     */
     private Database(){}
 
+    /**
+     * cree l'instance si elle n'exite pas
+     * @return l'instance de Database
+     */
     public static Database getInstance(){
         if (INSTANCE == null)
             INSTANCE = new Database();
@@ -22,6 +29,10 @@ public class Database {
         return INSTANCE;
     }
 
+    /**
+     * methode d'ecriture d'un json array dans le fichier db
+     * @param array json array contenant les infos de la db
+     */
     public void write(@NotNull JSONArray array){
         try {
 
@@ -35,6 +46,10 @@ public class Database {
         }
     }
 
+    /**
+     * methode de lecture de la db
+     * @return un json array contenant les infos de la db
+     */
     public JSONArray read(){
         JSONParser parser = new JSONParser();
 

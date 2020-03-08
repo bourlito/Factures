@@ -11,8 +11,15 @@ public class STarif {
 
     private static STarif INSTANCE = null;
 
+    /**
+     * constructeur
+     */
     private STarif(){}
 
+    /**
+     * cree une instance si elle n'existe pas
+     * @return l'instance de STarif
+     */
     public static STarif getInstance(){
         if (INSTANCE == null)
             INSTANCE = new STarif();
@@ -20,6 +27,10 @@ public class STarif {
         return INSTANCE;
     }
 
+    /**
+     * methode de recuperation des tarifs par defaut
+     * @return la liste des tarifs par defaut
+     */
     public List<Tarif> getDefaultTarifs() {
         List<Tarif> tarifs = new ArrayList<>();
 
