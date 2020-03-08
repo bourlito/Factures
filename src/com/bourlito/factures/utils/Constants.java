@@ -64,4 +64,11 @@ public interface Constants {
     int PANE_HEIGHT = 500;
     int PANE_HEIGHT_TIERS = 166;
     int FONT_SIZE = 11;
+    int TOTAL_COL = 11;
+    int XCL_COL_WIDTH = 256;
+    int HGAP = 20;
+    int VGAP = 10;
+
+    double TAUX_TVA = 0.2;
+    double TAUX_TTC = 1.2;
 }

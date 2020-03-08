@@ -1,6 +1,7 @@
 package com.bourlito.factures.traitement;
 
 import com.bourlito.factures.dto.Client;
+import com.bourlito.factures.utils.Constants;
 import com.bourlito.factures.utils.Date;
 import com.bourlito.factures.utils.Erreur;
 import com.bourlito.factures.utils.Format;
@@ -53,7 +54,7 @@ public class Recap {
         sheet = wb.createSheet(name);
         sheet.setDefaultRowHeightInPoints(15f);
         sheet.setDefaultColumnWidth(10);
-        sheet.setColumnWidth(3, 256*61);
+        sheet.setColumnWidth(3, Constants.XCL_COL_WIDTH *61);
 
         Row row = sheet.createRow(0);
         row.createCell(0).setCellValue("DATE");
@@ -86,7 +87,7 @@ public class Recap {
 
         this.createRow(nFact, client, "C01" + client.getAlias(), Format.getTotalTTC(totalHt), 4);
         this.createRow(nFact, client, "706000", totalHt, 5);
-        this.createRow(nFact, client, "445710", totalHt * 0.2, 5);
+        this.createRow(nFact, client, "445710", totalHt * Constants.TAUX_TVA, 5);
 
         this.write();
     }

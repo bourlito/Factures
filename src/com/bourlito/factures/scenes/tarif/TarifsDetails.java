@@ -25,6 +25,12 @@ public class TarifsDetails implements IView {
     private TextField tNom;
     private TextField tPrix;
 
+    /**
+     * constructeur
+     * @param stage a utiliser
+     * @param client associe
+     * @param tarif a utiliser
+     */
     public TarifsDetails(Stage stage, Client client, Tarif tarif) {
         this.stage = stage;
         this.client = client;
@@ -64,8 +70,8 @@ public class TarifsDetails implements IView {
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
-        grid.setHgap(20);
-        grid.setVgap(10);
+        grid.setHgap(Constants.HGAP);
+        grid.setVgap(Constants.VGAP);
         grid.setPadding(new Insets(Constants.PADDING));
 
         Label lColonne = new Label(Keys.COLONNE);

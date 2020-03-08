@@ -6,7 +6,6 @@ import com.bourlito.factures.dto.Tranche;
 import com.bourlito.factures.utils.Column;
 import com.bourlito.factures.utils.Erreur;
 import com.bourlito.factures.utils.Constants;
-import com.bourlito.factures.utils.Format;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -15,7 +14,6 @@ import org.jetbrains.annotations.NotNull;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 abstract class Mamasita {
 

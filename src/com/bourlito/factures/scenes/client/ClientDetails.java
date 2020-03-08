@@ -22,6 +22,11 @@ public class ClientDetails implements IView {
     private final Client client;
     private TextField tAlias, tNom, tAdresse, tCp, tVille;
 
+    /**
+     * constructeur
+     * @param stage a utiliser
+     * @param client associe
+     */
     public ClientDetails(Stage stage, Client client) {
         this.stage = stage;
         this.client = client;
@@ -63,8 +68,8 @@ public class ClientDetails implements IView {
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
-        grid.setHgap(20);
-        grid.setVgap(10);
+        grid.setHgap(Constants.HGAP);
+        grid.setVgap(Constants.VGAP);
         grid.setPadding(new Insets(Constants.PADDING));
 
         Label lAlias = new Label(Keys.ALIAS);
@@ -105,7 +110,7 @@ public class ClientDetails implements IView {
         Label lTranches = new Label(Keys.TRANCHES);
         grid.add(lTranches, 0, 5);
 
-        int nbTranches = client.getTranches().size();
+        int nbTranches = client != null ? client.getTranches().size() : 0;
         Button btnTranches = new Button(String.valueOf(nbTranches));
         btnTranches.setMaxWidth(Constants.MAX_WIDTH);
         btnTranches.setOnAction(event -> stage.setScene(new TranchesList(stage, client).getScene()));
@@ -114,7 +119,7 @@ public class ClientDetails implements IView {
         Label lTarifs = new Label(Keys.TARIFS);
         grid.add(lTarifs, 0, 6);
 
-        int nbTarifs = client.getTarifs().size();
+        int nbTarifs = client != null ? client.getTarifs().size() : 0;
         Button btnTarifs = new Button(String.valueOf(nbTarifs));
         btnTarifs.setMaxWidth(Constants.MAX_WIDTH);
         btnTarifs.setOnAction(event -> stage.setScene(new TarifsList(stage, client).getScene()));
@@ -125,6 +130,10 @@ public class ClientDetails implements IView {
         return new CScene(root);
     }
 
+    /**
+     * methode de remplissage d'un nouveau client
+     * @return le client cree
+     */
     @NotNull
     private Client newClient(){
 

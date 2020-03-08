@@ -20,6 +20,13 @@ public class Traitement {
     private List<List<String>> dataLigne;
 
 
+    /**
+     * constructeur
+     * @param decompteSheet la feuille de decompte
+     * @param filename le nom du fichier a creer
+     * @param nFacture le numero de facture
+     * @param client le client associe
+     */
     public Traitement(HSSFSheet decompteSheet, String filename, int nFacture, Client client) {
         this.decompteSheet = decompteSheet;
         this.filename = filename;

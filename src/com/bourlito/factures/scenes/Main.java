@@ -46,8 +46,8 @@ public class Main implements IView{
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
-        grid.setHgap(20);
-        grid.setVgap(10);
+        grid.setHgap(Constants.HGAP);
+        grid.setVgap(Constants.VGAP);
         grid.setPadding(new Insets(Constants.PADDING));
 
         Label lNum = new Label("N° de première facture :");
@@ -78,7 +78,7 @@ public class Main implements IView{
         btnDest.setOnAction(e -> {
             DirectoryChooser directoryChooser = new DirectoryChooser();
             directoryChooser.setTitle("Dossier de destination");
-            Chooser.configureFolderChooser(directoryChooser);
+            Chooser.configureDirectoryChooser(directoryChooser);
             File selectedDirectory = directoryChooser.showDialog(stage);
             if (selectedDirectory != null) {
                 lDest.setText(selectedDirectory.getName());

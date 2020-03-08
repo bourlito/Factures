@@ -20,6 +20,7 @@ public class PDF extends Mamasita {
 
     private PdfPTable table;
     private final Font fontTitre = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD, new BaseColor(46, 110, 175));
+    private final BaseColor color = new BaseColor(46, 110, 175);
 
     public PDF(HSSFSheet sheet, String filename, int nFacture, Client client) {
         super(sheet, filename, nFacture, client);
@@ -95,7 +96,7 @@ public class PDF extends Mamasita {
         cell.addElement(paragraph);
         cell.setPaddingTop(-3);
         cell.setPaddingBottom(4);
-        cell.setBorderColor(new BaseColor(46, 110, 175));
+        cell.setBorderColor(color);
         cell.setBorderWidth(1.1f);
         table.addCell(cell);
 
@@ -104,13 +105,13 @@ public class PDF extends Mamasita {
         cell.setBorder(0);
         table.addCell(cell);
 
-        paragraph = new Paragraph("Total nombre de Lignes : " + Format.fEntier().format(totalLigne) + "\nTotal € HT : " + Format.fDouble().format(totalHT) + " €\nTVA (20%) : " + Format.fDouble().format(totalHT * 0.2) + " €\nTotal € TTC : " + Format.fDouble().format(Format.getTotalTTC(totalHT)) + " €", font);
+        paragraph = new Paragraph("Total nombre de Lignes : " + Format.fEntier().format(totalLigne) + "\nTotal € HT : " + Format.fDouble().format(totalHT) + " €\nTVA (20%) : " + Format.fDouble().format(totalHT * Constants.TAUX_TVA) + " €\nTotal € TTC : " + Format.fDouble().format(Format.getTotalTTC(totalHT)) + " €", font);
         paragraph.setAlignment(Element.ALIGN_CENTER);
         cell = new PdfPCell();
         cell.addElement(paragraph);
         cell.setPaddingTop(-3);
         cell.setPaddingBottom(4);
-        cell.setBorderColor(new BaseColor(46, 110, 175));
+        cell.setBorderColor(color);
         cell.setBorderWidth(1.1f);
         table.addCell(cell);
 
@@ -134,7 +135,7 @@ public class PDF extends Mamasita {
         Font font = new Font(Font.FontFamily.HELVETICA, 8);
         Font fontTitre = new Font(Font.FontFamily.HELVETICA, Constants.FONT_SIZE, Font.BOLD);
 
-        PdfPTable table = new PdfPTable(11);
+        PdfPTable table = new PdfPTable(Constants.TOTAL_COL);
         PdfPCell cell = new PdfPCell();
         int[] headerwidths = {10, 25, 10, 25, 10, 40, 10, 25, 10, 40, 10};
         table.setWidthPercentage(100);
@@ -148,12 +149,12 @@ public class PDF extends Mamasita {
 
         Paragraph paragraph = new Paragraph("Conditions de règlement : Virement", fontTitre);
         cell.addElement(paragraph);
-        cell.setColspan(11);
+        cell.setColspan(Constants.TOTAL_COL);
         cell.setBorder(0);
         table.addCell(cell);
 
         cell = new PdfPCell(new Phrase(""));
-        cell.setColspan(11);
+        cell.setColspan(Constants.TOTAL_COL);
         cell.setFixedHeight(8);
         cell.setBorder(0);
         table.addCell(cell);
@@ -172,25 +173,25 @@ public class PDF extends Mamasita {
                 table.addCell(cell);
             }
             cell = new PdfPCell(new Phrase(""));
-            cell.setColspan(11);
+            cell.setColspan(Constants.TOTAL_COL);
             cell.setFixedHeight(2);
             cell.setBorder(0);
             table.addCell(cell);
         }
 
         cell = new PdfPCell(new Phrase(""));
-        cell.setColspan(11);
+        cell.setColspan(Constants.TOTAL_COL);
         cell.setFixedHeight(2);
         cell.setBorder(0);
         table.addCell(cell);
 
         cell = new PdfPCell(new Paragraph("Clause de réserve de propriété : le vendeur conserve la propriété pleine et entière des produits et services vendus jusqu'au paiement complet du prix, en application de la loi du 12/05/1980. Escompte pour paiement anticipé : néant.", font));
-        cell.setColspan(11);
+        cell.setColspan(Constants.TOTAL_COL);
         cell.setBorder(0);
         table.addCell(cell);
 
         cell = new PdfPCell(new Phrase(""));
-        cell.setColspan(11);
+        cell.setColspan(Constants.TOTAL_COL);
         cell.setFixedHeight(2);
         cell.setBorder(0);
         table.addCell(cell);
@@ -238,7 +239,7 @@ public class PDF extends Mamasita {
             cell.addElement(paragraph);
             cell.setPaddingTop(-3);
             cell.setPaddingBottom(4);
-            cell.setBorderColor(new BaseColor(46, 110, 175));
+            cell.setBorderColor(color);
             cell.setBorderWidth(1.1f);
             table.addCell(cell);
         }
@@ -262,11 +263,10 @@ public class PDF extends Mamasita {
     }
 
     private void createTableHeader(@NotNull PdfPTable table, @NotNull PdfPCell cell) {
-        BaseColor baseColor = new BaseColor(46, 110, 175);
         cell.setColspan(5);
         cell.setPaddingBottom(4);
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-        cell.setBorderColor(baseColor);
+        cell.setBorderColor(color);
         table.addCell(cell);
     }
 
@@ -297,7 +297,7 @@ public class PDF extends Mamasita {
         cell.addElement(paragraph);
         cell.setPaddingTop(-3);
         cell.setPaddingBottom(4);
-        cell.setBorderColor(new BaseColor(46, 110, 175));
+        cell.setBorderColor(color);
         table.addCell(cell);
     }
 
@@ -312,8 +312,6 @@ public class PDF extends Mamasita {
             table.setLockedWidth(true);
             int[] headerwidths = {20, 100, 2, 50};
             table.setWidths(headerwidths);
-
-            BaseColor baseColor = new BaseColor(46, 110, 175);
 
             PdfPCell cell;
             Paragraph paragraph;
@@ -351,7 +349,7 @@ public class PDF extends Mamasita {
 
             cell = new PdfPCell();
             cell.setColspan(4);
-            cell.setBackgroundColor(baseColor);
+            cell.setBackgroundColor(color);
             cell.setBorder(0);
             table.addCell(cell);
 
@@ -364,7 +362,7 @@ public class PDF extends Mamasita {
             cell = new PdfPCell();
             paragraph = new Paragraph(client.getNom() + "\nAdresse : " + client.getAdresse() + "\nCP : " + client.getCp() + "   Ville : " + client.getVille(), new Font(Font.FontFamily.HELVETICA, 10));
             cell.addElement(paragraph);
-            cell.setBorderColor(baseColor);
+            cell.setBorderColor(color);
             cell.setColspan(2);
             table.addCell(cell);
 
@@ -376,7 +374,7 @@ public class PDF extends Mamasita {
             paragraph = new Paragraph("Date : " + Date.getDate() + "\nA régler avant le : " + Date.getARegler(), new Font(Font.FontFamily.HELVETICA, 10));
             paragraph.setAlignment(Element.ALIGN_RIGHT);
             cell.addElement(paragraph);
-            cell.setBorderColor(baseColor);
+            cell.setBorderColor(color);
             table.addCell(cell);
             tableHeight = table.getTotalHeight();
         }

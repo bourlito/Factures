@@ -19,6 +19,11 @@ public class TarifsList implements IView {
     private final Stage stage;
     private final Client client;
 
+    /**
+     * constructeur
+     * @param stage a utiliser
+     * @param client associe
+     */
     public TarifsList(Stage stage, Client client) {
         this.stage = stage;
         this.client = client;
@@ -40,8 +45,8 @@ public class TarifsList implements IView {
 
         GridPane pane = new GridPane();
         pane.setAlignment(Pos.CENTER);
-        pane.setHgap(20);
-        pane.setVgap(10);
+        pane.setHgap(Constants.HGAP);
+        pane.setVgap(Constants.VGAP);
         pane.setPadding(new Insets(Constants.PADDING));
 
         int i = 0, j = 0;

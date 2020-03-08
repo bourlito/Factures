@@ -1,7 +1,6 @@
 package com.bourlito.factures.utils;
 
 import com.bourlito.factures.scenes.utils.CScene;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;

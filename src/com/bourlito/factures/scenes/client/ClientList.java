@@ -7,10 +7,8 @@ import com.bourlito.factures.scenes.Main;
 import com.bourlito.factures.scenes.utils.CScene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
-import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import com.bourlito.factures.service.SClient;
@@ -20,6 +18,10 @@ public class ClientList implements IView {
     private final Stage stage;
     private final SClient sClient = SClient.getInstance();
 
+    /**
+     * constructeur
+     * @param stage a utiliser
+     */
     public ClientList(Stage stage) {
         this.stage = stage;
     }
@@ -44,8 +46,8 @@ public class ClientList implements IView {
         // clients
         FlowPane pane = new FlowPane();
         pane.setAlignment(Pos.CENTER);
-        pane.setHgap(20);
-        pane.setVgap(10);
+        pane.setHgap(Constants.HGAP);
+        pane.setVgap(Constants.VGAP);
         pane.setPadding(new Insets(Constants.PADDING));
 
         for (Client client: sClient.getClients()) {

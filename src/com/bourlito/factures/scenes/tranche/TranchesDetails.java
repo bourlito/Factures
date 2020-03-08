@@ -78,8 +78,8 @@ public class TranchesDetails implements IView {
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
-        grid.setHgap(20);
-        grid.setVgap(10);
+        grid.setHgap(Constants.HGAP);
+        grid.setVgap(Constants.VGAP);
         grid.setPadding(new Insets(Constants.PADDING));
 
         Label lMin = new Label(Keys.MIN);

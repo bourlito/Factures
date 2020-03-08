@@ -22,6 +22,11 @@ public class TranchesList implements IView {
 
     private TextField tLibelle;
 
+    /**
+     * constructeur
+     * @param stage a utiliser
+     * @param client associe
+     */
     public TranchesList(Stage stage, Client client) {
         this.stage = stage;
         this.client = client;
@@ -65,18 +70,19 @@ public class TranchesList implements IView {
 
         FlowPane pane = new FlowPane();
         pane.setAlignment(Pos.CENTER);
-        pane.setHgap(20);
-        pane.setVgap(10);
+        pane.setHgap(Constants.HGAP);
+        pane.setVgap(Constants.VGAP);
         pane.setPadding(new Insets(Constants.PADDING));
 
-        for (Tranche tranche: client.getTranches()) {
-            Button title = new Button(String.valueOf(tranche.getMin()));
-            title.setOnAction(event -> stage.setScene(new TranchesDetails(stage, client, tranche).getScene()));
-            pane.getChildren().addAll(title);
+        if (client != null) {
+            for (Tranche tranche : client.getTranches()) {
+                Button title = new Button(String.valueOf(tranche.getMin()));
+                title.setOnAction(event -> stage.setScene(new TranchesDetails(stage, client, tranche).getScene()));
+                pane.getChildren().addAll(title);
+            }
         }
 
         root.setCenter(pane);
-
         return new CScene(root);
     }
 }

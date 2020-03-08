@@ -50,9 +50,9 @@ public class XCL extends Mamasita {
         sheet = wb.createSheet("Facture");
         sheet.setDefaultRowHeightInPoints(15f);
         sheet.setDefaultColumnWidth(10);
-        sheet.setColumnWidth(5, 256 * 5);
-        sheet.setColumnWidth(6, 256 * 16);
-        sheet.setColumnWidth(7, 256 * 12);
+        sheet.setColumnWidth(5, Constants.XCL_COL_WIDTH *5);
+        sheet.setColumnWidth(6, Constants.XCL_COL_WIDTH *16);
+        sheet.setColumnWidth(7, Constants.XCL_COL_WIDTH *12);
         creerEntete(true);
         creerCdnReg();
         creerDetail();
@@ -69,7 +69,7 @@ public class XCL extends Mamasita {
         CellStyle cellCPEStyle = wb.createCellStyle();
         cellCPEStyle.setWrapText(true);
         cellCPEStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-        cellCPEStyle.setFont(setFont((short) Constants.FONT_SIZE, false, false));
+        cellCPEStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellCPE.setCellStyle(cellCPEStyle);
         cellCPE.setCellValue(Constants.adresseCPE);
         sheet.addMergedRegion(new CellRangeAddress(headerRow0.getRowNum(), headerRow0.getRowNum(), 1, 5));
@@ -78,7 +78,7 @@ public class XCL extends Mamasita {
         CellStyle cellFactStyle = wb.createCellStyle();
         cellFactStyle.setVerticalAlignment(VerticalAlignment.CENTER);
         cellFactStyle.setAlignment(HorizontalAlignment.RIGHT);
-        cellFactStyle.setFont(setFont((short) 14, true, false));
+        cellFactStyle.setFont(createFont((short) 14, true, false));
         cellFact.setCellStyle(cellFactStyle);
         cellFact.setCellValue("FACTURE N°");
 
@@ -86,7 +86,7 @@ public class XCL extends Mamasita {
         CellStyle cellNOFactStyle = wb.createCellStyle();
         cellNOFactStyle.setVerticalAlignment(VerticalAlignment.CENTER);
         cellNOFactStyle.setAlignment(HorizontalAlignment.CENTER);
-        cellNOFactStyle.setFont(setFont((short) 14, false, false));
+        cellNOFactStyle.setFont(createFont((short) 14, false, false));
         cellNOFact.setCellStyle(cellNOFactStyle);
 
         cellNOFact.setCellValue(Date.getYear() + "-" + Format.fNbFact().format(nFacture));
@@ -97,7 +97,7 @@ public class XCL extends Mamasita {
 
         for (int i = 0; i < 8; i++) {
             Cell cellBleue = headerRow1.createCell(i);
-            CellStyle cellBleueStyle = setCellStyle(true, true, true, true);
+            CellStyle cellBleueStyle = createCellStyle(true, true, true, true);
             cellBleueStyle.setFillForegroundColor(IndexedColors.DARK_BLUE.getIndex());
             cellBleueStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cellBleue.setCellStyle(cellBleueStyle);
@@ -110,113 +110,113 @@ public class XCL extends Mamasita {
         Row headerRow3 = sheet.createRow(sheet.getLastRowNum() + 1);
 
         Cell cellClient = headerRow3.createCell(0);
-        CellStyle cellClientStyle = setCellStyle(true, true, false, false);
+        CellStyle cellClientStyle = createCellStyle(true, true, false, false);
         cellClientStyle.setAlignment(HorizontalAlignment.CENTER);
-        cellClientStyle.setFont(setFont((short) Constants.FONT_SIZE, true, false));
+        cellClientStyle.setFont(createFont((short) Constants.FONT_SIZE, true, false));
         cellClient.setCellStyle(cellClientStyle);
         cellClient.setCellValue("Client");
 
         Cell cellClientNom = headerRow3.createCell(1);
-        CellStyle cellClientNomStyle = setCellStyle(false, true, false, false);
-        cellClientNomStyle.setFont(setFont((short) Constants.FONT_SIZE, true, false));
+        CellStyle cellClientNomStyle = createCellStyle(false, true, false, false);
+        cellClientNomStyle.setFont(createFont((short) Constants.FONT_SIZE, true, false));
         cellClientNom.setCellStyle(cellClientNomStyle);
         cellClientNom.setCellValue("Nom :");
 
         Cell cellClientNomValue = headerRow3.createCell(2);
-        CellStyle cellClientNomValueStyle = setCellStyle(false, true, false, false);
-        cellClientNomValueStyle.setFont(setFont((short) Constants.FONT_SIZE, false, false));
+        CellStyle cellClientNomValueStyle = createCellStyle(false, true, false, false);
+        cellClientNomValueStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellClientNomValue.setCellStyle(cellClientNomValueStyle);
         cellClientNomValue.setCellValue(client.getNom());
 
         Cell cellClientNomValue1 = headerRow3.createCell(3);
-        cellClientNomValue1.setCellStyle(setCellStyle(false, true, false, false));
+        cellClientNomValue1.setCellStyle(createCellStyle(false, true, false, false));
 
         Cell cellClientNomValue2 = headerRow3.createCell(4);
-        cellClientNomValue2.setCellStyle(setCellStyle(false, true, true, false));
+        cellClientNomValue2.setCellStyle(createCellStyle(false, true, true, false));
         sheet.addMergedRegion(new CellRangeAddress(headerRow3.getRowNum(), headerRow3.getRowNum(), 2, 4));
 
         Row headerRow4 = sheet.createRow(sheet.getLastRowNum() + 1);
 
         Cell cellClient1 = headerRow4.createCell(0);
-        cellClient1.setCellStyle(setCellStyle(true, false, false, false));
+        cellClient1.setCellStyle(createCellStyle(true, false, false, false));
 
         Cell cellClientAdress = headerRow4.createCell(1);
         CellStyle cellClientAdressStyle = wb.createCellStyle();
-        cellClientAdressStyle.setFont(setFont((short) Constants.FONT_SIZE, true, false));
+        cellClientAdressStyle.setFont(createFont((short) Constants.FONT_SIZE, true, false));
         cellClientAdress.setCellStyle(cellClientAdressStyle);
         cellClientAdress.setCellValue("Adresse :");
 
         Cell cellClientAdressValue = headerRow4.createCell(2);
         CellStyle cellClientAdressValueStyle = wb.createCellStyle();
-        cellClientAdressValueStyle.setFont(setFont((short) Constants.FONT_SIZE, false, false));
+        cellClientAdressValueStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellClientAdressValue.setCellStyle(cellClientAdressValueStyle);
         cellClientAdressValue.setCellValue(client.getAdresse());
 
         Cell cellClientAdressValue2 = headerRow4.createCell(4);
-        cellClientAdressValue2.setCellStyle(setCellStyle(false, false, true, false));
+        cellClientAdressValue2.setCellStyle(createCellStyle(false, false, true, false));
         sheet.addMergedRegion(new CellRangeAddress(headerRow4.getRowNum(), headerRow4.getRowNum(), 2, 4));
 
         Row headerRow5 = sheet.createRow(sheet.getLastRowNum() + 1);
 
         Cell cellClient2 = headerRow5.createCell(0);
-        cellClient2.setCellStyle(setCellStyle(true, false, false, true));
+        cellClient2.setCellStyle(createCellStyle(true, false, false, true));
 
         Cell cellClientCP = headerRow5.createCell(1);
-        CellStyle cellClientCPStyle = setCellStyle(false, false, false, true);
-        cellClientCPStyle.setFont(setFont((short) Constants.FONT_SIZE, true, false));
+        CellStyle cellClientCPStyle = createCellStyle(false, false, false, true);
+        cellClientCPStyle.setFont(createFont((short) Constants.FONT_SIZE, true, false));
         cellClientCP.setCellStyle(cellClientCPStyle);
         cellClientCP.setCellValue("CP :");
 
         Cell cellClientCPValue = headerRow5.createCell(2);
-        CellStyle cellClientCPValueStyle = setCellStyle(false, false, false, true);
-        cellClientCPValueStyle.setFont(setFont((short) Constants.FONT_SIZE, false, false));
+        CellStyle cellClientCPValueStyle = createCellStyle(false, false, false, true);
+        cellClientCPValueStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellClientCPValue.setCellStyle(cellClientCPValueStyle);
         cellClientCPValue.setCellValue(client.getCp());
 
         Cell cellClientVille = headerRow5.createCell(3);
-        CellStyle cellClientVilleStyle = setCellStyle(false, false, false, true);
-        cellClientVilleStyle.setFont(setFont((short) Constants.FONT_SIZE, true, false));
+        CellStyle cellClientVilleStyle = createCellStyle(false, false, false, true);
+        cellClientVilleStyle.setFont(createFont((short) Constants.FONT_SIZE, true, false));
         cellClientVille.setCellStyle(cellClientVilleStyle);
         cellClientVille.setCellValue("Ville :");
 
         Cell cellClientVilleValue = headerRow5.createCell(4);
-        CellStyle cellClientVilleValueStyle = setCellStyle(false, false, true, true);
-        cellClientVilleValueStyle.setFont(setFont((short) Constants.FONT_SIZE, false, false));
+        CellStyle cellClientVilleValueStyle = createCellStyle(false, false, true, true);
+        cellClientVilleValueStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellClientVilleValue.setCellStyle(cellClientVilleValueStyle);
         cellClientVilleValue.setCellValue(client.getVille());
 
         //a regler avant le
         Cell cellDate = headerRow3.createCell(6);
-        CellStyle cellDateStyle = setCellStyle(true, true, false, false);
+        CellStyle cellDateStyle = createCellStyle(true, true, false, false);
         cellDateStyle.setAlignment(HorizontalAlignment.RIGHT);
-        cellDateStyle.setFont(setFont((short) Constants.FONT_SIZE, false, false));
+        cellDateStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellDate.setCellStyle(cellDateStyle);
         cellDate.setCellValue("Date :");
 
         Cell cellDateValue = headerRow3.createCell(7);
-        CellStyle cellDateValueStyle = setCellStyle(false, true, true, false);
+        CellStyle cellDateValueStyle = createCellStyle(false, true, true, false);
         cellDateValueStyle.setAlignment(HorizontalAlignment.RIGHT);
-        cellDateValueStyle.setFont(setFont((short) Constants.FONT_SIZE, false, false));
+        cellDateValueStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellDateValue.setCellStyle(cellDateValueStyle);
         cellDateValue.setCellValue(Date.getDate());
 
         Cell cellDate1 = headerRow4.createCell(6);
-        cellDate1.setCellStyle(setCellStyle(true, false, false, false));
+        cellDate1.setCellStyle(createCellStyle(true, false, false, false));
 
         Cell cellDate2 = headerRow4.createCell(7);
-        cellDate2.setCellStyle(setCellStyle(false, false, true, false));
+        cellDate2.setCellStyle(createCellStyle(false, false, true, false));
 
         Cell cellReglement = headerRow5.createCell(6);
-        CellStyle cellReglementStyle = setCellStyle(true, false, false, true);
+        CellStyle cellReglementStyle = createCellStyle(true, false, false, true);
         cellReglementStyle.setAlignment(HorizontalAlignment.RIGHT);
-        cellReglementStyle.setFont(setFont((short) Constants.FONT_SIZE, false, false));
+        cellReglementStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellReglement.setCellStyle(cellReglementStyle);
         cellReglement.setCellValue("A régler avant le :");
 
         Cell cellReglementValue = headerRow5.createCell(7);
-        CellStyle cellReglementValueStyle = setCellStyle(false, false, true, true);
+        CellStyle cellReglementValueStyle = createCellStyle(false, false, true, true);
         cellReglementValueStyle.setAlignment(HorizontalAlignment.RIGHT);
-        cellReglementValueStyle.setFont(setFont((short) Constants.FONT_SIZE, false, false));
+        cellReglementValueStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellReglementValue.setCellStyle(cellReglementValueStyle);
         cellReglementValue.setCellValue(Date.getARegler());
 
@@ -232,16 +232,16 @@ public class XCL extends Mamasita {
         cdnRow7.setHeightInPoints(18.8f);
 
         Cell cellCdn = cdnRow7.createCell(0);
-        CellStyle cellCdnStyle = setCellStyle(true, true, false, false);
-        cellCdnStyle.setFont(setFont((short) Constants.FONT_SIZE, true, false));
+        CellStyle cellCdnStyle = createCellStyle(true, true, false, false);
+        cellCdnStyle.setFont(createFont((short) Constants.FONT_SIZE, true, false));
         cellCdn.setCellStyle(cellCdnStyle);
         cellCdn.setCellValue("Conditions de règlement : Virement");
 
         for (int i = 1; i < 7; i++)
-            cdnRow7.createCell(i).setCellStyle(setCellStyle(false, true, false, false));
+            cdnRow7.createCell(i).setCellStyle(createCellStyle(false, true, false, false));
 
         Cell cellCdn7 = cdnRow7.createCell(7);
-        cellCdn7.setCellStyle(setCellStyle(false, true, true, false));
+        cellCdn7.setCellStyle(createCellStyle(false, true, true, false));
         sheet.addMergedRegion(new CellRangeAddress(7, 7, 0, 7));
 
         Row cdnRow8 = sheet.createRow(sheet.getLastRowNum() + 1);
@@ -250,67 +250,70 @@ public class XCL extends Mamasita {
         //ajouterImage(MotsCles.IMGREG, 8, cdnRow8.getRowNum(), 20, -1, 1.0);
 
         Cell cellCdnVide = cdnRow8.createCell(0);
-        cellCdnVide.setCellStyle(setCellStyle(true, false, false, false));
+        cellCdnVide.setCellStyle(createCellStyle(true, false, false, false));
 
         Cell cellCdnVide2 = cdnRow8.createCell(7);
-        cellCdnVide2.setCellStyle(setCellStyle(false, false, true, false));
+        cellCdnVide2.setCellStyle(createCellStyle(false, false, true, false));
 
         Row cdnRow9 = sheet.createRow(sheet.getLastRowNum() + 1);
         cdnRow9.setHeightInPoints((30f));
 
         Cell cellCdnPhrase = cdnRow9.createCell(0);
-        CellStyle cellCdnPhraseStyle = setCellStyle(true, false, false, false);
+        CellStyle cellCdnPhraseStyle = createCellStyle(true, false, false, false);
         cellCdnPhraseStyle.setWrapText(true);
         cellCdnPhraseStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-        cellCdnPhraseStyle.setFont(setFont((short) 9, false, false));
+        cellCdnPhraseStyle.setFont(createFont((short) 9, false, false));
         cellCdnPhrase.setCellStyle(cellCdnPhraseStyle);
         cellCdnPhrase.setCellValue("Clause de réserve de propriété : le vendeur conserve la propriété pleine et entière des produits et services vendus jusqu'au paiement complet du prix, en application de la loi du 12/05/1980. Escompte pour paiement anticipé : néant.");
 
         Cell cellCdnPhrase1 = cdnRow9.createCell(7);
-        cellCdnPhrase1.setCellStyle(setCellStyle(false, false, true, false));
+        cellCdnPhrase1.setCellStyle(createCellStyle(false, false, true, false));
         sheet.addMergedRegion(new CellRangeAddress(9, 9, 0, 7));
 
         Row cdnRow10 = sheet.createRow(sheet.getLastRowNum() + 1);
 
         Cell cellCdnPenal = cdnRow10.createCell(0);
-        CellStyle cellCdnPenalStyle = setCellStyle(true, false, false, true);
-        cellCdnPenalStyle.setFont(setFont((short) 9, false, false));
+        CellStyle cellCdnPenalStyle = createCellStyle(true, false, false, true);
+        cellCdnPenalStyle.setFont(createFont((short) 9, false, false));
         cellCdnPenalStyle.setVerticalAlignment(VerticalAlignment.CENTER);
         cellCdnPenal.setCellStyle(cellCdnPenalStyle);
         cellCdnPenal.setCellValue("Pénalités de retard : taux légal en vigueur.");
 
         for (int i = 1; i < 6; i++)
-            cdnRow10.createCell(i).setCellStyle(setCellStyle(false, false, false, true));
+            cdnRow10.createCell(i).setCellStyle(createCellStyle(false, false, false, true));
 
         sheet.addMergedRegion(new CellRangeAddress(10, 10, 0, 5));
 
         Cell cellCdnPenal6 = cdnRow10.createCell(6);
-        CellStyle cellCdnPenal6Style = setCellStyle(false, false, false, true);
-        cellCdnPenal6Style.setFont(setFont((short) 10, true, false));
+        CellStyle cellCdnPenal6Style = createCellStyle(false, false, false, true);
+        cellCdnPenal6Style.setFont(createFont((short) 10, true, false));
         cellCdnPenal6Style.setVerticalAlignment(VerticalAlignment.CENTER);
         cellCdnPenal6Style.setAlignment(HorizontalAlignment.CENTER);
         cellCdnPenal6.setCellStyle(cellCdnPenal6Style);
         cellCdnPenal6.setCellValue("TVA sur les encaissements");
 
         Cell cellCdnPenal7 = cdnRow10.createCell(7);
-        cellCdnPenal7.setCellStyle(setCellStyle(false, false, true, true));
+        cellCdnPenal7.setCellStyle(createCellStyle(false, false, true, true));
         sheet.addMergedRegion(new CellRangeAddress(10, 10, 6, 7));
     }
 
+    /**
+     * methode de creation des details de la facture
+     */
     private void creerDetail() {
         //entete de colonnes
-        Row detailRow12 = sheet.createRow(12);
+        Row enteteRow = sheet.createRow(12);
 
-        creerCell(detailRow12, Constants.NUM_COL_DAT_SAI, true, "Date Saisie");
-        creerCell(detailRow12, Constants.NUM_COL_NOM_DOS_0, false, "Nom dossier");
-        detailRow12.createCell(Constants.NUM_COL_NOM_DOS_1).setCellStyle(setCellStyle(false, true, false, true));
-        detailRow12.createCell(Constants.NUM_COL_NOM_DOS_2).setCellStyle(setCellStyle(false, true, true, true));
+        creerCell(enteteRow, Constants.NUM_COL_DAT_SAI, true, "Date Saisie");
+        creerCell(enteteRow, Constants.NUM_COL_NOM_DOS_0, false, "Nom dossier");
+        enteteRow.createCell(Constants.NUM_COL_NOM_DOS_1).setCellStyle(createCellStyle(false, true, false, true));
+        enteteRow.createCell(Constants.NUM_COL_NOM_DOS_2).setCellStyle(createCellStyle(false, true, true, true));
         sheet.addMergedRegion(new CellRangeAddress(12, 12, Constants.NUM_COL_NOM_DOS_0, Constants.NUM_COL_NOM_DOS_2));
-        creerCell(detailRow12, Constants.NUM_COL_NB_LI_0, false, "Nombre Ligne");
-        detailRow12.createCell(Constants.NUM_COL_NB_LI_1).setCellStyle(setCellStyle(false, true, true, true));
+        creerCell(enteteRow, Constants.NUM_COL_NB_LI_0, false, "Nombre Ligne");
+        enteteRow.createCell(Constants.NUM_COL_NB_LI_1).setCellStyle(createCellStyle(false, true, true, true));
         sheet.addMergedRegion(new CellRangeAddress(12, 12, Constants.NUM_COL_NB_LI_0, Constants.NUM_COL_NB_LI_1));
-        creerCell(detailRow12, Constants.NUM_COL_TRF_LI, true, "Tarif Ligne");
-        creerCell(detailRow12, Constants.NUM_COL_THT, true, "Total HT");
+        creerCell(enteteRow, Constants.NUM_COL_TRF_LI, true, "Tarif Ligne");
+        creerCell(enteteRow, Constants.NUM_COL_THT, true, "Total HT");
 
         if (isNotEmpty(dataLigne)) {
             creerEnteteType("Lignes");
@@ -320,6 +323,9 @@ public class XCL extends Mamasita {
         remplirAllIfNotEmpty();
     }
 
+    /**
+     * methode de creation du recap de la facture
+     */
     private void creerRecap() {
         List<Integer> rowNum = new ArrayList<>();
         rowNum.add(0);
@@ -335,61 +341,61 @@ public class XCL extends Mamasita {
         Row recapRow = sheet.createRow(sheet.getLastRowNum() + 1);
         Cell cellRemarque = recapRow.createCell(0);
         CellStyle cellRemarqueStyle = wb.createCellStyle();
-        cellRemarqueStyle.setFont(setFont((short) Constants.FONT_SIZE, true, true));
+        cellRemarqueStyle.setFont(createFont((short) Constants.FONT_SIZE, true, true));
         cellRemarque.setCellStyle(cellRemarqueStyle);
         cellRemarque.setCellValue("Remarques");
 
         Cell cellRemarqueValue = recapRow.createCell(1);
-        cellRemarqueValue.setCellStyle(setCellStyle(true, true, false, false));
+        cellRemarqueValue.setCellStyle(createCellStyle(true, true, false, false));
         cellRemarqueValue.setCellValue(nvDos <= 1 ? nvDos + " Nouveau Dossier" : nvDos + " Nouveaux Dossiers");
 
-        recapRow.createCell(2).setCellStyle(setCellStyle(false, true, true, false));
+        recapRow.createCell(2).setCellStyle(createCellStyle(false, true, true, false));
 
         Row recapRow2 = sheet.createRow(sheet.getLastRowNum() + 1);
-        recapRow2.createCell(1).setCellStyle(setCellStyle(true, false, false, false));
-        recapRow2.createCell(2).setCellStyle(setCellStyle(false, false, true, false));
+        recapRow2.createCell(1).setCellStyle(createCellStyle(true, false, false, false));
+        recapRow2.createCell(2).setCellStyle(createCellStyle(false, false, true, false));
 
         Row recapRow3 = sheet.createRow(sheet.getLastRowNum() + 1);
-        recapRow3.createCell(1).setCellStyle(setCellStyle(true, false, false, false));
-        recapRow3.createCell(2).setCellStyle(setCellStyle(false, false, true, false));
+        recapRow3.createCell(1).setCellStyle(createCellStyle(true, false, false, false));
+        recapRow3.createCell(2).setCellStyle(createCellStyle(false, false, true, false));
 
         Row recapRow4 = sheet.createRow(sheet.getLastRowNum() + 1);
-        recapRow4.createCell(1).setCellStyle(setCellStyle(true, false, false, false));
-        recapRow4.createCell(2).setCellStyle(setCellStyle(false, false, true, false));
+        recapRow4.createCell(1).setCellStyle(createCellStyle(true, false, false, false));
+        recapRow4.createCell(2).setCellStyle(createCellStyle(false, false, true, false));
 
         Row recapRow5 = sheet.createRow(sheet.getLastRowNum() + 1);
-        recapRow5.createCell(1).setCellStyle(setCellStyle(true, false, false, false));
-        recapRow5.createCell(2).setCellStyle(setCellStyle(false, false, true, false));
+        recapRow5.createCell(1).setCellStyle(createCellStyle(true, false, false, false));
+        recapRow5.createCell(2).setCellStyle(createCellStyle(false, false, true, false));
 
         Row recapRow6 = sheet.createRow(sheet.getLastRowNum() + 1);
-        recapRow6.createCell(1).setCellStyle(setCellStyle(true, false, false, true));
-        recapRow6.createCell(2).setCellStyle(setCellStyle(false, false, true, true));
+        recapRow6.createCell(1).setCellStyle(createCellStyle(true, false, false, true));
+        recapRow6.createCell(2).setCellStyle(createCellStyle(false, false, true, true));
 
         //total
         Cell cellTotal = recapRow.createCell(4);
-        CellStyle cellTotalStyle = setCellStyle(true, true, false, false);
-        cellTotalStyle.setFont(setFont((short) 12, true, false));
+        CellStyle cellTotalStyle = createCellStyle(true, true, false, false);
+        cellTotalStyle.setFont(createFont((short) 12, true, false));
         cellTotalStyle.setAlignment(HorizontalAlignment.CENTER);
         cellTotal.setCellStyle(cellTotalStyle);
         cellTotal.setCellValue("Total nombre de lignes");
 
-        recapRow.createCell(5).setCellStyle(setCellStyle(false, true, false, false));
-        recapRow.createCell(6).setCellStyle(setCellStyle(false, true, false, false));
+        recapRow.createCell(5).setCellStyle(createCellStyle(false, true, false, false));
+        recapRow.createCell(6).setCellStyle(createCellStyle(false, true, false, false));
         sheet.addMergedRegion(new CellRangeAddress(recapRow.getRowNum(), recapRow.getRowNum(), 4, 6));
 
         Cell cellTotalValue = recapRow.createCell(7);
-        CellStyle cellTotalValueStyle = setCellStyle(false, true, true, false);
-        cellTotalValueStyle.setFont(setFont((short) 12, true, false));
+        CellStyle cellTotalValueStyle = createCellStyle(false, true, true, false);
+        cellTotalValueStyle.setFont(createFont((short) 12, true, false));
         cellTotalValueStyle.setAlignment(HorizontalAlignment.CENTER);
         cellTotalValue.setCellStyle(cellTotalValueStyle);
         cellTotalValue.setCellValue(totalLigne);
 
-        recapRow2.createCell(4).setCellStyle(setCellStyle(true, false, false, false));
-        recapRow2.createCell(7).setCellStyle(setCellStyle(false, false, true, false));
+        recapRow2.createCell(4).setCellStyle(createCellStyle(true, false, false, false));
+        recapRow2.createCell(7).setCellStyle(createCellStyle(false, false, true, false));
 
         Cell cellTotalHT = recapRow3.createCell(4);
-        CellStyle cellTotalHTStyle = setCellStyle(true, false, false, false);
-        cellTotalHTStyle.setFont(setFont((short) Constants.FONT_SIZE, false, false));
+        CellStyle cellTotalHTStyle = createCellStyle(true, false, false, false);
+        cellTotalHTStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellTotalHTStyle.setAlignment(HorizontalAlignment.CENTER);
         cellTotalHT.setCellStyle(cellTotalHTStyle);
         cellTotalHT.setCellValue("TOTAL € HT");
@@ -397,15 +403,15 @@ public class XCL extends Mamasita {
         sheet.addMergedRegion(new CellRangeAddress(recapRow3.getRowNum(), recapRow3.getRowNum(), 4, 6));
 
         Cell cellTotalHTValue = recapRow3.createCell(7);
-        CellStyle cellTotalHTValueStyle = setCellStyle(false, false, true, false);
-        cellTotalHTValueStyle.setFont(setFont((short) Constants.FONT_SIZE, false, false));
+        CellStyle cellTotalHTValueStyle = createCellStyle(false, false, true, false);
+        cellTotalHTValueStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellTotalHTValueStyle.setAlignment(HorizontalAlignment.CENTER);
         cellTotalHTValue.setCellStyle(cellTotalHTValueStyle);
         cellTotalHTValue.setCellValue(Format.fDouble().format(totalHT) + " €");
 
         Cell cellTVA = recapRow4.createCell(4);
-        CellStyle cellTVAStyle = setCellStyle(true, false, false, false);
-        cellTVAStyle.setFont(setFont((short) Constants.FONT_SIZE, false, false));
+        CellStyle cellTVAStyle = createCellStyle(true, false, false, false);
+        cellTVAStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellTVAStyle.setAlignment(HorizontalAlignment.CENTER);
         cellTVA.setCellStyle(cellTVAStyle);
         cellTVA.setCellValue("TVA");
@@ -413,15 +419,15 @@ public class XCL extends Mamasita {
         sheet.addMergedRegion(new CellRangeAddress(recapRow4.getRowNum(), recapRow4.getRowNum(), 4, 6));
 
         Cell cellTVAValue = recapRow4.createCell(7);
-        CellStyle cellTVAValueStyle = setCellStyle(false, false, true, false);
-        cellTVAValueStyle.setFont(setFont((short) Constants.FONT_SIZE, false, false));
+        CellStyle cellTVAValueStyle = createCellStyle(false, false, true, false);
+        cellTVAValueStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellTVAValueStyle.setAlignment(HorizontalAlignment.CENTER);
         cellTVAValue.setCellStyle(cellTVAValueStyle);
-        cellTVAValue.setCellValue(Format.fDouble().format(totalHT * 0.2) + " €");
+        cellTVAValue.setCellValue(Format.fDouble().format(totalHT * Constants.TAUX_TVA) + " €");
 
         Cell cellTotalTTC = recapRow5.createCell(4);
-        CellStyle cellTotalTTCStyle = setCellStyle(true, false, false, false);
-        cellTotalTTCStyle.setFont(setFont((short) Constants.FONT_SIZE, false, false));
+        CellStyle cellTotalTTCStyle = createCellStyle(true, false, false, false);
+        cellTotalTTCStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellTotalTTCStyle.setAlignment(HorizontalAlignment.CENTER);
         cellTotalTTC.setCellStyle(cellTotalTTCStyle);
         cellTotalTTC.setCellValue("TOTAL € TTC");
@@ -429,38 +435,46 @@ public class XCL extends Mamasita {
         sheet.addMergedRegion(new CellRangeAddress(recapRow5.getRowNum(), recapRow5.getRowNum(), 4, 6));
 
         Cell cellTotalTTCValue = recapRow5.createCell(7);
-        CellStyle cellTotalTTCValueStyle = setCellStyle(false, false, true, false);
-        cellTotalTTCValueStyle.setFont(setFont((short) Constants.FONT_SIZE, false, false));
+        CellStyle cellTotalTTCValueStyle = createCellStyle(false, false, true, false);
+        cellTotalTTCValueStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellTotalTTCValueStyle.setAlignment(HorizontalAlignment.CENTER);
         cellTotalTTCValue.setCellStyle(cellTotalTTCValueStyle);
         cellTotalTTCValue.setCellValue(Format.fDouble().format(Format.getTotalTTC(totalHT)) + " €");
 
-        recapRow6.createCell(4).setCellStyle(setCellStyle(true, false, false, true));
-        recapRow6.createCell(5).setCellStyle(setCellStyle(false, false, false, true));
-        recapRow6.createCell(6).setCellStyle(setCellStyle(false, false, false, true));
-        recapRow6.createCell(7).setCellStyle(setCellStyle(false, false, true, true));
+        recapRow6.createCell(4).setCellStyle(createCellStyle(true, false, false, true));
+        recapRow6.createCell(5).setCellStyle(createCellStyle(false, false, false, true));
+        recapRow6.createCell(6).setCellStyle(createCellStyle(false, false, false, true));
+        recapRow6.createCell(7).setCellStyle(createCellStyle(false, false, true, true));
     }
 
+    /**
+     * methode de creation de la ligne de separation (lignes, lettrage, etc...)
+     * @param entete libelle de l'entete
+     */
     private void creerEnteteType(String entete) {
         Row row = sheet.createRow(sheet.getLastRowNum() + 1);
         Cell cell = row.createCell(0);
-        CellStyle cellStyle = setCellStyle(true, true, false, true);
-        cellStyle.setFont(setFont((short) 12, true, true));
+        CellStyle cellStyle = createCellStyle(true, true, false, true);
+        cellStyle.setFont(createFont((short) 12, true, true));
         cellStyle.setAlignment(HorizontalAlignment.CENTER);
         cell.setCellStyle(cellStyle);
         cell.setCellValue(entete);
 
         for (int i = 1; i < 7; i++)
-            row.createCell(i).setCellStyle(setCellStyle(false, true, false, true));
+            row.createCell(i).setCellStyle(createCellStyle(false, true, false, true));
 
-        row.createCell(7).setCellStyle(setCellStyle(false, true, true, true));
+        row.createCell(7).setCellStyle(createCellStyle(false, true, true, true));
         sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), 0, 7));
     }
 
+    /**
+     * methode de remplissage des lignes
+     * @param data la liste contenant les lignes
+     */
     private void remplirLigne(@NotNull List<Ligne> data) {
-        CellStyle cellStyle = setCellStyle(true, true, true, true);
+        CellStyle cellStyle = createCellStyle(true, true, true, true);
         cellStyle.setAlignment(HorizontalAlignment.CENTER);
-        cellStyle.setFont(setFont((short) Constants.FONT_SIZE, false, false));
+        cellStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellStyle.setShrinkToFit(true);
 
         for (Ligne ligne : data) {
@@ -526,8 +540,15 @@ public class XCL extends Mamasita {
         picture.resize(1.0, resize2);
     }
 
+    /**
+     * methode de creation d'une font
+     * @param size la taille
+     * @param bold booleen gras
+     * @param blue booleen couleur bleue
+     * @return {@link Font}
+     */
     @NotNull
-    private Font setFont(Short size, @NotNull Boolean bold, Boolean blue) {
+    private Font createFont(Short size, @NotNull Boolean bold, Boolean blue) {
         Font font = wb.createFont();
         font.setFontName("Calibri");
         font.setFontHeightInPoints(size);
@@ -537,7 +558,15 @@ public class XCL extends Mamasita {
         return font;
     }
 
-    private CellStyle setCellStyle(@NotNull Boolean left, Boolean top, Boolean right, Boolean bottom) {
+    /**
+     * methode de creation d'un style de cellule
+     * @param left booleen de bordure gauche
+     * @param top booleen de bordure superieure
+     * @param right booleen de bordure droite
+     * @param bottom booleen de bordure inferieure
+     * @return {@link CellStyle}
+     */
+    private CellStyle createCellStyle(@NotNull Boolean left, Boolean top, Boolean right, Boolean bottom) {
         CellStyle cellStyle = wb.createCellStyle();
 
         if (left) {
@@ -570,13 +599,20 @@ public class XCL extends Mamasita {
         }
     }
 
-    private void creerCell(@NotNull Row row, int col, boolean right, String entete) {
+    /**
+     * methode de creation d'une cellule
+     * @param row la ligne de la cellule
+     * @param col la colonne de la cellule
+     * @param right booleen de bordure droite
+     * @param libelle libelle de la cellule
+     */
+    private void creerCell(@NotNull Row row, int col, boolean right, String libelle) {
         Cell cell = row.createCell(col);
-        CellStyle cellStyle = setCellStyle(true, true, right, true);
-        cellStyle.setFont(setFont((short) 12, true, true));
+        CellStyle cellStyle = createCellStyle(true, true, right, true);
+        cellStyle.setFont(createFont((short) 12, true, true));
         cellStyle.setAlignment(HorizontalAlignment.CENTER);
         cell.setCellStyle(cellStyle);
-        cell.setCellValue(entete);
+        cell.setCellValue(libelle);
     }
 
     private void creerCell(@NotNull Row row, int col, CellStyle cellStyle, String texte) {
@@ -602,9 +638,9 @@ public class XCL extends Mamasita {
                 + "*" + Column.getLetterFromInt(Constants.NUM_COL_TRF_LI) + (row.getRowNum() +1);
 
         DataFormat df = wb.createDataFormat();
-        CellStyle cellStyle = setCellStyle(true, true, true, true);
+        CellStyle cellStyle = createCellStyle(true, true, true, true);
         cellStyle.setAlignment(HorizontalAlignment.CENTER);
-        cellStyle.setFont(setFont((short) Constants.FONT_SIZE, false, false));
+        cellStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellStyle.setShrinkToFit(true);
         cellStyle.setDataFormat(df.getFormat("0.00 €"));
 

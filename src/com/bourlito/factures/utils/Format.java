@@ -75,8 +75,8 @@ public class Format {
      */
     public static double getTotalTTC(double totalHT){
         double ht = totalHT;
-        double tva = totalHT * 0.2;
-        double ttc = totalHT * 1.2;
+        double tva = totalHT * Constants.TAUX_TVA;
+        double ttc = totalHT * Constants.TAUX_TTC;
 
         String sht = Format.fDouble(Locale.US).format(ht);
         sht = sht.replaceAll(",","");
