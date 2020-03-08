@@ -9,6 +9,7 @@ import java.util.Locale;
 public class Date {
 
     private static final Calendar calendar = Calendar.getInstance();
+    public static final int MILL = 2000;
 
     @NotNull
     private static String formatMonth(int month){
@@ -22,10 +23,10 @@ public class Date {
     public static String getLibelle() {
 
         int month = calendar.get(Calendar.MONTH);
-        int year = calendar.get(Calendar.YEAR) - 2000;
+        int year = calendar.get(Calendar.YEAR) - MILL;
 
         if (month == 0){
-            month = 12;
+            month = Calendar.UNDECIMBER;
             year--;
         }
 
@@ -39,13 +40,13 @@ public class Date {
             default:
                 return "31/" + formatMonth(calendar.get(Calendar.MONTH)) + "/" + calendar.get(Calendar.YEAR);
 
-            case 0:
+            case Calendar.JANUARY:
                 return  "31/12/" + (calendar.get(Calendar.YEAR) - 1);
 
-            case 2:
+            case Calendar.MARCH:
                 return "28/" + formatMonth(calendar.get(Calendar.MONTH)) + "/" + calendar.get(Calendar.YEAR);
 
-            case 4: case 6: case 9: case 11:
+            case Calendar.MAY: case Calendar.JULY: case Calendar.OCTOBER: case Calendar.DECEMBER:
                 return  "30/" + formatMonth(calendar.get(Calendar.MONTH)) + "/" + calendar.get(Calendar.YEAR);
         }
     }

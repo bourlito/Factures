@@ -15,9 +15,9 @@ import java.util.List;
 public class SClient {
 
     private static SClient INSTANCE = null;
-    private List<Client> clients = new ArrayList<>();
+    private final List<Client> clients = new ArrayList<>();
 
-    private Database db = Database.getInstance();
+    private final Database db = Database.getInstance();
 
     private SClient(){
         this.initClients();

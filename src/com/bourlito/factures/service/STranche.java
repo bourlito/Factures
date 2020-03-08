@@ -1,9 +1,7 @@
 package com.bourlito.factures.service;
 
-import com.bourlito.factures.dto.Tarif;
 import com.bourlito.factures.dto.Tranche;
-import com.bourlito.factures.utils.Column;
-import com.bourlito.factures.utils.MotsCles;
+import com.bourlito.factures.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +21,7 @@ public class STranche {
 
     public List<Tranche> getDefaultTranches() {
         List<Tranche> tranches = new ArrayList<>();
-        tranches.add(new Tranche(0, MotsCles.TARIF_DEFAULT));
+        tranches.add(new Tranche(0, Constants.TARIF_DEFAULT));
 
         return tranches;
     }

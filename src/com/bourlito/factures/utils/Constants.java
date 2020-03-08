@@ -1,6 +1,6 @@
 package com.bourlito.factures.utils;
 
-public interface MotsCles {
+public interface Constants {
     String DOSSIER = "D:\\CPE Solutions\\Factures\\";
     // String DOSSIER = "C:\\Users\\franc\\Desktop\\CPE SOLUTIONS\\FACTURATION\\";
     // String DOSSIER = "C:\\Users\\Public\\";
@@ -55,4 +55,13 @@ public interface MotsCles {
     String LIBELLE_AF = "Dossiers Spécifiques";
 
     double TARIF_DEFAULT = 0.0;
+
+    // Magic numbers
+    int PADDING = 25;
+    int MARGIN = 50;
+    int MAX_WIDTH = 200;
+    int PANE_WIDTH = 800;
+    int PANE_HEIGHT = 500;
+    int PANE_HEIGHT_TIERS = 166;
+    int FONT_SIZE = 11;
 }

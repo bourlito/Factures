@@ -2,7 +2,7 @@ package com.bourlito.factures.service;
 
 import com.bourlito.factures.dto.Tarif;
 import com.bourlito.factures.utils.Column;
-import com.bourlito.factures.utils.MotsCles;
+import com.bourlito.factures.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,17 +23,17 @@ public class STarif {
     public List<Tarif> getDefaultTarifs() {
         List<Tarif> tarifs = new ArrayList<>();
 
-        tarifs.add(new Tarif(Column.getLetterFromInt(MotsCles.NUM_COL_IB), MotsCles.LIBELLE_IB, MotsCles.TARIF_DEFAULT));
-        tarifs.add(new Tarif(Column.getLetterFromInt(MotsCles.NUM_COL_471), MotsCles.LIBELLE_471, MotsCles.TARIF_DEFAULT));
-        tarifs.add(new Tarif(Column.getLetterFromInt(MotsCles.NUM_COL_LE), MotsCles.LIBELLE_LE, MotsCles.TARIF_DEFAULT));
-        tarifs.add(new Tarif(Column.getLetterFromInt(MotsCles.NUM_COL_SF), MotsCles.LIBELLE_SF, MotsCles.TARIF_DEFAULT));
-        tarifs.add(new Tarif(Column.getLetterFromInt(MotsCles.NUM_COL_AI), MotsCles.LIBELLE_AI, MotsCles.TARIF_DEFAULT));
-        tarifs.add(new Tarif(Column.getLetterFromInt(MotsCles.NUM_COL_DP), MotsCles.LIBELLE_DP, MotsCles.TARIF_DEFAULT));
-        tarifs.add(new Tarif(Column.getLetterFromInt(MotsCles.NUM_COL_TVA), MotsCles.LIBELLE_TVA, MotsCles.TARIF_DEFAULT));
-        tarifs.add(new Tarif(Column.getLetterFromInt(MotsCles.NUM_COL_REV), MotsCles.LIBELLE_REV, MotsCles.TARIF_DEFAULT));
-        tarifs.add(new Tarif(Column.getLetterFromInt(MotsCles.NUM_COL_EI), MotsCles.LIBELLE_EI, MotsCles.TARIF_DEFAULT));
-        tarifs.add(new Tarif(Column.getLetterFromInt(MotsCles.NUM_COL_LK), MotsCles.LIBELLE_LK, MotsCles.TARIF_DEFAULT));
-        tarifs.add(new Tarif(Column.getLetterFromInt(MotsCles.NUM_COL_ND), MotsCles.LIBELLE_ND, MotsCles.TARIF_DEFAULT));
+        tarifs.add(new Tarif(Column.getLetterFromInt(Constants.NUM_COL_IB), Constants.LIBELLE_IB, Constants.TARIF_DEFAULT));
+        tarifs.add(new Tarif(Column.getLetterFromInt(Constants.NUM_COL_471), Constants.LIBELLE_471, Constants.TARIF_DEFAULT));
+        tarifs.add(new Tarif(Column.getLetterFromInt(Constants.NUM_COL_LE), Constants.LIBELLE_LE, Constants.TARIF_DEFAULT));
+        tarifs.add(new Tarif(Column.getLetterFromInt(Constants.NUM_COL_SF), Constants.LIBELLE_SF, Constants.TARIF_DEFAULT));
+        tarifs.add(new Tarif(Column.getLetterFromInt(Constants.NUM_COL_AI), Constants.LIBELLE_AI, Constants.TARIF_DEFAULT));
+        tarifs.add(new Tarif(Column.getLetterFromInt(Constants.NUM_COL_DP), Constants.LIBELLE_DP, Constants.TARIF_DEFAULT));
+        tarifs.add(new Tarif(Column.getLetterFromInt(Constants.NUM_COL_TVA), Constants.LIBELLE_TVA, Constants.TARIF_DEFAULT));
+        tarifs.add(new Tarif(Column.getLetterFromInt(Constants.NUM_COL_REV), Constants.LIBELLE_REV, Constants.TARIF_DEFAULT));
+        tarifs.add(new Tarif(Column.getLetterFromInt(Constants.NUM_COL_EI), Constants.LIBELLE_EI, Constants.TARIF_DEFAULT));
+        tarifs.add(new Tarif(Column.getLetterFromInt(Constants.NUM_COL_LK), Constants.LIBELLE_LK, Constants.TARIF_DEFAULT));
+        tarifs.add(new Tarif(Column.getLetterFromInt(Constants.NUM_COL_ND), Constants.LIBELLE_ND, Constants.TARIF_DEFAULT));
 
         return tarifs;
     }

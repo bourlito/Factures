@@ -1,12 +1,10 @@
 package com.bourlito.factures.utils;
 
 import com.bourlito.factures.scenes.utils.CScene;
-import javafx.geometry.Pos;
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.FileWriter;
@@ -19,7 +17,7 @@ public class Erreur {
         erreurWindow(erreur).show();
 
         try {
-            FileWriter writer = new FileWriter(MotsCles.DOSSIER + "erreur.txt");
+            FileWriter writer = new FileWriter(Constants.DOSSIER + "erreur.txt");
             writer.write(erreur);
             writer.close();
 
@@ -34,7 +32,7 @@ public class Erreur {
         Label label = new Label(erreur);
         pane.setCenter(label);
 
-        Scene scene = new CScene(pane, 800, 166);
+        Scene scene = new CScene(pane, Constants.PANE_WIDTH, Constants.PANE_HEIGHT_TIERS);
 
         Stage newWindow = new Stage();
         newWindow.setTitle("Erreur");

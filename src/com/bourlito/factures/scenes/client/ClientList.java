@@ -1,6 +1,6 @@
 package com.bourlito.factures.scenes.client;
 
-import com.bourlito.factures.utils.MotsCles;
+import com.bourlito.factures.utils.Constants;
 import com.bourlito.factures.dto.Client;
 import com.bourlito.factures.scenes.IView;
 import com.bourlito.factures.scenes.Main;
@@ -17,8 +17,8 @@ import com.bourlito.factures.service.SClient;
 
 public class ClientList implements IView {
 
-    private Stage stage;
-    private SClient sClient = SClient.getInstance();
+    private final Stage stage;
+    private final SClient sClient = SClient.getInstance();
 
     public ClientList(Stage stage) {
         this.stage = stage;
@@ -31,14 +31,10 @@ public class ClientList implements IView {
         root.setPadding(new Insets(10));
 
         Button btnRetour = new Button("Retour");
-        btnRetour.setOnAction(event -> {
-            stage.setScene(new Main(stage).getScene());
-        });
+        btnRetour.setOnAction(event -> stage.setScene(new Main(stage).getScene()));
 
         Button btnNew = new Button("Nouveau");
-        btnNew.setOnAction(e -> {
-            stage.setScene(new ClientDetails(stage, new Client()).getScene());
-        });
+        btnNew.setOnAction(e -> stage.setScene(new ClientDetails(stage, new Client()).getScene()));
 
         ButtonBar bbar = new ButtonBar();
         bbar.setPadding(new Insets(10, 0, 0, 10));
@@ -50,34 +46,16 @@ public class ClientList implements IView {
         pane.setAlignment(Pos.CENTER);
         pane.setHgap(20);
         pane.setVgap(10);
-        pane.setPadding(new Insets(25, 25, 25, 25));
+        pane.setPadding(new Insets(Constants.PADDING));
 
         for (Client client: sClient.getClients()) {
             Button title = new Button(client.getAlias());
-            title.setOnAction(event -> {
-                stage.setScene(new ClientDetails(stage, client).getScene());
-            });
+            title.setOnAction(event -> stage.setScene(new ClientDetails(stage, client).getScene()));
             pane.getChildren().addAll(title);
         }
 
         root.setCenter(pane);
 
         return new CScene(root);
-    }
-
-    private Stage exportWindow(){
-        Label label = new Label("Base de données exportée ("+ MotsCles.DOSSIER +"clients.json)");
-
-        BorderPane pane = new BorderPane();
-        pane.setCenter(label);
-
-        Scene secondScene = new CScene(pane, stage.getWidth(), stage.getHeight()/3);
-
-        // New window (Stage)
-        Stage newWindow = new Stage();
-        newWindow.setTitle("Export");
-        newWindow.setScene(secondScene);
-
-        return newWindow;
     }
 }

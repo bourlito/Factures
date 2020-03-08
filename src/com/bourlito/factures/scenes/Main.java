@@ -8,9 +8,10 @@ import com.bourlito.factures.service.SClient;
 import com.bourlito.factures.traitement.PDF;
 import com.bourlito.factures.traitement.Recap;
 import com.bourlito.factures.traitement.XCL;
+import com.bourlito.factures.utils.Constants;
 import com.bourlito.factures.utils.Date;
 import com.bourlito.factures.utils.Erreur;
-import com.bourlito.factures.utils.NumFormat;
+import com.bourlito.factures.utils.Format;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -27,12 +28,11 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Main implements IView{
 
-    private Stage stage;
+    private final Stage stage;
     private static File destination;
     private static String nFact = "1";
     private TextField tNum;
@@ -48,35 +48,31 @@ public class Main implements IView{
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(20);
         grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
+        grid.setPadding(new Insets(Constants.PADDING));
 
         Label lNum = new Label("N° de première facture :");
         grid.add(lNum, 0, 0);
         tNum = new TextField();
-        tNum.setMaxWidth(200);
+        tNum.setMaxWidth(Constants.MAX_WIDTH);
         tNum.setText(nFact);
-        tNum.textProperty().addListener((observable, oldValue, newValue) -> {
-            nFact = newValue;
-        });
+        tNum.textProperty().addListener((observable, oldValue, newValue) -> nFact = newValue);
         grid.add(tNum, 1, 0);
 
         Button btnDest = new Button("Dossier de destination");
-        btnDest.setMinWidth(200);
+        btnDest.setMinWidth(Constants.MAX_WIDTH);
         grid.add(btnDest, 0, 1);
         Label lDest = new Label();
         lDest.setText(destination != null ? destination.getName() : "");
         grid.add(lDest, 1, 1);
 
         Button btnClients = new Button("Clients");
-        btnClients.setMinWidth(200);
+        btnClients.setMinWidth(Constants.MAX_WIDTH);
         grid.add(btnClients, 0, 2);
-        btnClients.setOnAction(event -> {
-            stage.setScene(new ClientList(stage).getScene());
-        });
+        btnClients.setOnAction(event -> stage.setScene(new ClientList(stage).getScene()));
 
         Button btnValider = new Button("Valider");
         btnValider.setId("btnValider");
-        btnValider.setMinWidth(200);
+        btnValider.setMinWidth(Constants.MAX_WIDTH);
         grid.add(btnValider, 1, 2);
 
         btnDest.setOnAction(e -> {
@@ -126,7 +122,7 @@ public class Main implements IView{
                 return;
             }
 
-            String libelleFac = destination.getAbsolutePath() + "\\Facture CPE traitement " + client.getNom() + " " + Date.getLibelle() + " - " + NumFormat.fNbFact().format(nFacture);
+            String libelleFac = destination.getAbsolutePath() + "\\Facture CPE traitement " + client.getNom() + " " + Date.getLibelle() + " - " + Format.fNbFact().format(nFacture);
 
             new XCL(wb.getSheetAt(a), libelleFac + ".xls", nFacture, client).creerXCL();
             PDF pdf = new PDF(wb.getSheetAt(a), libelleFac + ".pdf", nFacture, client);
@@ -148,7 +144,7 @@ public class Main implements IView{
         Label label = new Label("Factures terminées.");
         Button btnTerminer = new Button("Terminer");
         btnTerminer.setId("btnValider");
-        btnTerminer.setMinWidth(200);
+        btnTerminer.setMinWidth(Constants.MAX_WIDTH);
 
         btnTerminer.setOnAction(event -> {
             newWindow.close();

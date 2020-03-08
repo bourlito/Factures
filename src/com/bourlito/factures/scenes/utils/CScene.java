@@ -1,13 +1,14 @@
 package com.bourlito.factures.scenes.utils;
 
 import com.bourlito.factures.JavaFX;
+import com.bourlito.factures.utils.Constants;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 public class CScene extends Scene {
 
     public CScene(Parent root) {
-        super(root, 800, 500);
+        super(root, Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
         this.getStylesheets().add(JavaFX.STYLE);
     }
 

@@ -5,7 +5,8 @@ import com.bourlito.factures.dto.Ligne;
 import com.bourlito.factures.dto.Tranche;
 import com.bourlito.factures.utils.Column;
 import com.bourlito.factures.utils.Erreur;
-import com.bourlito.factures.utils.MotsCles;
+import com.bourlito.factures.utils.Constants;
+import com.bourlito.factures.utils.Format;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -14,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 abstract class Mamasita {
 
@@ -33,15 +35,22 @@ abstract class Mamasita {
     private final List<List<String>> dataND = new ArrayList<>();
     private final List<List<String>> dataAF = new ArrayList<>();
 
-    private HSSFSheet decompteSheet;
-    String filename;
-    int nFacture;
-    Client client;
+    private final HSSFSheet decompteSheet;
+    final String filename;
+    final int nFacture;
+    final Client client;
 
     int totalLigne = 0;
     double totalHT = 0;
     int nvDos = 0;
 
+    /**
+     * constructeur qui regroupe les donnees communes a chaque type de facture (pdf ou xcl)
+     * @param sheet la feuille du decompte
+     * @param filename le nom du fichier a creer
+     * @param nFacture le numero de facture
+     * @param client le client associe
+     */
     Mamasita(HSSFSheet sheet, String filename, int nFacture, Client client) {
         this.decompteSheet = sheet;
         this.filename = filename;
@@ -68,12 +77,12 @@ abstract class Mamasita {
                 ligne.setDate(list.get(0));
                 ligne.setEntreprise(list.get(1));
 
-                if (numCol == MotsCles.NUM_COL_LI){
+                if (numCol == Constants.NUM_COL_LI){
                     ligne.setNbLigne((int) Double.parseDouble(list.get(2)));
                     ligne.setTarif(client.getTranches().get(0).getPrix());
                 }
 
-                else if (numCol == MotsCles.NUM_COL_AF){
+                else if (numCol == Constants.NUM_COL_AF){
                     ligne.setNbLigne(1);
                     ligne.setTarif(Double.parseDouble(list.get(2)));
                 }
@@ -88,10 +97,10 @@ abstract class Mamasita {
 
                 totalLigne += ligne.getNbLigne();
 
-                if (numCol != MotsCles.NUM_COL_LI)
+                if (numCol != Constants.NUM_COL_LI)
                     totalHT += ligne.getTotal();
 
-                if (numCol == MotsCles.NUM_COL_ND)
+                if (numCol == Constants.NUM_COL_ND)
                     nvDos++;
             }
         }
@@ -100,7 +109,7 @@ abstract class Mamasita {
     }
 
     List<Ligne> parseLignes(){
-        List<Ligne> lignes = createLigne(dataLigne, MotsCles.NUM_COL_LI);
+        List<Ligne> lignes = createLigne(dataLigne, Constants.NUM_COL_LI);
         List<Tranche> tranches = client.getTranches();
         int nbLigne = 0;
         int[] lastNbLigne = new int[tranches.size() -1];
@@ -170,18 +179,18 @@ abstract class Mamasita {
     }
 
     void remplirAllIfNotEmpty(){
-        remplirIfNotEmpty(dataIB, client.getTarifs().get(MotsCles.NUM_COL_IB -3).getNom(), MotsCles.NUM_COL_IB);
-        remplirIfNotEmpty(data471, client.getTarifs().get(MotsCles.NUM_COL_471 -3).getNom(), MotsCles.NUM_COL_471);
-        remplirIfNotEmpty(dataLe, client.getTarifs().get(MotsCles.NUM_COL_LE -3).getNom(), MotsCles.NUM_COL_LE);
-        remplirIfNotEmpty(dataSF, client.getTarifs().get(MotsCles.NUM_COL_SF -3).getNom(), MotsCles.NUM_COL_SF);
-        remplirIfNotEmpty(dataAI, client.getTarifs().get(MotsCles.NUM_COL_AI -3).getNom(), MotsCles.NUM_COL_AI);
-        remplirIfNotEmpty(dataDP, client.getTarifs().get(MotsCles.NUM_COL_DP -3).getNom(), MotsCles.NUM_COL_DP);
-        remplirIfNotEmpty(dataTVA, client.getTarifs().get(MotsCles.NUM_COL_TVA -3).getNom(), MotsCles.NUM_COL_TVA);
-        remplirIfNotEmpty(dataREV, client.getTarifs().get(MotsCles.NUM_COL_REV -3).getNom(), MotsCles.NUM_COL_REV);
-        remplirIfNotEmpty(dataEI, client.getTarifs().get(MotsCles.NUM_COL_EI -3).getNom(), MotsCles.NUM_COL_EI);
-        remplirIfNotEmpty(dataLinkup, client.getTarifs().get(MotsCles.NUM_COL_LK -3).getNom(), MotsCles.NUM_COL_LK);
-        remplirIfNotEmpty(dataND, client.getTarifs().get(MotsCles.NUM_COL_ND -3).getNom(), MotsCles.NUM_COL_ND);
-        remplirIfNotEmpty(dataAF, MotsCles.LIBELLE_AF, MotsCles.NUM_COL_AF);
+        remplirIfNotEmpty(dataIB, client.getTarifs().get(Constants.NUM_COL_IB -3).getNom(), Constants.NUM_COL_IB);
+        remplirIfNotEmpty(data471, client.getTarifs().get(Constants.NUM_COL_471 -3).getNom(), Constants.NUM_COL_471);
+        remplirIfNotEmpty(dataLe, client.getTarifs().get(Constants.NUM_COL_LE -3).getNom(), Constants.NUM_COL_LE);
+        remplirIfNotEmpty(dataSF, client.getTarifs().get(Constants.NUM_COL_SF -3).getNom(), Constants.NUM_COL_SF);
+        remplirIfNotEmpty(dataAI, client.getTarifs().get(Constants.NUM_COL_AI -3).getNom(), Constants.NUM_COL_AI);
+        remplirIfNotEmpty(dataDP, client.getTarifs().get(Constants.NUM_COL_DP -3).getNom(), Constants.NUM_COL_DP);
+        remplirIfNotEmpty(dataTVA, client.getTarifs().get(Constants.NUM_COL_TVA -3).getNom(), Constants.NUM_COL_TVA);
+        remplirIfNotEmpty(dataREV, client.getTarifs().get(Constants.NUM_COL_REV -3).getNom(), Constants.NUM_COL_REV);
+        remplirIfNotEmpty(dataEI, client.getTarifs().get(Constants.NUM_COL_EI -3).getNom(), Constants.NUM_COL_EI);
+        remplirIfNotEmpty(dataLinkup, client.getTarifs().get(Constants.NUM_COL_LK -3).getNom(), Constants.NUM_COL_LK);
+        remplirIfNotEmpty(dataND, client.getTarifs().get(Constants.NUM_COL_ND -3).getNom(), Constants.NUM_COL_ND);
+        remplirIfNotEmpty(dataAF, Constants.LIBELLE_AF, Constants.NUM_COL_AF);
     }
 
     abstract void remplirIfNotEmpty(List<List<String>> data, String libelle, int numCol);
@@ -202,56 +211,56 @@ abstract class Mamasita {
             for (int index = 2; index < aData.size(); index++) {
                 if (!aData.get(index).equals("0.0")) {
                     switch (index) {
-                        case MotsCles.NUM_COL_LI:
-                            dataLineLigne = remplirData(aData, MotsCles.NUM_COL_LI);
+                        case Constants.NUM_COL_LI:
+                            dataLineLigne = remplirData(aData, Constants.NUM_COL_LI);
                             dataLigne.add(dataLineLigne);
                             break;
-                        case MotsCles.NUM_COL_IB:
-                            dataLineIB = remplirData(aData, MotsCles.NUM_COL_IB);
+                        case Constants.NUM_COL_IB:
+                            dataLineIB = remplirData(aData, Constants.NUM_COL_IB);
                             dataIB.add(dataLineIB);
                             break;
-                        case MotsCles.NUM_COL_471:
-                            dataLine471 = remplirData(aData, MotsCles.NUM_COL_471);
+                        case Constants.NUM_COL_471:
+                            dataLine471 = remplirData(aData, Constants.NUM_COL_471);
                             data471.add(dataLine471);
                             break;
-                        case MotsCles.NUM_COL_LE:
-                            dataLineLe = remplirData(aData, MotsCles.NUM_COL_LE);
+                        case Constants.NUM_COL_LE:
+                            dataLineLe = remplirData(aData, Constants.NUM_COL_LE);
                             dataLe.add(dataLineLe);
                             break;
-                        case MotsCles.NUM_COL_SF:
-                            dataLineSF = remplirData(aData, MotsCles.NUM_COL_SF);
+                        case Constants.NUM_COL_SF:
+                            dataLineSF = remplirData(aData, Constants.NUM_COL_SF);
                             dataSF.add(dataLineSF);
                             break;
-                        case MotsCles.NUM_COL_AI:
-                            dataLineAI = remplirData(aData, MotsCles.NUM_COL_AI);
+                        case Constants.NUM_COL_AI:
+                            dataLineAI = remplirData(aData, Constants.NUM_COL_AI);
                             dataAI.add(dataLineAI);
                             break;
-                        case MotsCles.NUM_COL_DP:
-                            dataLineDP = remplirData(aData, MotsCles.NUM_COL_DP);
+                        case Constants.NUM_COL_DP:
+                            dataLineDP = remplirData(aData, Constants.NUM_COL_DP);
                             dataDP.add(dataLineDP);
                             break;
-                        case MotsCles.NUM_COL_TVA:
-                            dataLineTVA = remplirData(aData, MotsCles.NUM_COL_TVA);
+                        case Constants.NUM_COL_TVA:
+                            dataLineTVA = remplirData(aData, Constants.NUM_COL_TVA);
                             dataTVA.add(dataLineTVA);
                             break;
-                        case MotsCles.NUM_COL_REV:
-                            dataLineREV = remplirData(aData, MotsCles.NUM_COL_REV);
+                        case Constants.NUM_COL_REV:
+                            dataLineREV = remplirData(aData, Constants.NUM_COL_REV);
                             dataREV.add(dataLineREV);
                             break;
-                        case MotsCles.NUM_COL_EI:
-                            dataLineEI = remplirData(aData, MotsCles.NUM_COL_EI);
+                        case Constants.NUM_COL_EI:
+                            dataLineEI = remplirData(aData, Constants.NUM_COL_EI);
                             dataEI.add(dataLineEI);
                             break;
-                        case MotsCles.NUM_COL_LK:
-                            dataLineLinkup = remplirData(aData, MotsCles.NUM_COL_LK);
+                        case Constants.NUM_COL_LK:
+                            dataLineLinkup = remplirData(aData, Constants.NUM_COL_LK);
                             dataLinkup.add(dataLineLinkup);
                             break;
-                        case MotsCles.NUM_COL_ND:
-                            dataLineND = remplirData(aData, MotsCles.NUM_COL_ND);
+                        case Constants.NUM_COL_ND:
+                            dataLineND = remplirData(aData, Constants.NUM_COL_ND);
                             dataND.add(dataLineND);
                             break;
-                        case MotsCles.NUM_COL_AF:
-                            dataLineAF = remplirData(aData, MotsCles.NUM_COL_AF);
+                        case Constants.NUM_COL_AF:
+                            dataLineAF = remplirData(aData, Constants.NUM_COL_AF);
                             dataAF.add(dataLineAF);
                             break;
                     }
@@ -320,6 +329,9 @@ abstract class Mamasita {
         return data;
     }
 
+    /**
+     * @return totalHT
+     */
     public double getTotalHT() {
         return totalHT;
     }

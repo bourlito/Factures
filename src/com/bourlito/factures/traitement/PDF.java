@@ -4,8 +4,8 @@ import com.bourlito.factures.dto.Client;
 import com.bourlito.factures.dto.Ligne;
 import com.bourlito.factures.utils.Date;
 import com.bourlito.factures.utils.Erreur;
-import com.bourlito.factures.utils.MotsCles;
-import com.bourlito.factures.utils.NumFormat;
+import com.bourlito.factures.utils.Constants;
+import com.bourlito.factures.utils.Format;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -19,12 +19,15 @@ import java.util.List;
 public class PDF extends Mamasita {
 
     private PdfPTable table;
-    private Font fontTitre = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD, new BaseColor(46, 110, 175));
+    private final Font fontTitre = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD, new BaseColor(46, 110, 175));
 
     public PDF(HSSFSheet sheet, String filename, int nFacture, Client client) {
         super(sheet, filename, nFacture, client);
     }
 
+    /**
+     * methode de creation du pdf
+     */
     public void createPdf() {
         HeaderTable event = null;
         try {
@@ -33,7 +36,7 @@ public class PDF extends Mamasita {
             e.printStackTrace();
         }
         assert event != null;
-        Document document = new Document(PageSize.A4, 50, 50, 50 + event.getTableHeight(), 50);
+        Document document = new Document(PageSize.A4, Constants.MARGIN, Constants.MARGIN, Constants.MARGIN + event.getTableHeight(), Constants.MARGIN);
         PdfWriter writer = null;
         try {
             writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
@@ -61,7 +64,7 @@ public class PDF extends Mamasita {
             e.printStackTrace();
         }
 
-        Font font = new Font(Font.FontFamily.HELVETICA, 11);
+        Font font = new Font(Font.FontFamily.HELVETICA, Constants.FONT_SIZE);
 
         PdfPTable table = new PdfPTable(5);
         table.setWidthPercentage(100);
@@ -101,7 +104,7 @@ public class PDF extends Mamasita {
         cell.setBorder(0);
         table.addCell(cell);
 
-        paragraph = new Paragraph("Total nombre de Lignes : " + NumFormat.fEntier().format(totalLigne) + "\nTotal € HT : " + NumFormat.fDouble().format(totalHT) + " €\nTVA (20%) : " + NumFormat.fDouble().format(totalHT * 0.2) + " €\nTotal € TTC : " + NumFormat.fDouble().format(totalHT * 1.2) + " €", font);
+        paragraph = new Paragraph("Total nombre de Lignes : " + Format.fEntier().format(totalLigne) + "\nTotal € HT : " + Format.fDouble().format(totalHT) + " €\nTVA (20%) : " + Format.fDouble().format(totalHT * 0.2) + " €\nTotal € TTC : " + Format.fDouble().format(Format.getTotalTTC(totalHT)) + " €", font);
         paragraph.setAlignment(Element.ALIGN_CENTER);
         cell = new PdfPCell();
         cell.addElement(paragraph);
@@ -129,7 +132,7 @@ public class PDF extends Mamasita {
     @NotNull
     private PdfPTable createCDNReg() {
         Font font = new Font(Font.FontFamily.HELVETICA, 8);
-        Font fontTitre = new Font(Font.FontFamily.HELVETICA, 11, Font.BOLD);
+        Font fontTitre = new Font(Font.FontFamily.HELVETICA, Constants.FONT_SIZE, Font.BOLD);
 
         PdfPTable table = new PdfPTable(11);
         PdfPCell cell = new PdfPCell();
@@ -161,12 +164,12 @@ public class PDF extends Mamasita {
                 if ((j % 2) == 0) {
                     cell = new PdfPCell(new Phrase(""));
                     cell.setBorder(0);
-                    table.addCell(cell);
                 } else {
                     cell = new PdfPCell(new Phrase(listReg[i][j / 2], font));
                     cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                    table.addCell(cell);
                 }
+
+                table.addCell(cell);
             }
             cell = new PdfPCell(new Phrase(""));
             cell.setColspan(11);
@@ -216,7 +219,7 @@ public class PDF extends Mamasita {
             Erreur.creerFichierErreur(e.getMessage());
             e.printStackTrace();
         }
-        Document document = new Document(PageSize.A4, 50, 50, 50, 50);
+        Document document = new Document(PageSize.A4, Constants.MARGIN, Constants.MARGIN, Constants.MARGIN, Constants.MARGIN);
         try {
             PdfWriter.getInstance(document, new FileOutputStream(result));
         } catch (DocumentException | FileNotFoundException e) {
@@ -274,9 +277,9 @@ public class PDF extends Mamasita {
         for (Ligne ligne : data) {
             creerCell(new Paragraph(ligne.getDate(), font));
             creerCell(new Paragraph(ligne.getEntreprise(), font));
-            creerCell(new Paragraph(NumFormat.fEntier().format(ligne.getNbLigne()), font));
-            creerCell(new Paragraph(NumFormat.fTriple().format(ligne.getTarif()), font));
-            creerCell(new Paragraph(NumFormat.fDouble().format(ligne.getTotal()) + " €", font));
+            creerCell(new Paragraph(Format.fEntier().format(ligne.getNbLigne()), font));
+            creerCell(new Paragraph(Format.fTriple().format(ligne.getTarif()), font));
+            creerCell(new Paragraph(Format.fDouble().format(ligne.getTotal()) + " €", font));
         }
     }
 
@@ -316,14 +319,14 @@ public class PDF extends Mamasita {
             Paragraph paragraph;
 
             cell = new PdfPCell();
-            Image image = Image.getInstance(MotsCles.IMG);
+            Image image = Image.getInstance(Constants.IMG);
             cell.addElement(image);
             cell.setBorder(0);
             cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
             table.addCell(cell);
 
             cell = new PdfPCell();
-            paragraph = new Paragraph(MotsCles.adresseCPE, new Font(Font.FontFamily.HELVETICA, 10));
+            paragraph = new Paragraph(Constants.adresseCPE, new Font(Font.FontFamily.HELVETICA, 10));
             cell.addElement(paragraph);
             cell.setBorder(0);
             table.addCell(cell);
@@ -333,7 +336,7 @@ public class PDF extends Mamasita {
             table.addCell(cell);
 
             cell = new PdfPCell();
-            paragraph = new Paragraph("FACTURE N° " + Date.getYear() + "-" + NumFormat.fNbFact().format(nFacture), new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD));
+            paragraph = new Paragraph("FACTURE N° " + Date.getYear() + "-" + Format.fNbFact().format(nFacture), new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD));
             paragraph.setAlignment(Element.ALIGN_RIGHT);
             cell.addElement(paragraph);
             cell.setBorder(0);

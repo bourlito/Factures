@@ -1,18 +1,16 @@
 package com.bourlito.factures.traitement_v2;
 
 import com.bourlito.factures.dto.*;
-import com.bourlito.factures.utils.MotsCles;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Traitement {
 
-    private HSSFSheet decompteSheet;
-    private String filename;
-    private int nFacture;
-    private Client client;
+    private final HSSFSheet decompteSheet;
+    private final String filename;
+    private final int nFacture;
+    private final Client client;
 
     private int totalLigne = 0;
     private double totalHT = 0;

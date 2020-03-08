@@ -1,5 +1,6 @@
 package com.bourlito.factures.scenes.tarif;
 
+import com.bourlito.factures.utils.Constants;
 import com.bourlito.factures.utils.Keys;
 import com.bourlito.factures.dto.Client;
 import com.bourlito.factures.dto.Tarif;
@@ -17,16 +18,12 @@ import javafx.stage.Stage;
 
 public class TarifsDetails implements IView {
 
-    private Stage stage;
-    private Client client;
+    private final Stage stage;
+    private final Client client;
     private Tarif tarif;
 
-    private TextField tColonne, tNom, tPrix;
-
-    public TarifsDetails(Stage stage, Client client) {
-        this.stage = stage;
-        this.client = client;
-    }
+    private TextField tNom;
+    private TextField tPrix;
 
     public TarifsDetails(Stage stage, Client client, Tarif tarif) {
         this.stage = stage;
@@ -41,9 +38,7 @@ public class TarifsDetails implements IView {
         root.setPadding(new Insets(10));
 
         Button btnAnnuler = new Button("Annuler");
-        btnAnnuler.setOnAction(event -> {
-            stage.setScene(new TarifsList(stage, client).getScene());
-        });
+        btnAnnuler.setOnAction(event -> stage.setScene(new TarifsList(stage, client).getScene()));
 
         Button btnValider = new Button("Valider");
         btnValider.setId("btnValider");
@@ -71,7 +66,7 @@ public class TarifsDetails implements IView {
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(20);
         grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
+        grid.setPadding(new Insets(Constants.PADDING));
 
         Label lColonne = new Label(Keys.COLONNE);
         grid.add(lColonne,0,0);

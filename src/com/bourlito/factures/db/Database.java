@@ -1,6 +1,6 @@
 package com.bourlito.factures.db;
 
-import com.bourlito.factures.utils.MotsCles;
+import com.bourlito.factures.utils.Constants;
 import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -25,7 +25,7 @@ public class Database {
     public void write(@NotNull JSONArray array){
         try {
 
-            File file = new File(MotsCles.DOSSIER + DB_NAME);
+            File file = new File(Constants.DOSSIER + DB_NAME);
             FileWriter fr = new FileWriter(file);
             fr.write(array.toString());
             fr.close();
@@ -39,7 +39,7 @@ public class Database {
         JSONParser parser = new JSONParser();
 
         try {
-            return (JSONArray) parser.parse(new FileReader(MotsCles.DOSSIER + DB_NAME));
+            return (JSONArray) parser.parse(new FileReader(Constants.DOSSIER + DB_NAME));
 
         } catch (FileNotFoundException e){
             this.write(new JSONArray());

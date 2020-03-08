@@ -3,7 +3,7 @@ package com.bourlito.factures.dto;
 import com.bourlito.factures.service.STarif;
 import com.bourlito.factures.service.STranche;
 import com.bourlito.factures.utils.Keys;
-import com.bourlito.factures.utils.MotsCles;
+import com.bourlito.factures.utils.Constants;
 import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -17,7 +17,7 @@ public class Client implements Comparable<Client>{
     private List<Tarif> tarifs;
 
     public Client() {
-        this.libelleTranches = MotsCles.LIBELLE_LI;
+        this.libelleTranches = Constants.LIBELLE_LI;
         this.tranches = STranche.getInstance().getDefaultTranches();
         this.tarifs = STarif.getInstance().getDefaultTarifs();
     }
@@ -108,13 +108,5 @@ public class Client implements Comparable<Client>{
 
     public void setLibelleTranches(String libelleTranches) {
         this.libelleTranches = libelleTranches;
-    }
-
-    public void setTranches(List<Tranche> tranches) {
-        this.tranches = tranches;
-    }
-
-    public void setTarifs(List<Tarif> tarifs) {
-        this.tarifs = tarifs;
     }
 }

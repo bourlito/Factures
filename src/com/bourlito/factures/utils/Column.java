@@ -6,9 +6,4 @@ public class Column {
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         return alphabet.substring(index, index + 1);
     }
-
-    public static int getIntFromLetter(String letter){
-        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        return alphabet.indexOf(letter);
-    }
 }

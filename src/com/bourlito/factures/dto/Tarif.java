@@ -26,10 +26,6 @@ public class Tarif implements Comparable<Tarif>{
         return colonne;
     }
 
-    public void setColonne(String colonne) {
-        this.colonne = colonne;
-    }
-
     public String getNom() {
         return nom;
     }
