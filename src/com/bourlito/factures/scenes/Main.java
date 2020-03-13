@@ -33,7 +33,7 @@ public class Main {
 
     private final Stage stage;
     private static File destination;
-    private static String nFact = "1";
+    private static String nFact = "";
     private TextField tNum;
 
     /**
