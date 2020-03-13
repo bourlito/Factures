@@ -3,7 +3,6 @@ package com.bourlito.factures.scenes.client;
 import com.bourlito.factures.utils.Constants;
 import com.bourlito.factures.utils.Keys;
 import com.bourlito.factures.dto.Client;
-import com.bourlito.factures.scenes.IView;
 import com.bourlito.factures.scenes.tarif.TarifsList;
 import com.bourlito.factures.scenes.tranche.TranchesList;
 import com.bourlito.factures.scenes.utils.CScene;
@@ -16,7 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 
-public class ClientDetails implements IView {
+public class ClientDetails {
 
     private final Stage stage;
     private final Client client;
@@ -32,7 +31,9 @@ public class ClientDetails implements IView {
         this.client = client;
     }
 
-    @Override
+    /**
+     * @return la scene
+     */
     public CScene getScene() {
 
         BorderPane root = new BorderPane();

@@ -5,9 +5,8 @@ import com.bourlito.factures.scenes.client.ClientList;
 import com.bourlito.factures.scenes.utils.CScene;
 import com.bourlito.factures.scenes.utils.Chooser;
 import com.bourlito.factures.service.SClient;
-import com.bourlito.factures.traitement.PDF;
 import com.bourlito.factures.traitement.Recap;
-import com.bourlito.factures.traitement.XCL;
+import com.bourlito.factures.traitement.Facture;
 import com.bourlito.factures.utils.Constants;
 import com.bourlito.factures.utils.Date;
 import com.bourlito.factures.utils.Erreur;
@@ -30,7 +29,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class Main implements IView{
+public class Main {
 
     private final Stage stage;
     private static File destination;
@@ -45,7 +44,9 @@ public class Main implements IView{
         this.stage = stage;
     }
 
-    @Override
+    /**
+     * @return la scene
+     */
     public CScene getScene() {
 
         GridPane grid = new GridPane();
@@ -131,11 +132,10 @@ public class Main implements IView{
 
             String libelleFac = destination.getAbsolutePath() + "\\Facture CPE traitement " + client.getNom() + " " + Date.getLibelle() + " - " + Format.fNbFact().format(nFacture);
 
-            new XCL(wb.getSheetAt(a), libelleFac + ".xls", nFacture, client).creerXCL();
-            PDF pdf = new PDF(wb.getSheetAt(a), libelleFac + ".pdf", nFacture, client);
-            pdf.createPdf();
+            Facture facture = new Facture(libelleFac, nFacture, client, sheet);
+            facture.create();
 
-            recap.insert(client, nFacture, pdf.getTotalHT());
+            recap.insert(client, nFacture, facture.getTotalHT());
 
             a++;
             nFacture++;

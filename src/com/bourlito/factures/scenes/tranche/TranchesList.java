@@ -3,7 +3,6 @@ package com.bourlito.factures.scenes.tranche;
 import com.bourlito.factures.utils.Keys;
 import com.bourlito.factures.dto.Client;
 import com.bourlito.factures.dto.Tranche;
-import com.bourlito.factures.scenes.IView;
 import com.bourlito.factures.scenes.client.ClientDetails;
 import com.bourlito.factures.scenes.utils.CScene;
 import com.bourlito.factures.utils.Constants;
@@ -15,7 +14,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-public class TranchesList implements IView {
+public class TranchesList {
 
     private final Stage stage;
     private final Client client;
@@ -32,7 +31,9 @@ public class TranchesList implements IView {
         this.client = client;
     }
 
-    @Override
+    /**
+     * @return la scene
+     */
     public CScene getScene() {
 
         BorderPane root = new BorderPane();

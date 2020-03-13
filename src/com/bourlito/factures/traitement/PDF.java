@@ -2,136 +2,73 @@ package com.bourlito.factures.traitement;
 
 import com.bourlito.factures.dto.Client;
 import com.bourlito.factures.dto.Ligne;
+import com.bourlito.factures.utils.Constants;
 import com.bourlito.factures.utils.Date;
 import com.bourlito.factures.utils.Erreur;
-import com.bourlito.factures.utils.Constants;
 import com.bourlito.factures.utils.Format;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-public class PDF extends Mamasita {
+public class PDF {
 
-    private PdfPTable table;
+    private final String name;
+    private final int numero;
+    private final Client client;
+    private final Traitement traitement;
+
     private final Font fontTitre = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD, new BaseColor(46, 110, 175));
     private final BaseColor color = new BaseColor(46, 110, 175);
 
-    public PDF(HSSFSheet sheet, String filename, int nFacture, Client client) {
-        super(sheet, filename, nFacture, client);
+    /**
+     * constructeur
+     *
+     * @param name       le nom de la facture
+     * @param numero     le numero de facture
+     * @param client     le client associe
+     * @param traitement le traitement effectue sur la page du decompte
+     */
+    protected PDF(String name, int numero, Client client, Traitement traitement) {
+        this.name = name;
+        this.numero = numero;
+        this.client = client;
+        this.traitement = traitement;
     }
 
     /**
-     * methode de creation du pdf
+     * methode de creation de la facture pdf
+     *
+     * @throws DocumentException
+     * @throws IOException
      */
-    public void createPdf() {
-        HeaderTable event = null;
-        try {
-            event = new HeaderTable();
-        } catch (DocumentException | IOException e) {
-            e.printStackTrace();
-        }
-        assert event != null;
-        Document document = new Document(PageSize.A4, Constants.MARGIN, Constants.MARGIN, Constants.MARGIN + event.getTableHeight(), Constants.MARGIN);
-        PdfWriter writer = null;
-        try {
-            writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
-        } catch (DocumentException | FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        assert writer != null;
-        writer.setPageEvent(event);
+    public void createPdf() throws DocumentException, IOException {
+
+        HeaderTable headerTable = new HeaderTable();
+        Document document = new Document(PageSize.A4, Constants.MARGIN, Constants.MARGIN, Constants.MARGIN + headerTable.getTableHeight(), Constants.MARGIN);
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(name));
+        writer.setPageEvent(headerTable);
+
+
         document.open();
 
-        try {
-            document.add(createCDNReg());
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        }
+        document.add(this.getConditionsReglement());
+        document.add(new Paragraph("\n\n"));
+        document.add(this.getDetails());
+        document.add(new Paragraph("\n\n"));
+        document.add(this.getRecap());
 
-        try {
-            document.add(new Paragraph("\n\n"));
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        }
-        try {
-            document.add(createTable(filename));
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        }
-
-        Font font = new Font(Font.FontFamily.HELVETICA, Constants.FONT_SIZE);
-
-        PdfPTable table = new PdfPTable(5);
-        table.setWidthPercentage(100);
-        table.setKeepTogether(true);
-        int[] headerwidths = {25, 5, 60, 5, 60};
-        try {
-            table.setWidths(headerwidths);
-        } catch (DocumentException e) {
-            Erreur.creerFichierErreur(e.getMessage());
-            e.printStackTrace();
-        }
-        PdfPCell cell = new PdfPCell();
-        Paragraph paragraph = new Paragraph("Remarques", font);
-
-        cell.addElement(paragraph);
-        cell.setBorder(0);
-        table.addCell(cell);
-
-        cell = new PdfPCell();
-        cell.addElement(new Paragraph("\n"));
-        cell.setBorder(0);
-        table.addCell(cell);
-
-        String phrase = nvDos <= 1 ? nvDos + " Nouveau Dossier" : nvDos + " Nouveaux Dossiers";
-
-        paragraph = new Paragraph(phrase, font);
-        cell = new PdfPCell();
-        cell.addElement(paragraph);
-        cell.setPaddingTop(-3);
-        cell.setPaddingBottom(4);
-        cell.setBorderColor(color);
-        cell.setBorderWidth(1.1f);
-        table.addCell(cell);
-
-        cell = new PdfPCell();
-        cell.addElement(new Paragraph("\n"));
-        cell.setBorder(0);
-        table.addCell(cell);
-
-        paragraph = new Paragraph("Total nombre de Lignes : " + Format.fEntier().format(totalLigne) + "\nTotal € HT : " + Format.fDouble().format(totalHT) + " €\nTVA (20%) : " + Format.fDouble().format(totalHT * Constants.TAUX_TVA) + " €\nTotal € TTC : " + Format.fDouble().format(Format.getTotalTTC(totalHT)) + " €", font);
-        paragraph.setAlignment(Element.ALIGN_CENTER);
-        cell = new PdfPCell();
-        cell.addElement(paragraph);
-        cell.setPaddingTop(-3);
-        cell.setPaddingBottom(4);
-        cell.setBorderColor(color);
-        cell.setBorderWidth(1.1f);
-        table.addCell(cell);
-
-        try {
-            document.add(new Paragraph("\n"));
-        } catch (DocumentException e) {
-            Erreur.creerFichierErreur(e.getMessage());
-            e.printStackTrace();
-        }
-        try {
-            document.add(table);
-        } catch (DocumentException e) {
-            Erreur.creerFichierErreur(e.getMessage());
-            e.printStackTrace();
-        }
         document.close();
     }
 
+    /**
+     * @return les conditions de reglement
+     */
     @NotNull
-    private PdfPTable createCDNReg() {
+    private PdfPTable getConditionsReglement() {
         Font font = new Font(Font.FontFamily.HELVETICA, 8);
         Font fontTitre = new Font(Font.FontFamily.HELVETICA, Constants.FONT_SIZE, Font.BOLD);
 
@@ -209,9 +146,11 @@ public class PDF extends Mamasita {
         return table;
     }
 
-    @NotNull
-    private PdfPTable createTable(String result) {
-        table = new PdfPTable(5);
+    /**
+     * @return les details de la facture
+     */
+    private PdfPTable getDetails() {
+        PdfPTable table = new PdfPTable(5);
         table.setWidthPercentage(100);
         int[] headerwidths = {10, 30, 12, 10, 10};
         try {
@@ -220,14 +159,6 @@ public class PDF extends Mamasita {
             Erreur.creerFichierErreur(e.getMessage());
             e.printStackTrace();
         }
-        Document document = new Document(PageSize.A4, Constants.MARGIN, Constants.MARGIN, Constants.MARGIN, Constants.MARGIN);
-        try {
-            PdfWriter.getInstance(document, new FileOutputStream(result));
-        } catch (DocumentException | FileNotFoundException e) {
-            Erreur.creerFichierErreur(e.getMessage());
-            e.printStackTrace();
-        }
-        document.open();
         PdfPCell cell;
         Paragraph paragraph;
 
@@ -244,67 +175,158 @@ public class PDF extends Mamasita {
             table.addCell(cell);
         }
 
-        if (isNotEmpty(dataLigne)) {
+        List<Ligne> liste = traitement.getListeLignes(Constants.NUM_COL_LI);
+        if (liste != null && !liste.isEmpty()) {
             cell = new PdfPCell(new Paragraph(client.getLibelleTranches(), fontTitre));
-            createTableHeader(table, cell);
-            remplirLignes(parseLignes());
+            table.addCell(this.createHeaderLine(cell));
+            this.remplirLignes(table, liste);
         }
 
-        remplirAllIfNotEmpty();
+        for (int i = 0; i < client.getTarifs().size(); i++) {
+            this.remplirIfNotEmpty(table, client.getTarifs().get(i).getNom(), i);
+        }
 
+        this.remplirIfNotEmpty(table, Constants.LIBELLE_AF, Constants.NUM_COL_AF);
+
+        return table;
+    }
+
+    /**
+     * @return le recapitulatif de la facture
+     */
+    private PdfPTable getRecap() {
+        Font font = new Font(Font.FontFamily.HELVETICA, Constants.FONT_SIZE);
+
+        PdfPTable table = new PdfPTable(5);
+        table.setWidthPercentage(100);
+        table.setKeepTogether(true);
+        int[] headerwidths = {25, 5, 60, 5, 60};
         try {
-            document.add(table);
+            table.setWidths(headerwidths);
         } catch (DocumentException e) {
             Erreur.creerFichierErreur(e.getMessage());
             e.printStackTrace();
         }
-        document.close();
+        PdfPCell cell = new PdfPCell();
+        Paragraph paragraph = new Paragraph("Remarques", font);
+
+        cell.addElement(paragraph);
+        cell.setBorder(0);
+        table.addCell(cell);
+
+        cell = new PdfPCell();
+        cell.addElement(new Paragraph("\n"));
+        cell.setBorder(0);
+        table.addCell(cell);
+
+        paragraph = new Paragraph(traitement.getNvDosAsString(), font);
+        cell = new PdfPCell();
+        cell.addElement(paragraph);
+        cell.setPaddingTop(-3);
+        cell.setPaddingBottom(4);
+        cell.setBorderColor(color);
+        cell.setBorderWidth(1.1f);
+        table.addCell(cell);
+
+        cell = new PdfPCell();
+        cell.addElement(new Paragraph("\n"));
+        cell.setBorder(0);
+        table.addCell(cell);
+
+        paragraph = new Paragraph("Total nombre de Lignes : " + traitement.getTotalLigneAsString() + "\nTotal € HT : " + traitement.getTotalHtAsString() + " €\nTVA (20%) : " + traitement.getTotalTvaAsString() + " €\nTotal € TTC : " + traitement.getTotalTtcAsString() + " €", font);
+        paragraph.setAlignment(Element.ALIGN_CENTER);
+        cell = new PdfPCell();
+        cell.addElement(paragraph);
+        cell.setPaddingTop(-3);
+        cell.setPaddingBottom(4);
+        cell.setBorderColor(color);
+        cell.setBorderWidth(1.1f);
+        table.addCell(cell);
+
         return table;
     }
 
-    private void createTableHeader(@NotNull PdfPTable table, @NotNull PdfPCell cell) {
+    /**
+     * methode de creation d'une ligne d'entete (lignes, lettrage, etc...)
+     *
+     * @param cell la cellule contenant le libelle d'entete
+     * @return la cellule au format d'une ligne d'entete
+     */
+    private PdfPCell createHeaderLine(@NotNull PdfPCell cell) {
         cell.setColspan(5);
         cell.setPaddingBottom(4);
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setBorderColor(color);
-        table.addCell(cell);
+
+        return cell;
     }
 
-    private void remplirLignes(@NotNull List<Ligne> data) {
+    /**
+     * methode de remplissage d'une ligne du pdf
+     *
+     * @param table que l'on doit remplir
+     * @param data  la liste (ligne, lettrage, etc...) contenant les lignes du decompte
+     */
+    private void remplirLignes(PdfPTable table, @NotNull List<Ligne> data) {
 
         Font font = new Font(Font.FontFamily.HELVETICA, 10);
 
         for (Ligne ligne : data) {
-            creerCell(new Paragraph(ligne.getDate(), font));
-            creerCell(new Paragraph(ligne.getEntreprise(), font));
-            creerCell(new Paragraph(Format.fEntier().format(ligne.getNbLigne()), font));
-            creerCell(new Paragraph(Format.fTriple().format(ligne.getTarif()), font));
-            creerCell(new Paragraph(Format.fDouble().format(ligne.getTotal()) + " €", font));
+            table.addCell(creerCell(new Paragraph(ligne.getDate(), font)));
+            table.addCell(creerCell(new Paragraph(ligne.getEntreprise(), font)));
+            table.addCell(creerCell(new Paragraph(Format.fEntier().format(ligne.getNbLigne()), font)));
+            table.addCell(creerCell(new Paragraph(Format.fTriple().format(ligne.getTarif()), font)));
+            table.addCell(creerCell(new Paragraph(Format.fDouble().format(ligne.getTotal()) + " €", font)));
         }
     }
 
-    public void remplirIfNotEmpty(List<List<String>> data, String entete, int numCol) {
-        if (isNotEmpty(data)) {
-            PdfPCell cell = new PdfPCell(new Paragraph(entete, fontTitre));
-            createTableHeader(table, cell);
-            remplirLignes(createLigne(data, numCol));
-        }
-    }
-
-    private void creerCell(@NotNull Paragraph paragraph) {
+    /**
+     * methode de creation d'une cellule du tableau des details
+     *
+     * @param paragraph contenant la valeur de la cellule
+     * @return la cellule stylisee
+     */
+    private PdfPCell creerCell(@NotNull Paragraph paragraph) {
         PdfPCell cell = new PdfPCell();
         paragraph.setAlignment(Element.ALIGN_CENTER);
         cell.addElement(paragraph);
         cell.setPaddingTop(-3);
         cell.setPaddingBottom(4);
         cell.setBorderColor(color);
-        table.addCell(cell);
+
+        return cell;
     }
 
+    /**
+     * methode de remplissage d'une categorie si elle n'est pas vide
+     *
+     * @param table  a remplir
+     * @param entete libelle de la categorie
+     * @param numCol correspondante a la categorie dans le decompte
+     */
+    private void remplirIfNotEmpty(PdfPTable table, String entete, int numCol) {
+        List<Ligne> liste = traitement.getListeLignes(numCol);
+        if (liste != null && !liste.isEmpty()) {
+            PdfPCell cell = new PdfPCell(new Paragraph(entete, fontTitre));
+            table.addCell(this.createHeaderLine(cell));
+            this.remplirLignes(table, liste);
+        }
+
+    }
+
+    /**
+     * classe du header de la page contenant les infos de la facture
+     */
     private class HeaderTable extends PdfPageEventHelper {
         private final PdfPTable table;
         private float tableHeight;
 
+        /**
+         * constructeur
+         *
+         * @throws DocumentException
+         * @throws IOException
+         */
         private HeaderTable() throws DocumentException, IOException {
 
             table = new PdfPTable(4);
@@ -334,7 +356,7 @@ public class PDF extends Mamasita {
             table.addCell(cell);
 
             cell = new PdfPCell();
-            paragraph = new Paragraph("FACTURE N° " + Date.getYear() + "-" + Format.fNbFact().format(nFacture), new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD));
+            paragraph = new Paragraph("FACTURE N° " + Date.getYear() + "-" + Format.fNbFact().format(numero), new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD));
             paragraph.setAlignment(Element.ALIGN_RIGHT);
             cell.addElement(paragraph);
             cell.setBorder(0);
@@ -379,6 +401,9 @@ public class PDF extends Mamasita {
             tableHeight = table.getTotalHeight();
         }
 
+        /**
+         * @return tableHeight
+         */
         private float getTableHeight() {
             return tableHeight;
         }
@@ -391,6 +416,9 @@ public class PDF extends Mamasita {
         }
     }
 
+    /**
+     * classe de bordure des conditions de reglement
+     */
     private static class BorderEvent implements PdfPTableEvent {
         public void tableLayout(PdfPTable table, @NotNull float[][] widths, @NotNull float[] heights, int headerRows, int rowStart, @NotNull PdfContentByte[] canvases) {
             float[] width = widths[0];
@@ -405,4 +433,5 @@ public class PDF extends Mamasita {
             cb.resetRGBColorStroke();
         }
     }
+
 }

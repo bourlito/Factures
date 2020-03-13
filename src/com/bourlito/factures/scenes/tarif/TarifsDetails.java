@@ -4,7 +4,6 @@ import com.bourlito.factures.utils.Constants;
 import com.bourlito.factures.utils.Keys;
 import com.bourlito.factures.dto.Client;
 import com.bourlito.factures.dto.Tarif;
-import com.bourlito.factures.scenes.IView;
 import com.bourlito.factures.scenes.utils.CScene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,7 +15,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class TarifsDetails implements IView {
+public class TarifsDetails {
 
     private final Stage stage;
     private final Client client;
@@ -37,7 +36,9 @@ public class TarifsDetails implements IView {
         this.tarif = tarif;
     }
 
-    @Override
+    /**
+     * @return la scene
+     */
     public CScene getScene() {
 
         BorderPane root = new BorderPane();

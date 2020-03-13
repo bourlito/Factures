@@ -7,58 +7,74 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.util.IOUtils;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XCL extends Mamasita {
+public class XLS {
 
-    // TODO: ajouter images
+    private final String name;
+    private final int numero;
+    private final Client client;
+    private final Traitement traitement;
 
-    private final HSSFWorkbook wb;
-    private HSSFSheet sheet;
+    private final HSSFWorkbook wb = new HSSFWorkbook();
+    private final HSSFSheet sheet = wb.createSheet("Facture");
 
-    public XCL(HSSFSheet sheet, String filename, int nFacture, Client client) {
-        super(sheet, filename, nFacture, client);
-        this.wb = new HSSFWorkbook();
+    /**
+     * constructeur
+     *
+     * @param name       le nom de la facture
+     * @param numero     le numero de facture
+     * @param client     le client associe
+     * @param traitement le traitement effectue sur la page du decompte
+     */
+    protected XLS(String name, int numero, Client client, Traitement traitement) {
+        this.name = name;
+        this.numero = numero;
+        this.client = client;
+        this.traitement = traitement;
     }
 
-    public void creerXCL() {
-        creerFeuille();
-        FileOutputStream out = null;
-        try {
-            out = new FileOutputStream(filename);
-        } catch (FileNotFoundException e) {
-            Erreur.creerFichierErreur(e.getMessage());
-            e.printStackTrace();
-        }
-        try {
-            wb.write(out);
-            if (out != null)
-                out.close();
-            wb.close();
-        } catch (IOException e) {
-            Erreur.creerFichierErreur(e.getMessage());
-            e.printStackTrace();
-        }
+    /**
+     * methode de creation de la facture xls
+     *
+     * @throws IOException si l'ecriture du fichier se passe mal
+     */
+    public void createXls() throws IOException {
+
+        this.creerFeuille();
+        this.creerEntete(true);
+        this.creerConditionsReglement();
+        this.creerDetails();
+        this.creerRecap();
+
+        FileOutputStream out = new FileOutputStream(name);
+        wb.write(out);
+        out.close();
+        wb.close();
+
     }
 
+    /**
+     * methode de creation d'une feuille dans le workbook
+     **/
     private void creerFeuille() {
-        sheet = wb.createSheet("Facture");
         sheet.setDefaultRowHeightInPoints(15f);
         sheet.setDefaultColumnWidth(10);
-        sheet.setColumnWidth(5, Constants.XCL_COL_WIDTH *5);
-        sheet.setColumnWidth(6, Constants.XCL_COL_WIDTH *16);
-        sheet.setColumnWidth(7, Constants.XCL_COL_WIDTH *12);
-        creerEntete(true);
-        creerCdnReg();
-        creerDetail();
-        creerRecap();
+        sheet.setColumnWidth(5, Constants.XCL_COL_WIDTH * 5);
+        sheet.setColumnWidth(6, Constants.XCL_COL_WIDTH * 16);
+        sheet.setColumnWidth(7, Constants.XCL_COL_WIDTH * 12);
     }
 
+    /**
+     * methode de creation du header de chaque page
+     *
+     * @param first booleen pour savoir si on ajoute les conditions de reglement
+     */
     private void creerEntete(Boolean first) {
         //info cpe + n°facture
         Row headerRow0 = sheet.createRow(sheet.getLastRowNum() + 1 + (first ? -1 : 0));
@@ -89,7 +105,7 @@ public class XCL extends Mamasita {
         cellNOFactStyle.setFont(createFont((short) 14, false, false));
         cellNOFact.setCellStyle(cellNOFactStyle);
 
-        cellNOFact.setCellValue(Date.getYear() + "-" + Format.fNbFact().format(nFacture));
+        cellNOFact.setCellValue(Date.getYear() + "-" + Format.fNbFact().format(numero));
 
         //separation
         Row headerRow1 = sheet.createRow(sheet.getLastRowNum() + 1);
@@ -224,7 +240,10 @@ public class XCL extends Mamasita {
             sheet.createRow(sheet.getLastRowNum() + 1);
     }
 
-    private void creerCdnReg() {
+    /**
+     * methode de creation des conditions de reglement
+     */
+    private void creerConditionsReglement() {
         Row cdnRow6 = sheet.createRow(sheet.getLastRowNum() + 1);
         cdnRow6.setHeightInPoints(7.5f);
 
@@ -298,29 +317,34 @@ public class XCL extends Mamasita {
     }
 
     /**
-     * methode de creation des details de la facture
+     * methode de creation des details
      */
-    private void creerDetail() {
+    private void creerDetails() {
         //entete de colonnes
         Row enteteRow = sheet.createRow(12);
 
-        creerCell(enteteRow, Constants.NUM_COL_DAT_SAI, true, "Date Saisie");
-        creerCell(enteteRow, Constants.NUM_COL_NOM_DOS_0, false, "Nom dossier");
+        this.creerCell(enteteRow, Constants.NUM_COL_DAT_SAI, true, "Date Saisie");
+        this.creerCell(enteteRow, Constants.NUM_COL_NOM_DOS_0, false, "Nom dossier");
         enteteRow.createCell(Constants.NUM_COL_NOM_DOS_1).setCellStyle(createCellStyle(false, true, false, true));
         enteteRow.createCell(Constants.NUM_COL_NOM_DOS_2).setCellStyle(createCellStyle(false, true, true, true));
         sheet.addMergedRegion(new CellRangeAddress(12, 12, Constants.NUM_COL_NOM_DOS_0, Constants.NUM_COL_NOM_DOS_2));
-        creerCell(enteteRow, Constants.NUM_COL_NB_LI_0, false, "Nombre Ligne");
+        this.creerCell(enteteRow, Constants.NUM_COL_NB_LI_0, false, "Nombre Ligne");
         enteteRow.createCell(Constants.NUM_COL_NB_LI_1).setCellStyle(createCellStyle(false, true, true, true));
         sheet.addMergedRegion(new CellRangeAddress(12, 12, Constants.NUM_COL_NB_LI_0, Constants.NUM_COL_NB_LI_1));
-        creerCell(enteteRow, Constants.NUM_COL_TRF_LI, true, "Tarif Ligne");
-        creerCell(enteteRow, Constants.NUM_COL_THT, true, "Total HT");
+        this.creerCell(enteteRow, Constants.NUM_COL_TRF_LI, true, "Tarif Ligne");
+        this.creerCell(enteteRow, Constants.NUM_COL_THT, true, "Total HT");
 
-        if (isNotEmpty(dataLigne)) {
-            creerEnteteType("Lignes");
-            remplirLigne(parseLignes());
+        List<Ligne> liste = traitement.getListeLignes(Constants.NUM_COL_LI);
+        if (liste != null && !liste.isEmpty()) {
+            this.creerEnteteType("Lignes");
+            this.remplirLigne(liste);
         }
 
-        remplirAllIfNotEmpty();
+        for (int i=0; i < client.getTarifs().size(); i++){
+            this.remplirIfNotEmpty(client.getTarifs().get(i).getNom(), i);
+        }
+
+        this.remplirIfNotEmpty(Constants.LIBELLE_AF, Constants.NUM_COL_AF);
     }
 
     /**
@@ -347,7 +371,7 @@ public class XCL extends Mamasita {
 
         Cell cellRemarqueValue = recapRow.createCell(1);
         cellRemarqueValue.setCellStyle(createCellStyle(true, true, false, false));
-        cellRemarqueValue.setCellValue(nvDos <= 1 ? nvDos + " Nouveau Dossier" : nvDos + " Nouveaux Dossiers");
+        cellRemarqueValue.setCellValue(traitement.getNvDosAsString());
 
         recapRow.createCell(2).setCellStyle(createCellStyle(false, true, true, false));
 
@@ -388,7 +412,7 @@ public class XCL extends Mamasita {
         cellTotalValueStyle.setFont(createFont((short) 12, true, false));
         cellTotalValueStyle.setAlignment(HorizontalAlignment.CENTER);
         cellTotalValue.setCellStyle(cellTotalValueStyle);
-        cellTotalValue.setCellValue(totalLigne);
+        cellTotalValue.setCellValue(traitement.getTotalLigneAsString());
 
         recapRow2.createCell(4).setCellStyle(createCellStyle(true, false, false, false));
         recapRow2.createCell(7).setCellStyle(createCellStyle(false, false, true, false));
@@ -407,7 +431,7 @@ public class XCL extends Mamasita {
         cellTotalHTValueStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellTotalHTValueStyle.setAlignment(HorizontalAlignment.CENTER);
         cellTotalHTValue.setCellStyle(cellTotalHTValueStyle);
-        cellTotalHTValue.setCellValue(Format.fDouble().format(totalHT) + " €");
+        cellTotalHTValue.setCellValue(traitement.getTotalHtAsString() + " €");
 
         Cell cellTVA = recapRow4.createCell(4);
         CellStyle cellTVAStyle = createCellStyle(true, false, false, false);
@@ -423,7 +447,7 @@ public class XCL extends Mamasita {
         cellTVAValueStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellTVAValueStyle.setAlignment(HorizontalAlignment.CENTER);
         cellTVAValue.setCellStyle(cellTVAValueStyle);
-        cellTVAValue.setCellValue(Format.fDouble().format(totalHT * Constants.TAUX_TVA) + " €");
+        cellTVAValue.setCellValue(traitement.getTotalTvaAsString() + " €");
 
         Cell cellTotalTTC = recapRow5.createCell(4);
         CellStyle cellTotalTTCStyle = createCellStyle(true, false, false, false);
@@ -439,7 +463,7 @@ public class XCL extends Mamasita {
         cellTotalTTCValueStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellTotalTTCValueStyle.setAlignment(HorizontalAlignment.CENTER);
         cellTotalTTCValue.setCellStyle(cellTotalTTCValueStyle);
-        cellTotalTTCValue.setCellValue(Format.fDouble().format(Format.getTotalTTC(totalHT)) + " €");
+        cellTotalTTCValue.setCellValue(traitement.getTotalTtcAsString() + " €");
 
         recapRow6.createCell(4).setCellStyle(createCellStyle(true, false, false, true));
         recapRow6.createCell(5).setCellStyle(createCellStyle(false, false, false, true));
@@ -448,7 +472,52 @@ public class XCL extends Mamasita {
     }
 
     /**
-     * methode de creation de la ligne de separation (lignes, lettrage, etc...)
+     * methode de remplissage des lignes
+     *
+     * @param data la liste contenant les lignes
+     */
+    private void remplirLigne(@NotNull List<Ligne> data) {
+        CellStyle cellStyle = createCellStyle(true, true, true, true);
+        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+        cellStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
+        cellStyle.setShrinkToFit(true);
+
+        for (Ligne ligne : data) {
+            if (sheet.getLastRowNum() == 39 || sheet.getLastRowNum() % 41 == 0)
+                creerEntete(false);
+
+            Row row = sheet.createRow(sheet.getLastRowNum() + 1);
+
+            this.creerCell(row, Constants.NUM_COL_DAT_SAI, cellStyle, ligne.getDate());
+            this.creerCell(row, Constants.NUM_COL_NOM_DOS_0, cellStyle, ligne.getEntreprise());
+            for (int i = Constants.NUM_COL_NOM_DOS_1; i <= Constants.NUM_COL_NOM_DOS_2; i++)
+                row.createCell(i).setCellStyle(cellStyle);
+            sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), Constants.NUM_COL_NOM_DOS_0, Constants.NUM_COL_NOM_DOS_2));
+            this.creerCell(row, cellStyle, (int) ligne.getNbLigne());
+            row.createCell(Constants.NUM_COL_NB_LI_1).setCellStyle(cellStyle);
+            sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), Constants.NUM_COL_NB_LI_0, Constants.NUM_COL_NB_LI_1));
+            this.creerCell(row, cellStyle, ligne.getTarif());
+            this.creerCell(row);
+        }
+    }
+
+    /**
+     * methode de remplissage d'une categorie si elle n'est pas vide
+     *
+     * @param entete libelle de la categorie
+     * @param numCol correspondante a la categorie dans le decompte
+     */
+    private void remplirIfNotEmpty(String entete, int numCol) {
+        List<Ligne> liste = traitement.getListeLignes(numCol);
+        if (liste != null && !liste.isEmpty()) {
+            this.creerEnteteType(entete);
+            this.remplirLigne(liste);
+        }
+    }
+
+    /**
+     * methode de creation de la ligne dd'entete d'une categorie (lignes, lettrage, etc...)
+     *
      * @param entete libelle de l'entete
      */
     private void creerEnteteType(String entete) {
@@ -468,80 +537,8 @@ public class XCL extends Mamasita {
     }
 
     /**
-     * methode de remplissage des lignes
-     * @param data la liste contenant les lignes
-     */
-    private void remplirLigne(@NotNull List<Ligne> data) {
-        CellStyle cellStyle = createCellStyle(true, true, true, true);
-        cellStyle.setAlignment(HorizontalAlignment.CENTER);
-        cellStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
-        cellStyle.setShrinkToFit(true);
-
-        for (Ligne ligne : data) {
-            if (sheet.getLastRowNum() == 39 || sheet.getLastRowNum() % 41 == 0)
-                creerEntete(false);
-
-            Row row = sheet.createRow(sheet.getLastRowNum() + 1);
-
-            creerCell(row, Constants.NUM_COL_DAT_SAI, cellStyle, ligne.getDate());
-            creerCell(row, Constants.NUM_COL_NOM_DOS_0, cellStyle, ligne.getEntreprise());
-            for (int i = Constants.NUM_COL_NOM_DOS_1; i <= Constants.NUM_COL_NOM_DOS_2; i++)
-                row.createCell(i).setCellStyle(cellStyle);
-            sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), Constants.NUM_COL_NOM_DOS_0, Constants.NUM_COL_NOM_DOS_2));
-            creerCell(row, cellStyle, (int) ligne.getNbLigne());
-            row.createCell(Constants.NUM_COL_NB_LI_1).setCellStyle(cellStyle);
-            sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), Constants.NUM_COL_NB_LI_0, Constants.NUM_COL_NB_LI_1));
-            creerCell(row, cellStyle, ligne.getTarif());
-            creerCell(row);
-        }
-    }
-
-    private void ajouterImage(String fileName, Integer col2, Integer row1, Integer dx1, Integer dy1, Double resize2) {
-        InputStream is = null;
-        try {
-            is = new FileInputStream(fileName);
-        } catch (FileNotFoundException e) {
-            Erreur.creerFichierErreur(e.getMessage());
-            e.printStackTrace();
-        }
-        byte[] bytes = new byte[0];
-        try {
-            assert is != null;
-            bytes = IOUtils.toByteArray(is);
-        } catch (IOException e) {
-            Erreur.creerFichierErreur(e.getMessage());
-            e.printStackTrace();
-        }
-        int pictureIdx = wb.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
-        try {
-            is.close();
-        } catch (IOException e) {
-            Erreur.creerFichierErreur(e.getMessage());
-            e.printStackTrace();
-        }
-
-        CreationHelper helper = wb.getCreationHelper();
-        Drawing drawing = sheet.createDrawingPatriarch();
-        ClientAnchor anchor = helper.createClientAnchor();
-
-        anchor.setCol1(0);
-        if (col2 > -1)
-            anchor.setCol2(col2);
-
-        anchor.setRow1(row1);
-
-        if (dx1 > -1)
-            anchor.setDx1(dx1);
-
-        if (dy1 > -1)
-            anchor.setDy1(dy1);
-
-        Picture picture = drawing.createPicture(anchor, pictureIdx);
-        picture.resize(1.0, resize2);
-    }
-
-    /**
      * methode de creation d'une font
+     *
      * @param size la taille
      * @param bold booleen gras
      * @param blue booleen couleur bleue
@@ -560,9 +557,10 @@ public class XCL extends Mamasita {
 
     /**
      * methode de creation d'un style de cellule
-     * @param left booleen de bordure gauche
-     * @param top booleen de bordure superieure
-     * @param right booleen de bordure droite
+     *
+     * @param left   booleen de bordure gauche
+     * @param top    booleen de bordure superieure
+     * @param right  booleen de bordure droite
      * @param bottom booleen de bordure inferieure
      * @return {@link CellStyle}
      */
@@ -592,18 +590,12 @@ public class XCL extends Mamasita {
         return cellStyle;
     }
 
-    public void remplirIfNotEmpty(List<List<String>> data, String entete, int numCol) {
-        if (isNotEmpty(data)) {
-            creerEnteteType(entete);
-            remplirLigne(createLigne(data, numCol));
-        }
-    }
-
     /**
      * methode de creation d'une cellule
-     * @param row la ligne de la cellule
-     * @param col la colonne de la cellule
-     * @param right booleen de bordure droite
+     *
+     * @param row     la ligne de la cellule
+     * @param col     la colonne de la cellule
+     * @param right   booleen de bordure droite
      * @param libelle libelle de la cellule
      */
     private void creerCell(@NotNull Row row, int col, boolean right, String libelle) {
@@ -615,27 +607,51 @@ public class XCL extends Mamasita {
         cell.setCellValue(libelle);
     }
 
+
+    /**
+     * methode de creation d'une cellule
+     * @param row     la ligne de la cellule
+     * @param col     la colonne de la cellule
+     * @param cellStyle le style de la cellule
+     * @param texte la valeur de la cellule (string)
+     */
     private void creerCell(@NotNull Row row, int col, CellStyle cellStyle, String texte) {
         Cell cell = row.createCell(col);
         cell.setCellStyle(cellStyle);
         cell.setCellValue(texte);
     }
 
+    /**
+     * methode de creation d'une cellule
+     * @param row     la ligne de la cellule
+     * @param cellStyle le style de la cellule
+     * @param number la valeur de la cellule (int)
+     */
     private void creerCell(@NotNull Row row, CellStyle cellStyle, int number) {
         Cell cell = row.createCell(Constants.NUM_COL_NB_LI_0);
         cell.setCellStyle(cellStyle);
         cell.setCellValue(number);
     }
 
+    /**
+     * methode de creation d'une cellule
+     * @param row     la ligne de la cellule
+     * @param cellStyle le style de la cellule
+     * @param number la valeur de la cellule (double)
+     */
     private void creerCell(@NotNull Row row, CellStyle cellStyle, double number) {
         Cell cell = row.createCell(Constants.NUM_COL_TRF_LI);
         cell.setCellStyle(cellStyle);
         cell.setCellValue(number);
     }
 
+    /**
+     * methode de creation d'une cellule
+     * @param row     la ligne de la cellule
+     */
     private void creerCell(@NotNull Row row) {
-        String formule = Column.getLetterFromInt(Constants.NUM_COL_NB_LI_0) + (row.getRowNum() +1)
-                + "*" + Column.getLetterFromInt(Constants.NUM_COL_TRF_LI) + (row.getRowNum() +1);
+        String formule = Column.getLetterFromInt(Constants.NUM_COL_NB_LI_0) + (row.getRowNum() + 1)
+                + "*" + Column.getLetterFromInt(Constants.NUM_COL_TRF_LI) + (row.getRowNum() + 1);
 
         DataFormat df = wb.createDataFormat();
         CellStyle cellStyle = createCellStyle(true, true, true, true);

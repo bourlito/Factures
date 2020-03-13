@@ -2,7 +2,6 @@ package com.bourlito.factures.scenes.client;
 
 import com.bourlito.factures.utils.Constants;
 import com.bourlito.factures.dto.Client;
-import com.bourlito.factures.scenes.IView;
 import com.bourlito.factures.scenes.Main;
 import com.bourlito.factures.scenes.utils.CScene;
 import javafx.geometry.Insets;
@@ -13,7 +12,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import com.bourlito.factures.service.SClient;
 
-public class ClientList implements IView {
+public class ClientList {
 
     private final Stage stage;
     private final SClient sClient = SClient.getInstance();
@@ -26,7 +25,9 @@ public class ClientList implements IView {
         this.stage = stage;
     }
 
-    @Override
+    /**
+     * @return la scene
+     */
     public CScene getScene() {
 
         BorderPane root = new BorderPane();
