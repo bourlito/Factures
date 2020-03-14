@@ -5,6 +5,7 @@ import com.bourlito.factures.dto.Ligne;
 import com.bourlito.factures.dto.Tranche;
 import com.bourlito.factures.utils.Constants;
 import com.bourlito.factures.utils.Format;
+import com.bourlito.factures.utils.Log;
 import com.bourlito.factures.utils.Parseur;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 
@@ -12,12 +13,7 @@ import java.util.*;
 
 public class Traitement {
 
-
     private final Map<Integer, List<Ligne>> map = new HashMap<>();
-
-    private int totalLigne = 0;
-    private double totalHT = 0;
-    private int nvDos = 0;
 
     private final Client client;
 
@@ -63,8 +59,9 @@ public class Traitement {
             }
         }
 
-        // on ajoute la liste complete des lignes de categorie ligne une fois complete
-        map.putIfAbsent(Constants.NUM_COL_LI, parseLignes(dataLigne));
+        // on ajoute la liste des lignes de categorie ligne une fois complete
+        if (!dataLigne.isEmpty())
+            map.putIfAbsent(Constants.NUM_COL_LI, parseLignes(dataLigne));
     }
 
     /**
@@ -103,28 +100,25 @@ public class Traitement {
             }
 
             nbLigne += ligne.getNbLigne();
-            totalHT += ligne.getTotal();
         }
 
         // pour chaque tranche on transforme la ligne de transition en deux lignes
         for (int i = 0; i < lastPos.length; i++) {
-            if (lastPos[i] + i + 1 == lignes.size()) break;
+            if (lastPos[i] + i + 1 == lignes.size())
+                break;
 
             Ligne nouv = new Ligne();
             Ligne init = lignes.get(lastPos[i] + i);
-            totalHT -= init.getTotal();
 
             nouv.setDate(init.getDate());
             nouv.setEntreprise(init.getEntreprise());
             nouv.setNbLigne(tranches.get(i + 1).getMin() - lastNbLigne[i]);
             nouv.setTarif(tranches.get(i).getPrix());
             nouv.setTotal(nouv.getNbLigne() * nouv.getTarif());
-            totalHT += nouv.getTotal();
 
             init.setNbLigne(init.getNbLigne() - nouv.getNbLigne());
             init.setTarif(tranches.get(i + 1).getPrix());
             init.setTotal(init.getNbLigne() * init.getTarif());
-            totalHT += init.getTotal();
 
             lignes.add(lastPos[i] + i, nouv);
         }
@@ -156,9 +150,6 @@ public class Traitement {
 
             ligne.setTotal(ligne.getNbLigne() * ligne.getTarif());
             lignes.add(ligne);
-
-            totalLigne += ligne.getNbLigne();
-            totalHT += ligne.getTotal();
         }
 
         return lignes;
@@ -188,18 +179,36 @@ public class Traitement {
 
         ligne.setTotal(ligne.getNbLigne() * ligne.getTarif());
 
-        totalLigne += ligne.getNbLigne();
-
-        if (numCol == Constants.NUM_COL_ND)
-            nvDos++;
-
         return ligne;
+    }
+
+    /**
+     * @return le nombre total de lignes
+     */
+    public int getTotalLigne() {
+        int totalLigne = 0;
+
+        for (List<Ligne> liste : map.values()){
+            for (Ligne ligne : liste){
+                totalLigne += ligne.getNbLigne();
+            }
+        }
+
+        return totalLigne;
     }
 
     /**
      * @return le total hors taxe de la facture
      */
     public double getTotalHT() {
+        double totalHT = 0;
+
+        for (List<Ligne> liste : map.values()){
+            for (Ligne ligne : liste){
+                totalHT += ligne.getTotal();
+            }
+        }
+
         return totalHT;
     }
 
@@ -209,9 +218,9 @@ public class Traitement {
      * @return le total ttc correspondant au ht + tva
      */
     public double getTotalTTC() {
-        double ht = totalHT;
-        double tva = totalHT * Constants.TAUX_TVA;
-        double ttc = totalHT * Constants.TAUX_TTC;
+        double ht = this.getTotalHT();
+        double tva = ht * Constants.TAUX_TVA;
+        double ttc = ht * Constants.TAUX_TTC;
 
         String sht = Format.fDouble(Locale.US).format(ht);
         sht = sht.replaceAll(",", "");
@@ -235,6 +244,9 @@ public class Traitement {
      * @return la phrase contenant le nombre de nouveaux dossiers
      */
     public String getNvDosAsString() {
+
+        int nvDos = map.get(Constants.NUM_COL_ND) != null ? map.get(Constants.NUM_COL_ND).size() : 0;
+
         return nvDos <= 1 ? nvDos + " Nouveau Dossier" : nvDos + " Nouveaux Dossiers";
     }
 
@@ -242,21 +254,21 @@ public class Traitement {
      * @return le total de ligne au bon format
      */
     public String getTotalLigneAsString() {
-        return Format.fEntier().format(totalLigne);
+        return Format.fEntier().format(this.getTotalLigne());
     }
 
     /**
      * @return le total hors taxe au bon format
      */
     public String getTotalHtAsString() {
-        return Format.fDouble().format(totalHT);
+        return Format.fDouble().format(this.getTotalHT());
     }
 
     /**
      * @return le total tva au bon format
      */
     public String getTotalTvaAsString() {
-        return Format.fDouble().format(totalHT * Constants.TAUX_TVA);
+        return Format.fDouble().format(this.getTotalHT() * Constants.TAUX_TVA);
     }
 
     /**
