@@ -340,9 +340,9 @@ public class XLS {
             this.remplirLigne(liste);
         }
 
-        for (int i=0; i < client.getTarifs().size(); i++){
-            this.remplirIfNotEmpty(client.getTarifs().get(i).getNom(), i);
-        }
+        // +3 car les tarifs commencent à la colonne D dans le decompte
+        for (int i=0; i < client.getTarifs().size(); i++)
+            this.remplirIfNotEmpty(client.getTarifs().get(i).getNom(), i+3);
 
         this.remplirIfNotEmpty(Constants.LIBELLE_AF, Constants.NUM_COL_AF);
     }

@@ -2,10 +2,7 @@ package com.bourlito.factures.traitement;
 
 import com.bourlito.factures.dto.Client;
 import com.bourlito.factures.dto.Ligne;
-import com.bourlito.factures.utils.Constants;
-import com.bourlito.factures.utils.Date;
-import com.bourlito.factures.utils.Erreur;
-import com.bourlito.factures.utils.Format;
+import com.bourlito.factures.utils.*;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import org.jetbrains.annotations.NotNull;
@@ -182,9 +179,9 @@ public class PDF {
             this.remplirLignes(table, liste);
         }
 
-        for (int i = 0; i < client.getTarifs().size(); i++) {
-            this.remplirIfNotEmpty(table, client.getTarifs().get(i).getNom(), i);
-        }
+        // +3 car les tarifs commencent à la colonne D dans le decompte
+        for (int i = 0; i < client.getTarifs().size(); i++)
+            this.remplirIfNotEmpty(table, client.getTarifs().get(i).getNom(), i+3);
 
         this.remplirIfNotEmpty(table, Constants.LIBELLE_AF, Constants.NUM_COL_AF);
 
