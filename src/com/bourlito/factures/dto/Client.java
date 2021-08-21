@@ -33,6 +33,17 @@ public class Client implements Comparable<Client>{
         this.tarifs = tarifs;
     }
 
+    public Client(Client another) {
+        this.alias = another.alias;
+        this.nom = another.nom;
+        this.adresse = another.adresse;
+        this.cp = another.cp;
+        this.ville = another.ville;
+        this.libelleTranches = another.libelleTranches;
+        this.tranches = another.tranches;
+        this.tarifs = another.tarifs;
+    }
+
     @Override
     public int compareTo(@NotNull Client client){
         return this.getAlias().compareTo(client.getAlias());

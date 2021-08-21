@@ -5,8 +5,8 @@ import com.bourlito.factures.dto.Ligne;
 import com.bourlito.factures.dto.Tranche;
 import com.bourlito.factures.utils.Constants;
 import com.bourlito.factures.utils.Format;
-import com.bourlito.factures.utils.Log;
 import com.bourlito.factures.utils.Parseur;
+import javafx.util.Pair;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 
 import java.util.*;
@@ -69,60 +69,66 @@ public class Traitement {
      * @return la liste de ligne de la categorie ligne
      */
     public List<Ligne> parseLignes(List<List<String>> dataLigne) {
+        // init params
         List<Ligne> lignes = createListeLigne(dataLigne);
         List<Tranche> tranches = client.getTranches();
-
+        Map<Integer, Pair<Integer, Ligne>> bascules = new HashMap();
         int nbLigne = 0;
-        int[] lastNbLigne = new int[tranches.size() - 1];
-        int[] lastPos = new int[tranches.size() - 1];
 
+        // recuperation de la tranche
+        Tranche tranche = tranches.get(0);
+
+        // pour chaque ligne
         for (Ligne ligne : lignes) {
+            // maj  du prix
+            ligne.setTarif(tranche.getPrix());
 
-            for (int i = 0; i < tranches.size(); i++) {
-                Tranche tranche = tranches.get(i);
-
-                if (tranches.size() != i + 1 &&
-                        (nbLigne == 0 || tranche.getMin() < nbLigne)
-                        && nbLigne <= tranches.get(i + 1).getMin()) {
-                    ligne.setTarif(tranche.getPrix());
-                    ligne.setTotal(ligne.getTarif() * ligne.getNbLigne());
-
-                    lastNbLigne[i] = nbLigne;
-                    lastPos[i] = lignes.indexOf(ligne);
-                    break;
-                }
-
-                else if (tranches.size() == i + 1 && (nbLigne == 0 || tranche.getMin() < nbLigne)) {
-                    ligne.setTarif(tranche.getPrix());
-                    ligne.setTotal(ligne.getTarif() * ligne.getNbLigne());
-                    break;
-                }
-            }
-
+            // on augmente le total de ligne
             nbLigne += ligne.getNbLigne();
+
+            // changment de tranche
+            while (tranche.hasNext() && tranche.getNext().getMin() < nbLigne) {
+                tranche = tranche.getNext();
+
+                // gestion plusieurs tranches sur meme ligne
+                int nbLignesSup = nbLigne - tranche.getMin();
+                if (tranche.hasNext()) nbLignesSup = Math.min(nbLignesSup, tranche.getNext().getMin() - tranche.getMin());
+                // ajout de la bascule
+                bascules.put(bascules.size(), new Pair<>(nbLignesSup, ligne));
+            }
         }
 
-        // pour chaque tranche on transforme la ligne de transition en deux lignes
-        for (int i = 0; i < lastPos.length; i++) {
-            if (lastPos[i] + i + 1 == lignes.size())
-                break;
-
+        // reinit tranche
+        tranche = tranches.get(0);
+        // pour chaque tranche detectee
+        for (Pair<Integer, Ligne> pair : bascules.values()) {
+            // reinit tranche
+            tranche = tranche.getNext();
+            // creation de la nouvelle ligne
             Ligne nouv = new Ligne();
-            Ligne init = lignes.get(lastPos[i] + i);
+            // recup derniere ligne
+            Ligne init = pair.getValue();
 
+            // init nouvelle ligne
             nouv.setDate(init.getDate());
             nouv.setEntreprise(init.getEntreprise());
-            nouv.setNbLigne(tranches.get(i + 1).getMin() - lastNbLigne[i]);
-            nouv.setTarif(tranches.get(i).getPrix());
-            nouv.setTotal(nouv.getNbLigne() * nouv.getTarif());
+            nouv.setNbLigne(pair.getKey());
+            nouv.setTarif(tranche.getPrix());
 
+            // maj derniere ligne
             init.setNbLigne(init.getNbLigne() - nouv.getNbLigne());
-            init.setTarif(tranches.get(i + 1).getPrix());
-            init.setTotal(init.getNbLigne() * init.getTarif());
 
-            lignes.add(lastPos[i] + i, nouv);
+            // recuperation du bon index (plusieurs tranches sur une ligne)
+            int idx = lignes.indexOf(init);
+            while (idx + 1 < lignes.size() && // integrite
+                    nouv.getTarif() < lignes.get(idx + 1).getTarif()) { // meme tarif
+                idx++;
+            }
+            // ajout de la nouvelle ligne a la liste des lignes
+            lignes.add(idx +1, nouv);
         }
 
+        // on retourne les lignes
         return lignes;
     }
 
@@ -148,7 +154,7 @@ public class Traitement {
             ligne.setNbLigne((int) Double.parseDouble(list.get(2)));
             ligne.setTarif(client.getTranches().get(0).getPrix());
 
-            ligne.setTotal(ligne.getNbLigne() * ligne.getTarif());
+//            ligne.setTotal(ligne.getNbLigne() * ligne.getTarif());
             lignes.add(ligne);
         }
 
@@ -177,7 +183,7 @@ public class Traitement {
             ligne.setTarif(client.getTarifs().get(numCol - 3).getPrix());
         }
 
-        ligne.setTotal(ligne.getNbLigne() * ligne.getTarif());
+//        ligne.setTotal(ligne.getNbLigne() * ligne.getTarif());
 
         return ligne;
     }

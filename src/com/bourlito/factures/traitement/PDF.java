@@ -18,7 +18,7 @@ public class PDF {
     private final Client client;
     private final Traitement traitement;
 
-    private final Font fontTitre = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD, new BaseColor(46, 110, 175));
+    private final Font fontHeader = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD, new BaseColor(46, 110, 175));
     private final BaseColor color = new BaseColor(46, 110, 175);
 
     /**
@@ -140,6 +140,11 @@ public class PDF {
         cell.setBorder(0);
         table.addCell(cell);
 
+        cell = new PdfPCell(new Paragraph("Pour tout règlement par chèque, nous vous remercions de nous les transmettre à l'adresse de notre bureau commercial :\nPlace Jean Monnet, bâtiment E, 56270 Ploemeur", new Font(Font.FontFamily.HELVETICA, 8, Font.BOLD, new BaseColor(46, 110, 175))));
+        cell.setColspan(Constants.TOTAL_COL);
+        cell.setBorder(0);
+        table.addCell(cell);
+
         return table;
     }
 
@@ -162,7 +167,7 @@ public class PDF {
         String[] tableTitleList = {"Date Saisie", "Nom Dossier", "Nombre Lignes", "Tarif Ligne", "Total HT"};
         for (String title : tableTitleList) {
             cell = new PdfPCell();
-            paragraph = new Paragraph(title, fontTitre);
+            paragraph = new Paragraph(title, fontHeader);
             paragraph.setAlignment(Element.ALIGN_CENTER);
             cell.addElement(paragraph);
             cell.setPaddingTop(-3);
@@ -174,7 +179,7 @@ public class PDF {
 
         List<Ligne> liste = traitement.getListeLignes(Constants.NUM_COL_LI);
         if (liste != null && !liste.isEmpty()) {
-            cell = new PdfPCell(new Paragraph(client.getLibelleTranches(), fontTitre));
+            cell = new PdfPCell(new Paragraph(client.getLibelleTranches(), fontHeader));
             table.addCell(this.createHeaderLine(cell));
             this.remplirLignes(table, liste);
         }
@@ -304,7 +309,7 @@ public class PDF {
     private void remplirIfNotEmpty(PdfPTable table, String entete, int numCol) {
         List<Ligne> liste = traitement.getListeLignes(numCol);
         if (liste != null && !liste.isEmpty()) {
-            PdfPCell cell = new PdfPCell(new Paragraph(entete, fontTitre));
+            PdfPCell cell = new PdfPCell(new Paragraph(entete, fontHeader));
             table.addCell(this.createHeaderLine(cell));
             this.remplirLignes(table, liste);
         }

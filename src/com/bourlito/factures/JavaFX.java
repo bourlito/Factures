@@ -14,4 +14,8 @@ public class JavaFX extends Application {
         stage.setScene(new Main(stage).getScene());
         stage.show();
     }
+
+    public static void main(String[] args) {
+        Application.launch(JavaFX.class, args);
+    }
 }

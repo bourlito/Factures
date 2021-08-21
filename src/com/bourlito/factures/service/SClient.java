@@ -54,8 +54,9 @@ public class SClient {
         this.writeDB();
     }
 
-    private void initClients(){
+    public void initClients(){
         JSONArray jClients = db.read();
+        clients.clear();
 
         for (Object o1: jClients) {
             JSONObject jClient = (JSONObject) o1;
@@ -78,6 +79,10 @@ public class SClient {
 
                 Tranche tranche = new Tranche((int) tMin, tPrix);
                 tranches.add(tranche);
+
+                // tranche precedente
+                int idx = tranches.indexOf(tranche);
+                if (idx > 0) tranches.get(idx -1).setNext(tranche);
             }
 
             JSONArray jTarifs = (JSONArray) jClient.get(Keys.TARIFS);

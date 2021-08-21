@@ -8,7 +8,6 @@ public class Ligne {
     private String entreprise;
     private double nbLigne;
     private double tarif;
-    private double total;
 
     public String getDate() {
         return date;
@@ -43,10 +42,6 @@ public class Ligne {
     }
 
     public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
+        return nbLigne * tarif;
     }
 }

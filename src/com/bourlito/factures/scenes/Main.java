@@ -5,8 +5,8 @@ import com.bourlito.factures.scenes.client.ClientList;
 import com.bourlito.factures.scenes.utils.CScene;
 import com.bourlito.factures.scenes.utils.Chooser;
 import com.bourlito.factures.service.SClient;
-import com.bourlito.factures.traitement.Recap;
 import com.bourlito.factures.traitement.Facture;
+import com.bourlito.factures.traitement.Recap;
 import com.bourlito.factures.utils.Constants;
 import com.bourlito.factures.utils.Date;
 import com.bourlito.factures.utils.Erreur;
@@ -33,11 +33,12 @@ public class Main {
 
     private final Stage stage;
     private static File destination;
-    private static String nFact = "";
+    private static String nFact = "1";
     private TextField tNum;
 
     /**
      * constructeur
+     *
      * @param stage la fenetre principale
      */
     public Main(Stage stage) {
@@ -94,9 +95,7 @@ public class Main {
         btnValider.setOnAction(event -> {
             if (tNum.getText().equals("") || tNum.getText() == null || destination == null) {
                 Erreur.creerFichierErreur("Il faut remplir tous les champs !");
-            }
-
-            else this.valider();
+            } else this.valider();
         });
 
         return new CScene(grid);
@@ -105,7 +104,7 @@ public class Main {
     /**
      * methode de validation des parametres rentres cans la fenetre principale
      */
-    private void valider(){
+    private void valider() {
         HSSFWorkbook wb;
         try {
             FileInputStream fis = new FileInputStream(new File(destination.getAbsolutePath() + "\\decompte.xls"));
@@ -146,9 +145,10 @@ public class Main {
 
     /**
      * methode de creation d'une fenetre de fin
+     *
      * @return la fenetre de fin du programme
      */
-    private Stage finishWindow(){
+    private Stage finishWindow() {
         Stage newWindow = new Stage();
         newWindow.setTitle("Terminer");
 
@@ -170,7 +170,7 @@ public class Main {
         BorderPane pane = new BorderPane();
         pane.setCenter(box);
 
-        Scene scene = new CScene(pane, stage.getWidth(), stage.getHeight()/3);
+        Scene scene = new CScene(pane, stage.getWidth(), stage.getHeight() / 3);
 
         newWindow.setScene(scene);
 

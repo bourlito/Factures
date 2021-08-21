@@ -2,7 +2,7 @@ package com.bourlito.factures.utils;
 
 public interface Constants {
     String DOSSIER = "D:\\CPE Solutions\\Factures\\";
-    // String DOSSIER = "C:\\Users\\franc\\Desktop\\CPE SOLUTIONS\\FACTURATION\\";
+    //String DOSSIER = System.getProperty("user.home") + "\\Desktop\\CPE SOLUTIONS\\FACTURATION\\";
     // String DOSSIER = "C:\\Users\\Public\\";
 
     String IMG = DOSSIER + "logo-cpe-solutions.PNG";
@@ -60,8 +60,8 @@ public interface Constants {
     int PADDING = 25;
     int MARGIN = 50;
     int MAX_WIDTH = 200;
-    int PANE_WIDTH = 800;
-    int PANE_HEIGHT = 500;
+    int PANE_WIDTH = 1000;
+    int PANE_HEIGHT = 600;
     int PANE_HEIGHT_TIERS = 166;
     int FONT_SIZE = 11;
     int TOTAL_COL = 11;

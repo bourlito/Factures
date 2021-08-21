@@ -6,6 +6,7 @@ public class Tranche implements Comparable<Tranche>{
 
     private int min;
     private double prix;
+    private Tranche next;
 
     public Tranche() {
     }
@@ -13,6 +14,7 @@ public class Tranche implements Comparable<Tranche>{
     public Tranche(int min, double prix) {
         this.min = min;
         this.prix = prix;
+        this.next = null;
     }
 
     @Override
@@ -34,5 +36,17 @@ public class Tranche implements Comparable<Tranche>{
 
     public void setPrix(double prix) {
         this.prix = prix;
+    }
+
+    public Tranche getNext() {
+        return next != null ? next : this;
+    }
+
+    public void setNext(Tranche next) {
+        this.next = next;
+    }
+
+    public boolean hasNext() {
+        return this.next != null;
     }
 }

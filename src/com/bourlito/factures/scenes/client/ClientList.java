@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import com.bourlito.factures.service.SClient;
@@ -23,15 +24,24 @@ public class ClientList {
      */
     public ClientList(Stage stage) {
         this.stage = stage;
+        SClient.getInstance().initClients();
     }
 
     /**
      * @return la scene
      */
     public CScene getScene() {
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setFitToWidth(true);
+
+        // Always show vertical scroll bar
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+
+        // Horizontal scroll bar is only displayed when needed
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
 
         BorderPane root = new BorderPane();
-        root.setPadding(new Insets(10));
+        root.setPadding(new Insets(0));
 
         Button btnRetour = new Button("Retour");
         btnRetour.setOnAction(event -> stage.setScene(new Main(stage).getScene()));
@@ -40,7 +50,7 @@ public class ClientList {
         btnNew.setOnAction(e -> stage.setScene(new ClientDetails(stage, new Client()).getScene()));
 
         ButtonBar bbar = new ButtonBar();
-        bbar.setPadding(new Insets(10, 0, 0, 10));
+        bbar.setPadding(new Insets(10));
         bbar.getButtons().addAll(btnRetour, btnNew);
         root.setBottom(bbar);
 
@@ -53,11 +63,13 @@ public class ClientList {
 
         for (Client client: sClient.getClients()) {
             Button title = new Button(client.getAlias());
+            title.setPrefWidth(Constants.MAX_WIDTH);
             title.setOnAction(event -> stage.setScene(new ClientDetails(stage, client).getScene()));
             pane.getChildren().addAll(title);
         }
 
-        root.setCenter(pane);
+        scrollPane.setContent(pane);
+        root.setCenter(scrollPane);
 
         return new CScene(root);
     }
