@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Factures.jnlp">
+  <information>
+    <title>Facturation</title>
+    <vendor>CPE Solutions</vendor>
+    <description>Logiciel de facturation CPE Solution</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Factures.jar" size="74864" download="eager" />
+    <jar href="lib\commons-codec-1.14.jar" size="347669" download="eager" />
+    <jar href="lib\commons-math3-3.6.1.jar" size="2213560" download="eager" />
+    <jar href="lib\itextpdf-5.5.6.jar" size="2265678" download="eager" />
+    <jar href="lib\json-simple-1.1.1.jar" size="23931" download="eager" />
+    <jar href="lib\poi-4.1.1.jar" size="2827712" download="eager" />
+  </resources>
+<security>
+  <all-permissions/>
+</security>
+  <jfx:javafx-desc  width="1000" height="600" main-class="com.bourlito.factures.JavaFX"  name="Factures" />
+  <update check="background"/>
+</jnlp>
