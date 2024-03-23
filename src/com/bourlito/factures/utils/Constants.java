@@ -2,16 +2,16 @@ package com.bourlito.factures.utils;
 
 public interface Constants {
     String DOSSIER = "D:\\CPE Solutions\\Factures\\";
-    //String DOSSIER = System.getProperty("user.home") + "\\Desktop\\CPE SOLUTIONS\\FACTURATION\\";
+    // String DOSSIER = System.getProperty("user.home") + "\\Desktop\\CPE SOLUTIONS\\FACTURATION\\";
     // String DOSSIER = "C:\\Users\\Public\\";
 
     String IMG = DOSSIER + "logo-cpe-solutions.PNG";
     String IMGREG = DOSSIER + "cdnReg.PNG";
 
-    String adresseCPE = "SARL CPE SOLUTIONS\n" +
-            "35-37 Rue de Rome, 75008 PARIS\n" +
+    String adresseCPE = "SAS CPE SOLUTIONS\n" +
+            "Villa Lourcine 24 rue Cabanis 75014 Paris\n" +
             "Tél. 02 30 91 97 42\n" +
-            "SARL au Capital de 75 000 € - RCS de Paris 450 692 447\n" +
+            "SAS au Capital de 75 000 € - RCS de Paris 450 692 447\n" +
             "Tva intracommunautaire : FR76450692447";
 
     // correspond à la colonne dans le xcl_décompte pour le type de ligne
