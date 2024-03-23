@@ -9,6 +9,7 @@ import com.itextpdf.text.pdf.*;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.List;
 
 public class PDF {
@@ -276,7 +277,9 @@ public class PDF {
         for (Ligne ligne : data) {
             table.addCell(creerCell(new Paragraph(ligne.getDate(), font)));
             table.addCell(creerCell(new Paragraph(ligne.getEntreprise(), font)));
-            table.addCell(creerCell(new Paragraph(Format.fEntier().format(ligne.getNbLigne()), font)));
+            NumberFormat nf = Format.fEntier();
+            if (ligne.getNbLigne() % 1 != 0) nf = Format.fTriple(); 
+            table.addCell(creerCell(new Paragraph(nf.format(ligne.getNbLigne()), font)));
             table.addCell(creerCell(new Paragraph(Format.fTriple().format(ligne.getTarif()), font)));
             table.addCell(creerCell(new Paragraph(Format.fTriple().format(ligne.getTotal()) + " €", font)));
         }

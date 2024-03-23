@@ -11,6 +11,7 @@ import org.apache.poi.ss.util.CellRangeAddress;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -493,14 +494,11 @@ public class XLS {
             for (int i = Constants.NUM_COL_NOM_DOS_1; i <= Constants.NUM_COL_NOM_DOS_2; i++)
                 row.createCell(i).setCellStyle(cellStyle);
             sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), Constants.NUM_COL_NOM_DOS_0, Constants.NUM_COL_NOM_DOS_2));
-            this.creerCell(row, cellStyle, (int) ligne.getNbLigne());
+            this.creerCell(row, cellStyle, Constants.NUM_COL_NB_LI_0, ligne.getNbLigne());
             row.createCell(Constants.NUM_COL_NB_LI_1).setCellStyle(cellStyle);
             sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), Constants.NUM_COL_NB_LI_0, Constants.NUM_COL_NB_LI_1));
-            this.creerCell(row, cellStyle, ligne.getTarif());
-            int decimals = 2;
-            try { decimals = String.valueOf(ligne.getTarif()).split("\\.")[1].length(); } 
-            catch (Exception e) { System.out.println("triple err: " + e); }
-            this.creerCell(row, decimals);
+            this.creerCell(row, cellStyle, Constants.NUM_COL_TRF_LI, ligne.getTarif());
+            this.creerCell(row, Math.max(2, BigDecimal.valueOf(ligne.getTarif()).scale()));
         }
     }
 
@@ -626,24 +624,13 @@ public class XLS {
 
     /**
      * methode de creation d'une cellule
-     * @param row     la ligne de la cellule
+     * @param row       la ligne de la cellule
      * @param cellStyle le style de la cellule
-     * @param number la valeur de la cellule (int)
+     * @param col       le numero de colonne
+     * @param number    la valeur de la cellule (double)
      */
-    private void creerCell( Row row, CellStyle cellStyle, int number) {
-        Cell cell = row.createCell(Constants.NUM_COL_NB_LI_0);
-        cell.setCellStyle(cellStyle);
-        cell.setCellValue(number);
-    }
-
-    /**
-     * methode de creation d'une cellule
-     * @param row     la ligne de la cellule
-     * @param cellStyle le style de la cellule
-     * @param number la valeur de la cellule (double)
-     */
-    private void creerCell( Row row, CellStyle cellStyle, double number) {
-        Cell cell = row.createCell(Constants.NUM_COL_TRF_LI);
+    private void creerCell(Row row, CellStyle cellStyle, int col, double number) {
+        Cell cell = row.createCell(col);
         cell.setCellStyle(cellStyle);
         cell.setCellValue(number);
     }

@@ -179,7 +179,7 @@ public class Traitement {
             ligne.setTarif(Double.parseDouble(data.get(2)));
 
         } else {
-            ligne.setNbLigne((int) Double.parseDouble(data.get(2)));
+            ligne.setNbLigne(Double.parseDouble(data.get(2)));
             ligne.setTarif(client.getTarifs().get(numCol - 3).getPrix());
         }
 
