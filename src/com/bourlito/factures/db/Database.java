@@ -1,7 +1,7 @@
 package com.bourlito.factures.db;
 
 import com.bourlito.factures.utils.Constants;
-import org.jetbrains.annotations.NotNull;
+
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -33,7 +33,7 @@ public class Database {
      * methode d'ecriture d'un json array dans le fichier db
      * @param array json array contenant les infos de la db
      */
-    public void write(@NotNull JSONArray array){
+    public void write( JSONArray array){
         try {
 
             File file = new File(Constants.DOSSIER + DB_NAME);

@@ -5,7 +5,7 @@ import com.bourlito.factures.dto.Ligne;
 import com.bourlito.factures.utils.*;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
-import org.jetbrains.annotations.NotNull;
+
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -64,7 +64,7 @@ public class PDF {
     /**
      * @return les conditions de reglement
      */
-    @NotNull
+    
     private PdfPTable getConditionsReglement() {
         Font font = new Font(Font.FontFamily.HELVETICA, 8);
         Font fontTitre = new Font(Font.FontFamily.HELVETICA, Constants.FONT_SIZE, Font.BOLD);
@@ -254,7 +254,7 @@ public class PDF {
      * @param cell la cellule contenant le libelle d'entete
      * @return la cellule au format d'une ligne d'entete
      */
-    private PdfPCell createHeaderLine(@NotNull PdfPCell cell) {
+    private PdfPCell createHeaderLine( PdfPCell cell) {
         cell.setColspan(5);
         cell.setPaddingBottom(4);
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -269,7 +269,7 @@ public class PDF {
      * @param table que l'on doit remplir
      * @param data  la liste (ligne, lettrage, etc...) contenant les lignes du decompte
      */
-    private void remplirLignes(PdfPTable table, @NotNull List<Ligne> data) {
+    private void remplirLignes(PdfPTable table,  List<Ligne> data) {
 
         Font font = new Font(Font.FontFamily.HELVETICA, 10);
 
@@ -288,7 +288,7 @@ public class PDF {
      * @param paragraph contenant la valeur de la cellule
      * @return la cellule stylisee
      */
-    private PdfPCell creerCell(@NotNull Paragraph paragraph) {
+    private PdfPCell creerCell( Paragraph paragraph) {
         PdfPCell cell = new PdfPCell();
         paragraph.setAlignment(Element.ALIGN_CENTER);
         cell.addElement(paragraph);
@@ -410,7 +410,7 @@ public class PDF {
             return tableHeight;
         }
 
-        public void onEndPage(@NotNull PdfWriter writer, @NotNull Document document) {
+        public void onEndPage( PdfWriter writer,  Document document) {
             table.writeSelectedRows(0, -1,
                     document.left(),
                     document.top() + ((document.topMargin() + tableHeight) / 2),
@@ -422,7 +422,7 @@ public class PDF {
      * classe de bordure des conditions de reglement
      */
     private static class BorderEvent implements PdfPTableEvent {
-        public void tableLayout(PdfPTable table, @NotNull float[][] widths, @NotNull float[] heights, int headerRows, int rowStart, @NotNull PdfContentByte[] canvases) {
+        public void tableLayout(PdfPTable table,  float[][] widths,  float[] heights, int headerRows, int rowStart,  PdfContentByte[] canvases) {
             float[] width = widths[0];
             float x1 = width[0];
             float x2 = width[width.length - 1];

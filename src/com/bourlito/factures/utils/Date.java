@@ -1,6 +1,6 @@
 package com.bourlito.factures.utils;
 
-import org.jetbrains.annotations.NotNull;
+
 
 import java.text.NumberFormat;
 import java.util.Calendar;
@@ -11,7 +11,7 @@ public class Date {
     private static final Calendar calendar = Calendar.getInstance();
     public static final int MILL = 2000;
 
-    @NotNull
+    
     private static String formatMonth(int month){
         NumberFormat nbFactFormat = NumberFormat.getInstance(Locale.FRANCE);
         nbFactFormat.setMinimumIntegerDigits(2);
@@ -19,7 +19,7 @@ public class Date {
         return nbFactFormat.format(month);
     }
 
-    @NotNull
+    
     public static String getLibelle() {
 
         int month = calendar.get(Calendar.MONTH);
@@ -33,7 +33,7 @@ public class Date {
         return formatMonth(month) + year;
     }
 
-    @NotNull
+    
     public static String getDate() {
 
         switch (calendar.get(Calendar.MONTH)) {
@@ -51,7 +51,7 @@ public class Date {
         }
     }
 
-    @NotNull
+    
     public static String getARegler() {
         return "20/" + formatMonth(calendar.get(Calendar.MONTH) + 1) + "/" + calendar.get(Calendar.YEAR);
     }

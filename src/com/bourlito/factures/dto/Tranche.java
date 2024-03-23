@@ -1,6 +1,6 @@
 package com.bourlito.factures.dto;
 
-import org.jetbrains.annotations.NotNull;
+
 
 public class Tranche implements Comparable<Tranche>{
 
@@ -18,7 +18,7 @@ public class Tranche implements Comparable<Tranche>{
     }
 
     @Override
-    public int compareTo(@NotNull Tranche tranche) {
+    public int compareTo( Tranche tranche) {
         return this.getMin() - tranche.getMin();
     }
 

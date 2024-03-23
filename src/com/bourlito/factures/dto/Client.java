@@ -4,7 +4,7 @@ import com.bourlito.factures.service.STarif;
 import com.bourlito.factures.service.STranche;
 import com.bourlito.factures.utils.Keys;
 import com.bourlito.factures.utils.Constants;
-import org.jetbrains.annotations.NotNull;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -45,7 +45,7 @@ public class Client implements Comparable<Client>{
     }
 
     @Override
-    public int compareTo(@NotNull Client client){
+    public int compareTo( Client client){
         return this.getAlias().compareTo(client.getAlias());
     }
 

@@ -13,7 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import org.jetbrains.annotations.NotNull;
+
 
 public class ClientDetails {
 
@@ -137,7 +137,7 @@ public class ClientDetails {
      * methode de remplissage d'un nouveau client
      * @return le client cree
      */
-    @NotNull
+    
     private Client newClient(){
 
         String alias = tAlias.getText();

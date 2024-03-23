@@ -7,7 +7,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.jetbrains.annotations.NotNull;
+
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -476,7 +476,7 @@ public class XLS {
      *
      * @param data la liste contenant les lignes
      */
-    private void remplirLigne(@NotNull List<Ligne> data) {
+    private void remplirLigne( List<Ligne> data) {
         CellStyle cellStyle = createCellStyle(true, true, true, true);
         cellStyle.setAlignment(HorizontalAlignment.CENTER);
         cellStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
@@ -544,8 +544,8 @@ public class XLS {
      * @param blue booleen couleur bleue
      * @return {@link Font}
      */
-    @NotNull
-    private Font createFont(Short size, @NotNull Boolean bold, Boolean blue) {
+    
+    private Font createFont(Short size,  Boolean bold, Boolean blue) {
         Font font = wb.createFont();
         font.setFontName("Calibri");
         font.setFontHeightInPoints(size);
@@ -564,7 +564,7 @@ public class XLS {
      * @param bottom booleen de bordure inferieure
      * @return {@link CellStyle}
      */
-    private CellStyle createCellStyle(@NotNull Boolean left, Boolean top, Boolean right, Boolean bottom) {
+    private CellStyle createCellStyle( Boolean left, Boolean top, Boolean right, Boolean bottom) {
         CellStyle cellStyle = wb.createCellStyle();
 
         if (left) {
@@ -598,7 +598,7 @@ public class XLS {
      * @param right   booleen de bordure droite
      * @param libelle libelle de la cellule
      */
-    private void creerCell(@NotNull Row row, int col, boolean right, String libelle) {
+    private void creerCell( Row row, int col, boolean right, String libelle) {
         Cell cell = row.createCell(col);
         CellStyle cellStyle = createCellStyle(true, true, right, true);
         cellStyle.setFont(createFont((short) 12, true, true));
@@ -615,7 +615,7 @@ public class XLS {
      * @param cellStyle le style de la cellule
      * @param texte la valeur de la cellule (string)
      */
-    private void creerCell(@NotNull Row row, int col, CellStyle cellStyle, String texte) {
+    private void creerCell( Row row, int col, CellStyle cellStyle, String texte) {
         Cell cell = row.createCell(col);
         cell.setCellStyle(cellStyle);
         cell.setCellValue(texte);
@@ -627,7 +627,7 @@ public class XLS {
      * @param cellStyle le style de la cellule
      * @param number la valeur de la cellule (int)
      */
-    private void creerCell(@NotNull Row row, CellStyle cellStyle, int number) {
+    private void creerCell( Row row, CellStyle cellStyle, int number) {
         Cell cell = row.createCell(Constants.NUM_COL_NB_LI_0);
         cell.setCellStyle(cellStyle);
         cell.setCellValue(number);
@@ -639,7 +639,7 @@ public class XLS {
      * @param cellStyle le style de la cellule
      * @param number la valeur de la cellule (double)
      */
-    private void creerCell(@NotNull Row row, CellStyle cellStyle, double number) {
+    private void creerCell( Row row, CellStyle cellStyle, double number) {
         Cell cell = row.createCell(Constants.NUM_COL_TRF_LI);
         cell.setCellStyle(cellStyle);
         cell.setCellValue(number);
@@ -649,7 +649,7 @@ public class XLS {
      * methode de creation d'une cellule
      * @param row     la ligne de la cellule
      */
-    private void creerCell(@NotNull Row row) {
+    private void creerCell( Row row) {
         String formule = Column.getLetterFromInt(Constants.NUM_COL_NB_LI_0) + (row.getRowNum() + 1)
                 + "*" + Column.getLetterFromInt(Constants.NUM_COL_TRF_LI) + (row.getRowNum() + 1);
 

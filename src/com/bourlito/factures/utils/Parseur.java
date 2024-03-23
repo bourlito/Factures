@@ -3,7 +3,7 @@ package com.bourlito.factures.utils;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.jetbrains.annotations.NotNull;
+
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -62,7 +62,7 @@ public class Parseur {
      * @param colonne numero de colonne
      * @return liste string specifique a la colonne
      */
-    public static List<String> remplirData(@NotNull List<String> aData, int colonne) {
+    public static List<String> remplirData( List<String> aData, int colonne) {
         List<String> data = new ArrayList<>();
 
         data.add(aData.get(0));
