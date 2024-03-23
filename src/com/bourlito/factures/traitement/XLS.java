@@ -497,7 +497,10 @@ public class XLS {
             row.createCell(Constants.NUM_COL_NB_LI_1).setCellStyle(cellStyle);
             sheet.addMergedRegion(new CellRangeAddress(row.getRowNum(), row.getRowNum(), Constants.NUM_COL_NB_LI_0, Constants.NUM_COL_NB_LI_1));
             this.creerCell(row, cellStyle, ligne.getTarif());
-            this.creerCell(row);
+            int decimals = 2;
+            try { decimals = String.valueOf(ligne.getTarif()).split("\\.")[1].length(); } 
+            catch (Exception e) { System.out.println("triple err: " + e); }
+            this.creerCell(row, decimals);
         }
     }
 
@@ -649,7 +652,7 @@ public class XLS {
      * methode de creation d'une cellule
      * @param row     la ligne de la cellule
      */
-    private void creerCell( Row row) {
+    private void creerCell(Row row, int decimals) {
         String formule = Column.getLetterFromInt(Constants.NUM_COL_NB_LI_0) + (row.getRowNum() + 1)
                 + "*" + Column.getLetterFromInt(Constants.NUM_COL_TRF_LI) + (row.getRowNum() + 1);
 
@@ -658,7 +661,10 @@ public class XLS {
         cellStyle.setAlignment(HorizontalAlignment.CENTER);
         cellStyle.setFont(createFont((short) Constants.FONT_SIZE, false, false));
         cellStyle.setShrinkToFit(true);
-        cellStyle.setDataFormat(df.getFormat("0.00 €"));
+        String format = "0.";
+        for (int i = 0; i < decimals; i++) format += "0";
+        format += " €";
+        cellStyle.setDataFormat(df.getFormat(format));
 
         Cell cell = row.createCell(Constants.NUM_COL_THT);
         cell.setCellStyle(cellStyle);

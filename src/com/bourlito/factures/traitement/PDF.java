@@ -278,7 +278,7 @@ public class PDF {
             table.addCell(creerCell(new Paragraph(ligne.getEntreprise(), font)));
             table.addCell(creerCell(new Paragraph(Format.fEntier().format(ligne.getNbLigne()), font)));
             table.addCell(creerCell(new Paragraph(Format.fTriple().format(ligne.getTarif()), font)));
-            table.addCell(creerCell(new Paragraph(Format.fDouble().format(ligne.getTotal()) + " €", font)));
+            table.addCell(creerCell(new Paragraph(Format.fTriple().format(ligne.getTotal()) + " €", font)));
         }
     }
 
