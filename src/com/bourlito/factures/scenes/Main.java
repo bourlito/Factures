@@ -126,6 +126,7 @@ public class Main {
 
             if (client == null) {
                 Erreur.creerFichierErreur(sheet.getSheetName() + " ne correspond à aucun client de la base de données.");
+                closeWb(wb);
                 return;
             }
 
@@ -139,8 +140,21 @@ public class Main {
             a++;
             nFacture++;
         }
-
+        closeWb(wb);
         finishWindow().show();
+    }
+
+    /**
+     * fermeture du workbook
+     * 
+     * @param wb
+     */
+    private void closeWb(HSSFWorkbook wb) {
+        try {
+            wb.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

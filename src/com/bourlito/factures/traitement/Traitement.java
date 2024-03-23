@@ -72,7 +72,7 @@ public class Traitement {
         // init params
         List<Ligne> lignes = createListeLigne(dataLigne);
         List<Tranche> tranches = client.getTranches();
-        Map<Integer, Pair<Integer, Ligne>> bascules = new HashMap();
+        Map<Integer, Pair<Integer, Ligne>> bascules = new HashMap<Integer, Pair<Integer, Ligne>>();
         int nbLigne = 0;
 
         // recuperation de la tranche
