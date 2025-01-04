@@ -23,18 +23,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
 
 public class Main {
 
@@ -133,9 +127,6 @@ public class Main {
         while (a < wb.getNumberOfSheets()) {
             HSSFSheet sheet = wb.getSheetAt(a);
 
-            // split
-            this.splitExcel(sheet, outputFolder);
-
             Client client = SClient.getInstance().getClientByAlias(sheet.getSheetName());
 
             if (client == null) {
@@ -144,7 +135,7 @@ public class Main {
             else {
                 String libelleFac = destination.getAbsolutePath() + "\\Facture CPE traitement " + client.getNom() + " " + Date.getLibelle() + " - " + Format.fNbFact().format(nFacture);
     
-                Facture facture = new Facture(libelleFac, nFacture, client, sheet);
+                Facture facture = new Facture(libelleFac, nFacture, client, sheet, outputFolder);
                 facture.create();
     
                 recap.insert(client, nFacture, facture.getTotalHT());
@@ -166,65 +157,6 @@ public class Main {
     private void closeWb(HSSFWorkbook wb) {
         try {
             wb.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * methode de creation d'un wb excel a partir d'une feuille
-     * @param sheet         la feuille a traiter
-     * @param outputFolder  le dossier ou enregistrer
-     */
-    private void splitExcel(HSSFSheet sheet, File outputFolder) {
-        String sheetName = sheet.getSheetName();
-
-        // Create a new Excel workbook for each sheet
-        HSSFWorkbook newWorkbook = new HSSFWorkbook();
-        newWorkbook.createSheet(sheetName);
-
-        // Copy the sheet to the new workbook
-        HSSFSheet newSheet = newWorkbook.getSheet(sheetName);
-        for (int j = 0; j <= sheet.getLastRowNum(); j++) {
-            HSSFRow sourceRow = sheet.getRow(j);
-            HSSFRow newRow = newSheet.createRow(j);
-            if (sourceRow != null) {
-                for (int k = 0; k < sourceRow.getLastCellNum(); k++) {
-                    HSSFCell sourceCell = sourceRow.getCell(k);
-                    if (sourceCell != null) {
-                        HSSFCell newCell = newRow.createCell(k);
-                        // date
-                        if (j != 0 && k == 0) {
-                            newCell.setCellValue(new SimpleDateFormat("dd/MM/yyyy").format(sourceCell.getDateCellValue()));
-                        }
-                        else {
-                            switch (sourceCell.getCellType()) {
-                                default:
-                                    break;
-                                case STRING:
-                                    newCell.setCellValue(sourceCell.getStringCellValue());
-                                    break;
-                                case NUMERIC:
-                                    newCell.setCellValue(sourceCell.getNumericCellValue());
-                                    break;
-                                case BOOLEAN:
-                                    newCell.setCellValue(sourceCell.getBooleanCellValue());
-                                    break;
-                                case FORMULA:
-                                    newCell.setCellFormula(sourceCell.getCellFormula());
-                                    break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Save the new workbook as a separate Excel file
-        String outputFile = Paths.get(outputFolder.getPath(), sheetName + ".xls").toString();
-        try (OutputStream outputStream = Files.newOutputStream(Paths.get(outputFile))) {
-            newWorkbook.write(outputStream);
-            newWorkbook.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
